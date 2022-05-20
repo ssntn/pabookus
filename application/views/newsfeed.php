@@ -8,9 +8,10 @@
     <title>Newsfeed</title>
 </head>
 <body>
+    <p>Newsfeed</p>
     <ul>
         <li>
-            <a href="default_controller">Home</a>
+            <a href="newsfeed">Home</a>
         </li>
         <li>notifications</li>
         <li>
@@ -23,5 +24,6 @@
             <a href="signup">Sign up</a>
         </li>
     </ul>
+
 </body>
 </html>

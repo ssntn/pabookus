@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('newsfeed.html');
+		$this->load->view('newsfeed');
 	}
 
 	public function newsfeed()
