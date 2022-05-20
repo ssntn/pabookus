@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['newsfeed'] = 'Routes/newsfeed';
-$route['newsfeed'] = 'Routes/profile';
-$route['newsfeed'] = 'Routes/signin';
-$route['newsfeed'] = 'Routes/signup';
-$route['newsfeed'] = 'Routes/schedule';
+$route['profile'] = 'Routes/profile';
+$route['signin'] = 'Routes/signin';
+$route['signup'] = 'Routes/signup';
+$route['schedule'] = 'Routes/schedule';

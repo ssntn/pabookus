@@ -10,26 +10,26 @@ class Routes extends CI_Controller {
     
 	public function newsfeed()
 	{
-		$this->load->view('newsfeed.html');
+		$this->load->view('newsfeed');
 	}
 
     public function profile()
     {
-        $this->load->view('profile.html');
+        $this->load->view('profile');
     }
 
     public function signin()
     {
-        $this->load->view('signin.html');
+        $this->load->view('signin');
     }
 
     public function signup()
     {
-        $this->load->view('signup.html');
+        $this->load->view('signup');
     }
 
     public function schedule()
     {
-        $this->load->view('schedule.html');
+        $this->load->view('schedule');
     }
 }
