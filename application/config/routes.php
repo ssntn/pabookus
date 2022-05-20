@@ -53,3 +53,8 @@ $route['default_controller'] = 'Routes/newsfeed';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['newsfeed'] = 'Routes/newsfeed';
+$route['newsfeed'] = 'Routes/profile';
+$route['newsfeed'] = 'Routes/signin';
+$route['newsfeed'] = 'Routes/signup';
+$route['newsfeed'] = 'Routes/schedule';
