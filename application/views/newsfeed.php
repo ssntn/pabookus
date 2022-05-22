@@ -13,7 +13,7 @@
         <li>
             <a href="newsfeed">Home</a>
         </li>
-        <li>notifications</li>
+        <li><button>notifications</button></li>
         <li>
             <a href="profile">Profile</a>
         </li>
@@ -24,6 +24,8 @@
             <a href="signup">Sign up</a>
         </li>
     </ul>
+
+
 
 </body>
 </html>
