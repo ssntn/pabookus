@@ -27,6 +27,16 @@ class Routes extends CI_Controller {
     {
         $this->load->view('signup');
     }
+    
+    public function client_signup()
+    {
+        $this->load->view('client_signup');
+    }
+
+    public function company_signup()
+    {
+        $this->load->view('company_signup');
+    }
 
     public function schedule()
     {

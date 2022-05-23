@@ -58,4 +58,6 @@ $route['newsfeed'] = 'Routes/newsfeed';
 $route['profile'] = 'Routes/profile';
 $route['signin'] = 'Routes/signin';
 $route['signup'] = 'Routes/signup';
+$route['company_signup'] = 'Routes/company_signup';
+$route['client_signup'] = 'Routes/client_signup';
 $route['schedule'] = 'Routes/schedule';
