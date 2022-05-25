@@ -11,10 +11,13 @@
     <form>
         <label>Email: </label>
         <input type="email" id="email" name="email"  required /><br>
+
         <label>Password:</label>
         <input type="password" id="password" name="password"  required /><br>
+
         <label>Confirm Password:</label>
-        <input type="password" id="password" name="password" required /><br>
+        <input type="password" id="password_c" name="password_c" required /><br>
+        
         <button>Submit</button>
     </form>
     <button><a href="signup">Back</a></button>
