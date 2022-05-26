@@ -9,10 +9,13 @@ class Register extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('Register_model');
         $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
-    public function add_client(){
+    public function add_user(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
+            if(!empty($this->session->flashdata('error')))
+                echo $this->session->flashdata('error');
 
             $email = $this->input->post('email');
             $password = $this->input->post('password');
@@ -24,15 +27,13 @@ class Register extends CI_Controller {
             );
 
             if (!$this->Register_model->add_user($user_type,$data)){                
-                $this->session->set_flashdata('error','Session Error.');
+                $this->session->set_flashdata('error','Can\'t create account. Try again');
 
                 if($user_type == 'client') redirect(base_url('client_signup'));
                 else if ($user_type == 'company') redirect(base_url('company_signup'));
             }
 
             redirect(base_url('signin'));
-            
-            
         }
     }
 

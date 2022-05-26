@@ -12,7 +12,8 @@
 </head>
 <body>
     <p>Client Sign-up: </p>
-    <form  method="post" autocomplete="off" action="<?= base_url('Register/add_client')?>">
+    <form  method="post" autocomplete="off" action="<?= base_url('Register/add_user')?>">
+    
         <input type="text" name="user_type" id="user_type" value="client" style="display: none;">
     
         <label>Email: </label>
