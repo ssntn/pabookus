@@ -11,13 +11,13 @@
         Sign In
     </p>
     <form method="POST" action="">
-        <label>Email: </label>
-        <input type="email" id="email" name="email" /><br>
-        <label>Password: </label>
-        <input type="password" id="password" name="password" /><br>
+        <label for="email" class="loginFormEmail form-label">Email</label>					
+        <input type="email" id="email" name="email"  required /><br>
+        <label for="password" class="loginFormPassword form-label">Password</label>
+        <input type="password" id="password" name="password"  required /><br>
         <label><a>Forgot Password?</a></label><br>
-        <button>Log in </button>
+        <button type="button"><a href="newsfeed">Back</a></button>
+		<button type="submit">LOG IN</button>
     </form>
-    <button><a href="newsfeed">Back</a></button>
 </body>
 </html>
