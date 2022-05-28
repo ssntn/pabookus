@@ -1,0 +1,41 @@
+.Aboutpage {
+    padding-top: 2%;
+}
+
+.aboutusBody{
+    font-family: 'Poppins', sans-serif; 
+    background-color: #E5e5e5;
+}
+
+.AUheading {
+    color: #1F4E70; 
+    font-weight: bolder;
+    font-size: 4rem;
+    padding-top: 45px;
+}
+
+.text-info {
+    font-size: 2rem;
+}
+
+.card {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.card-text {
+    text-align: center;
+}
+
+.card:hover {
+box-shadow: 5px 6px 6px 2px #e9ecef;
+transform: scale(1.1)
+}
+
+@media (min-width: 992px) {
+    .AUheading {
+        font-size: 6rem;
+    }
+}
