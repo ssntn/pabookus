@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2022 at 10:06 AM
+-- Generation Time: May 30, 2022 at 10:57 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -68,7 +68,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`client_id`, `first_name`, `last_name`, `email`, `password`, `contact`, `address`, `birthdate`, `schedule_id`) VALUES
-(1, NULL, NULL, 'user123@bla.bla', '123', NULL, NULL, NULL, NULL);
+(1, NULL, NULL, 'user123@bla.bla', '123', NULL, NULL, NULL, NULL),
+(2, NULL, NULL, 'me@me.me', 'meme', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -212,7 +213,7 @@ ALTER TABLE `bio`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `client_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `client_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `company`
