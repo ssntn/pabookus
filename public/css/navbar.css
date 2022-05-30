@@ -1,0 +1,27 @@
+.navbar{
+    background-color: #1F4E70;
+    top: 0;
+    border-radius: 0;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.custom-navbar a{
+    font-size: 2vw;
+    color: #ffffff;
+}
+
+.nav-item{
+    padding: 0 15px;
+}
+
+.nav-item:hover{
+    background-color: #1b3e58 !important;
+    color: #ffffff;
+    text-transform: uppercase;
+}
