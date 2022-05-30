@@ -8,27 +8,23 @@
 </head>
 <body>
     <p>Company Sign-up: </p>
-    <form>
-        <label>Company Name: </label>
-        <input type="text" id="cname" name="company_name"  required /><br>
-        <label>Contact Number: </label>
-        <input type="number" id="contact" name="contact"  required /><br>
-        <label>Address: </label>
-        <input type="text" id="address" name="address"  required /><br>
-        <label>Industry: </label>
-        <input type="text" id="industry" name="industry"  required /><br>
-        <label>Owner: </label>
-        <input type="text" id="owner" name="owner"  required /><br>
-        <label>Founding Date: </label>
-        <input type="date" id="founddate" name="founding_date"  required /><br>
+    
+    <form  method="post" autocomplete="off" action="<?= base_url('Register/add_user')?>">
+
+        <input type="text" name="user_type" id="user_type" value="company" style="display: none;">
+
         <label>Email: </label>
         <input type="email" id="email" name="email"  required /><br>
+
         <label>Password:</label>
         <input type="password" id="password" name="password"  required /><br>
+
         <label>Confirm Password:</label>
-        <input type="password" id="password" name="password" required /><br>
-        <button>Submit</button>
+        <input type="password" id="password_c" name="password_c" required /><br>
+
+        <button type="submit">Submit</button>
     </form>
     <button><a href="signup">Back</a></button>
+    <p> </p>
 </body>
 </html>
