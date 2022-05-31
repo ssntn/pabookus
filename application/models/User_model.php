@@ -31,7 +31,7 @@ class User_model extends CI_Model {
         $this->db->select($user_type."_id");
         $this->db->where('email', $email);
         $this->db->where('password', $password);
-        $q = $this->db->get($user_type);
+        $q = $this->db->get($user_type)->row_array();
 
         if($q) return $q;
         else return false;

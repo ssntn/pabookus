@@ -32,17 +32,18 @@ class Login extends CI_Controller {
             if($account == null)
                 redirect(base_url("signin")); // PRINT ACCOUNT NON EXISTENT
 
-            $u_id = $this->User_model->check_pass($account, $email, $password);
-            if($u_id == FALSE)
+            $u_inf = $this->User_model->check_pass($account, $email, $password);
+            if($u_inf == FALSE)
                 redirect(base_url("signin")); // PRINT WRONG PASSWORD
 
             $session_data = array(
-                'id' => $u_id,
+                'id' => $u_inf[$account.'_id'],
                 'user_type' => $account,
                 'email' => $email
             );
 
             $this->session->set_userdata('UserLoginSession', $session_data);
+            print_r($session_data);
             redirect(base_url('newsfeed'));
             
         }
