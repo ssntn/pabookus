@@ -15,5 +15,6 @@
         
         <!--link for ratings-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <title>PALTAN NIYO KO</title>
+        <title>Pabookus</title>
+        the header ni ian <br>
     </head>
