@@ -1,12 +1,7 @@
 <?php 
-if($this->session->userdata('UserLoginSession'))
-{
-    $udata = $this->session->userdata('UserLoginSession');
-}
-else
-{
-    redirect(base_url('signin'));
-}
+    if($this->session->userdata('UserLoginSession'))
+        $udata = $this->session->userdata('UserLoginSession');
+    else redirect(base_url('signin'));
 ?>
 
 <body>

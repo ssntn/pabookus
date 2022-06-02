@@ -43,7 +43,6 @@ class Login extends CI_Controller {
             );
 
             $this->session->set_userdata('UserLoginSession', $session_data);
-            print_r($session_data);
             redirect(base_url('newsfeed'));
             
         }
