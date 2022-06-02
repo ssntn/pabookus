@@ -37,4 +37,42 @@ class User_model extends CI_Model {
         else return false;
     }
 
+    public function get_client_id($id){
+        $this->db->select(
+            'email,
+            first_name,
+            last_name,
+            contact,
+            address,
+            birthdate,
+            schedule_id'
+        );
+
+        $this->db->where('client_id', $id);
+        $q = $this->db->get('client')->row_array();
+
+        if($q) return $q;
+        else return false;
+    }
+
+    public function get_company_id($id){
+        $this->db->select(
+            'company_name,
+            email,
+            address,
+            industry,
+            owner,
+            founding_date,
+            bio_id,
+            link_id,
+            schedule_id,
+            review_id'
+        );
+
+        $this->db->where('company_id', $id);
+        $q = $this->db->get('company')->row_array();
+
+        if($q) return $q;
+        else return false;
+    }
 }

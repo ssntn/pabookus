@@ -1,12 +1,18 @@
 <body>
-    
+    <?php 
+        if($this->session->userdata('UserLoginSession'))
+            $udata = $this->session->userdata('UserLoginSession');
+        else redirect('logout');
+    ?>
 <ul>
     <li>
         <a href="newsfeed">Home</a>
     </li>
-    <li><button>notifications</button></li>
     <li>
-        <a href="profile">Profile</a>
+        <button>notifications</button>
+    </li>
+    <li>
+        <a href="profile?id=<?php echo $udata['id']?>&ut=2">Profile</a>
     </li>
     <li>
         <a href="signin">Sign in</a>
@@ -14,14 +20,8 @@
     <li>
         <a href="signup">Sign up</a>
     </li>
-
-    <button onclick="
-    <?php
-        $array_items = array($account.'_id' => '', 'email' => '');
-        $this->session->unset_userdata($array_items);
-        $this->session->sess_destroy();
-    ?>">
-        logout
-    </button>
+    <li>
+        <!-- user type: 1 = company, 2 = clients -->
+        <a href="logout">Logout</a>
+    </li>
 </ul>
-    

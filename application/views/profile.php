@@ -10,7 +10,7 @@
 
 
 <p class="inf_title">Email:</p>
-<p class="u_inf" id="email_lbl">email@ema.il</p>
+<p class="u_inf" id="email_lbl"><?php echo $udata['email'] ?></p>
 <input class="edit_box" type="text" name="email_edt" id="email_edt">
 
 <p class="inf_title">Contact numbers:</p>
