@@ -6,4 +6,4 @@
 
 <body>
 <p>Newsfeed</p>
-<p><?php echo $udata['email'] ?></p>
+<p><?php if(isset($udata))echo $udata['email'] ?></p>
