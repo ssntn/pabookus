@@ -2,7 +2,6 @@
     <?php 
         if($this->session->userdata('UserLoginSession'))
             $udata = $this->session->userdata('UserLoginSession');
-        else redirect('logout');
     ?>
 <ul>
     <li>
