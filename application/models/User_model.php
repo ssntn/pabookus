@@ -39,7 +39,8 @@ class User_model extends CI_Model {
 
     public function get_client_id($id){
         $this->db->select(
-            'email,
+            'client_id,
+            email,
             first_name,
             last_name,
             contact,
@@ -57,7 +58,8 @@ class User_model extends CI_Model {
 
     public function get_company_id($id){
         $this->db->select(
-            'company_name,
+            'company_id,
+            company_name,
             email,
             address,
             industry,

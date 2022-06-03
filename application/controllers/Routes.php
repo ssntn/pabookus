@@ -32,6 +32,7 @@ class Routes extends CI_Controller {
 
         $this->load->model('User_model');
 
+        // 1 = client, 2 = company
         if($_GET['ut'] == 1)
             $user_details = $this->User_model->get_client_id($_GET['id']);
         else if($_GET['ut'] == 2)
@@ -44,10 +45,16 @@ class Routes extends CI_Controller {
 
         print_r($user_details);
 
-        // $this->load->view('inc/header');
-        // $this->load->view('inc/navbar');
-        // $this->load->view('profile');
-        // $this->load->view('inc/footer');
+        $data['key_details'] = $user_details;
+
+        $this->load->view('inc/header');
+        $this->load->view('inc/navbar');
+        $this->load->view(
+            ($_GET['ut']==1)
+                ?'inc/profile_client'
+                :'inc/profile_company',
+            $data);
+        $this->load->view('inc/footer');
     }
 
     public function signin()
