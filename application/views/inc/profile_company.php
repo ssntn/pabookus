@@ -38,32 +38,65 @@
 <input class="edit_box" type="text" name="address_edt" id="address_edt">
 
 <p class="inf_title">Industry</p>
-<p class="u_inf" id="industry_lbl">Entertainment</p>
+<p class="u_inf" id="industry_lbl">
+    <?php echo isset($key_details['industry'])
+        ? $key_details['industry']
+        : "Not set"
+    ?>
+</p>
 <input class="edit_box" type="text" name="industry_edt" id="industry_edt">
 <select  class="edit_box" name="industry_list" id="industry_edts">
     <option value="null">Select</option>
+    <?php
+        $industry = ["Industry 1","Industry 2","Industry 3"];
+        foreach($industry as $i){?>
+            
+        <option value="<?php echo $i ?>"><?php echo $i ?></option>
+            
+    <?php } ?>
 </select>
 
 <p class="inf_title">Owner</p>
-<p class="u_inf" id="owner_lbl">YAGOO</p>
+<p class="u_inf" id="owner_lbl">
+    <?php echo isset($key_details['owner'])
+        ? $key_details['owner']
+        : "Not set"
+    ?>
+</p>
 <input class="edit_box" type="text" name="owner_edt" id="owner_edt">
 
-<p>Birthday</p> 
-<input type="date" name="birthdate" id="birthdate_lbl">
+<p>Founding Date</p> 
+<input type="date" name="birthdate" id="birthdate_lbl" value="2022-06-29">
+<button onclick="print()">print</button>
 <p>Bio</p>
-<ul>links
-    <li><a href="#">Twitter</a></li>
-    <li><a href="#">Facebook</a></li>
-    <li><a href="#">Instagram</a></li>
+
+<p>Link</p>
+<ul>
+    <?php
+        $links = ["link 1","link 2","link 3"];
+        foreach($links as $link){?>
+            
+        <li><a href="#"><?php echo $link ?></a></li>
+            
+    <?php } ?>
 </ul>
+
 <p><button><a href="schedule">Schedule</a></button></p>
+
 <p>Reviews</p>
 
 <script type="text/javascript">
     $('.edit_box').css("display", "none");
     $('#industry_edt').attr("readonly", "true");
     
+    $("#industry_edts").change(function(){
+        $("#industry_lbl").value("")
+    });
 
+    // FORMAT: 2022-06-29 
+    function print(){
+        alert($('#birthdate_lbl').val())
+    }
 
     function edit_profile(){
 
