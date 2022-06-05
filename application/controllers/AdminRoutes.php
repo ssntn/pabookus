@@ -13,6 +13,7 @@ class AdminRoutes extends CI_Controller {
 	{
         $this->session->userdata('page');
         $this->load->helper('url');
+        $this -> load -> view ('Admin/inc/header'); 
 		$this->load->view('admin/AdminLogin');
 	}
 
