@@ -95,17 +95,14 @@
 <p>Reviews</p>
 
 <script type="text/javascript">
-    $('.edit_box').css("display", "none");    
-    $("#save_btn").css("display", "none");
-    $('#industry_lbl').attr("readonly", "true");
-    
-    $("#industry_lbl").change(function(){
-        //$("#industry_lbl").value();
+    $(document).ready(function(){
+        $('.edit_box').css("display", "none");    
+        $("#save_btn").css("display", "none");
+        $('#industry_lbl').attr("readonly", "true");
     });
 
-
     function print(){
-        alert($('#founding_date_lbl').val());
+        alert($('#founding_date_edt').val());
     }
 
     function edit_profile(){
@@ -116,12 +113,30 @@
         $('#address_edt').val($('#address_lbl').html());
         $('#industry_edt').val($('#industry_lbl').html());
         $('#owner_edt').val($('#owner_lbl').html());
-            
+
         var f_date = $("#founding_date_lbl").html();
         f_date = f_date.toString();
         $("#founding_date_edt").val(f_date);
     }
 
+    //===================== AJAX ===========================
+    function edit_user(){
+        $.post("<?=base_url('Profile/edit_user')?>",{
+
+            name: $('#name_lbl').html(),
+            email: $('#email_lbl').html(),
+            contact: $('#contact_lbl').html(),
+            address: $('#address_lbl').html(),
+            industry: $('#industry_lbl').html(),
+            owner: $('#owner_lbl').html(),
+            founding_date: $('#founding_date_lbl').html()
+        }, function(data){
+
+            window.location.reload();
+        });
+    }
+
+    //================= on change =======================
     $('#edit_btn').click(function(){
         if ($('.edit_box').css("display") == "none"){
 
@@ -141,25 +156,15 @@
             $("#save_btn").css("display", "none");
             $("#edit_btn").html("Edit info");
         }
-    })
+    });
+    
+    $("#industry_lbl").change(function(){
+        alert($("#industry_lbl").value());
+    });
 
-    function edit_user(){
-        $.post("<?=base_url('Profile/edit_user')?>",
-        {
-            name: $('#name_lbl').html(),
-            email: $('#email_lbl').html(),
-            contact: $('#contact_lbl').html(),
-            address: $('#address_lbl').html(),
-            industry: $('#industry_lbl').html(),
-            owner: $('#owner_lbl').html(),
-            founding_date: $('#founding_date_lbl').html()
-        },        
-        function(data){
-            
-            
-            
-            window.location.reload();
-        });
-    }
+    $("#save_btn").click(function(){
+        edit_user();
+    });
+    
 
 </script>
