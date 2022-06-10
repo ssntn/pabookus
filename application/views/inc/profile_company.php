@@ -6,6 +6,7 @@
 </div>
 
 <button id="edit_btn">Edit info</button>
+<button id="save_btn">Save</button>
 <p class="inf_title">Name:</p>
 <p  class="u_inf" id="name_lbl">
 <?php echo isset($key_details['company_name'])
@@ -93,7 +94,8 @@
 <p>Reviews</p>
 
 <script type="text/javascript">
-    $('.edit_box').css("display", "none");
+    $('.edit_box').css("display", "none");    
+    $("#save_btn").css("display", "none");
     $('#industry_edt').attr("readonly", "true");
     
     $("#industry_edts").change(function(){
@@ -104,7 +106,6 @@
     f_date = f_date.toString();
     $("#founding_date_edt").val(f_date);
 
-    // FORMAT: 2022-06-29 
     function print(){
         alert($('#founding_date_edt').val())
     }
@@ -122,16 +123,23 @@
     $('#edit_btn').click(function(){
         if ($('.edit_box').css("display") == "none"){
 
+            // EDIT MODE
             // REMOVE INFOS, DISPLAY TEXT BOX
             $('.edit_box').css("display", "");
             $('.u_inf').css("display", "none");
+            $("#save_btn").css("display", "");
+            $("#edit_btn").html("Cancel");
             
             edit_profile();
+
+
         }else {
 
             // REMOVE TEXTBOX, DISPLAY INFO
             $('.edit_box').css("display", "none");
             $('.u_inf').css("display", "");
+            $("#save_btn").css("display", "none");
+            $("#edit_btn").html("Edit info");
 
         }
     })
