@@ -63,6 +63,7 @@ class User_model extends CI_Model {
             email,
             address,
             industry,
+            contact,
             owner,
             founding_date,
             bio_id,
