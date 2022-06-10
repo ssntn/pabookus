@@ -69,9 +69,10 @@
 
 <p>Founding Date</p>
 
-<p class="u_inf" id="founding_date_lbl"><?php echo isset($key_details['founding_date'])
-    ? $key_details['founding_date']
-    : "Not set"
+<p class="u_inf" id="founding_date_lbl"><?php 
+    echo isset($key_details['founding_date'])
+        ? $key_details['founding_date']
+        : "Not set"
 ?>
 </p>
 <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
@@ -96,18 +97,15 @@
 <script type="text/javascript">
     $('.edit_box').css("display", "none");    
     $("#save_btn").css("display", "none");
-    $('#industry_edt').attr("readonly", "true");
+    $('#industry_lbl').attr("readonly", "true");
     
-    $("#industry_edts").change(function(){
+    $("#industry_lbl").change(function(){
         //$("#industry_lbl").value();
     });
 
-    var f_date = $("#founding_date_lbl").html();
-    f_date = f_date.toString();
-    $("#founding_date_edt").val(f_date);
 
     function print(){
-        alert($('#founding_date_edt').val())
+        alert($('#founding_date_lbl').val());
     }
 
     function edit_profile(){
@@ -118,6 +116,10 @@
         $('#address_edt').val($('#address_lbl').html());
         $('#industry_edt').val($('#industry_lbl').html());
         $('#owner_edt').val($('#owner_lbl').html());
+            
+        var f_date = $("#founding_date_lbl").html();
+        f_date = f_date.toString();
+        $("#founding_date_edt").val(f_date);
     }
 
     $('#edit_btn').click(function(){
@@ -131,8 +133,6 @@
             $("#edit_btn").html("Cancel");
             
             edit_profile();
-
-
         }else {
 
             // REMOVE TEXTBOX, DISPLAY INFO
@@ -140,8 +140,26 @@
             $('.u_inf').css("display", "");
             $("#save_btn").css("display", "none");
             $("#edit_btn").html("Edit info");
-
         }
     })
+
+    function edit_user(){
+        $.post("<?=base_url('Profile/edit_user')?>",
+        {
+            name: $('#name_lbl').html(),
+            email: $('#email_lbl').html(),
+            contact: $('#contact_lbl').html(),
+            address: $('#address_lbl').html(),
+            industry: $('#industry_lbl').html(),
+            owner: $('#owner_lbl').html(),
+            founding_date: $('#founding_date_lbl').html()
+        },        
+        function(data){
+            
+            
+            
+            window.location.reload();
+        });
+    }
 
 </script>
