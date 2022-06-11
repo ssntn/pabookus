@@ -1,8 +1,3 @@
-
-</body>
-
-    <footer>
-        the footer ni ian
-    </footer>
-
-</html>
+<footer>
+	&copy; PABOOKUS 2022
+</footer>
