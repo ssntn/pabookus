@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 09:08 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: May 30, 2022 at 10:57 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,15 +53,23 @@ CREATE TABLE `bio` (
 
 CREATE TABLE `client` (
   `client_id` int(12) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `contact` int(12) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `birthdate` date NOT NULL,
-  `schedule_id` int(12) NOT NULL
+  `contact` int(12) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
+  `schedule_id` int(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`client_id`, `first_name`, `last_name`, `email`, `password`, `contact`, `address`, `birthdate`, `schedule_id`) VALUES
+(1, NULL, NULL, 'user123@bla.bla', '123', NULL, NULL, NULL, NULL),
+(2, NULL, NULL, 'me@me.me', 'meme', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -71,20 +79,27 @@ CREATE TABLE `client` (
 
 CREATE TABLE `company` (
   `company_id` int(12) NOT NULL,
-  `company_name` varchar(50) NOT NULL,
+  `company_name` varchar(50) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `contact` int(12) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `industry` varchar(50) NOT NULL,
-  `owner` varchar(100) NOT NULL,
-  `founding_date` date NOT NULL,
+  `contact` int(12) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `industry` varchar(50) DEFAULT NULL,
+  `owner` varchar(100) DEFAULT NULL,
+  `founding_date` date DEFAULT NULL,
   `field` varchar(50) NOT NULL,
-  `bio_id` int(12) NOT NULL,
-  `link_id` int(12) NOT NULL,
-  `schedule_id` int(12) NOT NULL,
-  `review_id` int(12) NOT NULL
+  `bio_id` int(12) DEFAULT NULL,
+  `link_id` int(12) DEFAULT NULL,
+  `schedule_id` int(12) DEFAULT NULL,
+  `review_id` int(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `field`, `bio_id`, `link_id`, `schedule_id`, `review_id`) VALUES
+(1, NULL, 'company@com.pany', '111', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,13 +213,13 @@ ALTER TABLE `bio`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `client_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `client_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `company_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `links`
