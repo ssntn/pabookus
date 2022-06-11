@@ -61,3 +61,4 @@ $route['signup'] = 'Routes/signup';
 $route['company_signup'] = 'Routes/company_signup';
 $route['client_signup'] = 'Routes/client_signup';
 $route['schedule'] = 'Routes/schedule';
+$route['logout'] = 'Routes/logout';
