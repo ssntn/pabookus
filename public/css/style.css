@@ -249,6 +249,67 @@
 }
 
 
+/**** SEARCH BAR ****/
+.search
+{
+	overflow: auto;
+    margin: 15px;
+}
+
+.search input[type="text"]
+{
+	border: 0px;
+	width: 94.1%;
+    padding: 10px;
+    border-top-left-radius: 5px;
+	-moz-border-radius-top-left: 5px;
+	-webkit-border-radius-top-left: 5px;
+	border-bottom-left-radius: 5px;
+	-moz-border-radius-bottom-left: 5px;
+	-webkit-border-radius-bottom-left: 5px;
+}
+
+.search input[type="text"]:hover
+{
+	outline: 0;
+}
+
+.search input[type="submit"]
+{
+	border: 0px;
+	background: none;
+	background-color: #274C77;
+	color: #fff;
+	float: right;
+	padding: 10px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-top-right: 5px;
+	-webkit-border-radius-top-right: 5px;
+	border-bottom-right-radius: 5px;
+	-moz-border-radius-bottom-right: 5px;
+	-webkit-border-radius-bottom-right: 5px;
+        cursor:pointer;
+}
+
+/* ===========================
+   ====== Medua Query for Search Box ====== 
+   =========================== */
+
+@media only screen and (min-width : 150px) and (max-width : 780px)
+{
+	.search input[type="text"]
+	{
+        width: 75%;
+		margin: 0 auto;
+	}
+    .search input[type="submit"]
+    {
+        width: 25%;
+        margin: 0 auto;
+    }
+
+}
+
 
 /******* FOOTER *******/
 footer{
