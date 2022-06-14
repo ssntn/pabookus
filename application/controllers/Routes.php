@@ -57,31 +57,10 @@ class Routes extends CI_Controller {
         $this->load->view('inc/footer');
     }
 
-    public function signin()
+    public function login()
     {
         $this->load->view('inc/header');
-        $this->load->view('signin');
-        $this->load->view('inc/footer');
-    }
-
-    public function signup()
-    {
-        $this->load->view('inc/header');
-        $this->load->view('signup');
-        $this->load->view('inc/footer');
-    }
-    
-    public function client_signup()
-    {
-        $this->load->view('inc/header');
-        $this->load->view('client_signup');
-        $this->load->view('inc/footer');
-    }
-
-    public function company_signup()
-    {
-        $this->load->view('inc/header');
-        $this->load->view('company_signup');
+        $this->load->view('login');
         $this->load->view('inc/footer');
     }
 

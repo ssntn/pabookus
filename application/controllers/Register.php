@@ -29,11 +29,11 @@ class Register extends CI_Controller {
             if (!$this->User_model->add_user($user_type,$data)){                
                 $this->session->set_flashdata('error','Can\'t create account. Try again');
 
-                if($user_type == 'client') redirect(base_url('client_signup'));
-                else if ($user_type == 'company') redirect(base_url('company_signup'));
+                if($user_type == 'client') redirect(base_url('login'));
+                else if ($user_type == 'company') redirect(base_url('login'));
             }
 
-            redirect(base_url('signin'));
+            redirect(base_url('login'));
         }
     }
 
