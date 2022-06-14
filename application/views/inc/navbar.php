@@ -9,7 +9,7 @@
 		<a href=<?php if(isset($udata)){
                     $ut = ($udata['user_type']=='client')?'1':'2'; 
                     echo "profile?id=".$udata['id']."&ut=".$ut;
-                }else echo 'signin'; ?>>Profile
+                }else echo 'login'; ?>>Profile
 		</a>
 		    <?php if(!isset($udata)){ ?>
 		<a href="login">Log-in</a>

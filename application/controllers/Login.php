@@ -30,11 +30,11 @@ class Login extends CI_Controller {
             //=================== JS-able UNTIL HERE =============================
             
             if($account == null)
-                redirect(base_url("signin")); // PRINT ACCOUNT NON EXISTENT
+                redirect(base_url("login")); // PRINT ACCOUNT NON EXISTENT
 
             $u_inf = $this->User_model->check_pass($account, $email, $password);
             if($u_inf == FALSE)
-                redirect(base_url("signin")); // PRINT WRONG PASSWORD
+                redirect(base_url("login")); // PRINT WRONG PASSWORD
 
             $session_data = array(
                 'id' => $u_inf[$account.'_id'],
