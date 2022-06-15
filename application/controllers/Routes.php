@@ -76,6 +76,6 @@ class Routes extends CI_Controller {
     {
         $this->session->unset_userdata('UserLoginSession');
         $this->session->sess_destroy();
-        redirect('newsfeed');
+        redirect('home');
     }
 }
