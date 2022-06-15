@@ -26,7 +26,8 @@ class Register extends CI_Controller {
                 'password' => $password
             );
 
-            if (!$this->User_model->add_user($user_type,$data)){                
+            if (!$this->User_model->add_user($user_type,$data)){      
+                // display flashdata error msg
                 $this->session->set_flashdata('error','Can\'t create account. Try again');
 
                 redirect(base_url('login'));
