@@ -21,6 +21,7 @@ class Profile extends CI_Controller {
             $industry = $_POST['industry'];
             $owner = $_POST['owner'];
             $founding_date = $_POST['founding_date'];
+            $user_type = $_POST['user_type'];
 
             $data = array(
                 $name,
@@ -29,13 +30,11 @@ class Profile extends CI_Controller {
                 $address,
                 $industry,
                 $owner,
-                $founding_date
+                $founding_date,
+                $user_type
             );
 
-            if(!$this->User_model->update_user())
-                echo false;
-            else
-                echo true;
+            echo $this->User_model->update_user($data);
         }
     }
 }
