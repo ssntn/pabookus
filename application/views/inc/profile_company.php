@@ -131,8 +131,9 @@
             owner: $('#owner_lbl').html(),
             founding_date: $('#founding_date_lbl').html()
         }, function(data){
-
-            window.location.reload();
+            if(data==false)
+                alert("fase");
+            //window.location.reload();
         });
     }
 
@@ -157,7 +158,7 @@
             $("#edit_btn").html("Edit info");
         }
     });
-    
+
     $("#industry_lbl").change(function(){
         alert($("#industry_lbl").value());
     });
