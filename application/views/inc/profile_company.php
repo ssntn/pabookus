@@ -99,6 +99,7 @@
         $('.edit_box').css("display", "none");    
         $("#save_btn").css("display", "none");
         $('#industry_lbl').attr("readonly", "true");
+        alert(<?php ; ?>);
     });
 
     function print(){
@@ -121,7 +122,7 @@
 
     //===================== AJAX ===========================
     function edit_user(){
-        $.post("<?=base_url('Profile/edit_user')?>",{
+        $.post("<?=base_url('Profile/edit_company')?>",{
 
             name: $('#name_lbl').html(),
             email: $('#email_lbl').html(),

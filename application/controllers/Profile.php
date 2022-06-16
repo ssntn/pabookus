@@ -11,30 +11,53 @@ class Profile extends CI_Controller {
         $this->load->library('session');
     }
 
-    public function edit_user(){
+    public function edit_company(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
             
-            $name = $_POST['name'];
+            $id = $_POST['id'];
+            $company_name = $_POST['name'];
             $email = $_POST['email'];
             $contact = $_POST['contact'];
             $address = $_POST['address'];
             $industry = $_POST['industry'];
             $owner = $_POST['owner'];
             $founding_date = $_POST['founding_date'];
-            $user_type = $_POST['user_type'];
 
             $data = array(
-                $name,
+                $company_name,
                 $email,
                 $contact,
                 $address,
                 $industry,
                 $owner,
-                $founding_date,
-                $user_type
+                $founding_date
             );
 
-            echo $this->User_model->update_user($data);
+            echo $this->User_model->update_company($id, $data);
+        }
+    }
+    
+    public function edit_client(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            
+            $id = $_POST['id'];
+            $first_name = $_POST['fn'];
+            $last_name = $_POST['ln'];
+            $email = $_POST['email'];
+            $contact = $_POST['contact'];
+            $address = $_POST['address'];
+            $birthdate = $_POST['founding_date'];
+
+            $data = array(
+                $first_name,
+                $last_name,
+                $email,
+                $contact,
+                $address,
+                $birthdate
+            );
+
+            echo $this->User_model->update_client($id, $data);
         }
     }
 }

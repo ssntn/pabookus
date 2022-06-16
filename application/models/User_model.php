@@ -78,4 +78,40 @@ class User_model extends CI_Model {
         if($q) return $q;
         else return false;
     }
+
+    public function update_company($id, $data){
+        $this->db->set($data);
+        $this->db->where('company_id', $id);
+        
+        $q = $this->db->update('company');
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_client($id, $data){
+        $this->db->set($data);
+        $this->db->where('client_id', $id);
+        
+        $q = $this->db->update('client');
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_client_password($id, $password){
+        $this->db->set($password);
+        $this->db->where('client_id', $id);
+        
+        $q = $this->db->update('client');
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_company_password($id, $password){
+        $this->db->set($password);
+        $this->db->where('company_id', $id);
+        
+        $q = $this->db->update('company');
+        if($q) return true;
+        else return false;
+    }
 }
