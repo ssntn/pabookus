@@ -5,11 +5,11 @@
     ?>
 
 	<div class="topnav" id="myTopnav">
-		<a href="newsfeed" class="active">PABOOKUS</a>
+		<a href="home" class="active">PABOOKUS</a>
 		<a href=<?php if(isset($udata)){
                     $ut = ($udata['user_type']=='client')?'1':'2'; 
                     echo "profile?id=".$udata['id']."&ut=".$ut;
-                }else echo 'signin'; ?>>Profile
+                }else echo 'login'; ?>>Profile
 		</a>
 		    <?php if(!isset($udata)){ ?>
 		<a href="login">Log-in</a>

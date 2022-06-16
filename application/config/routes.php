@@ -54,7 +54,7 @@ $route['default_controller'] = 'Routes/newsfeed';
 $route['404_override'] = 'errors/page_missing';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['newsfeed'] = 'Routes/newsfeed';
+$route['home'] = 'Routes/newsfeed';
 $route['profile'] = 'Routes/profile';
 $route['login'] = 'Routes/login';
 $route['schedule'] = 'Routes/schedule';

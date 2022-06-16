@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2022 at 04:52 AM
+-- Generation Time: Jun 16, 2022 at 08:06 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -70,7 +70,8 @@ CREATE TABLE `client` (
 INSERT INTO `client` (`client_id`, `first_name`, `last_name`, `email`, `password`, `contact`, `address`, `birthdate`, `schedule_id`) VALUES
 (1, NULL, NULL, 'user123@bla.bla', '123', NULL, NULL, NULL, NULL),
 (2, NULL, NULL, 'me@me.me', 'meme', NULL, NULL, NULL, NULL),
-(3, NULL, NULL, 'aaa@aa.a', 'aaa', NULL, NULL, NULL, NULL);
+(3, NULL, NULL, 'aaa@aa.a', 'aaa', NULL, NULL, NULL, NULL),
+(4, NULL, NULL, 'ian@sisan.te', 'asd', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -88,19 +89,55 @@ CREATE TABLE `company` (
   `industry` varchar(50) DEFAULT NULL,
   `owner` varchar(100) DEFAULT NULL,
   `founding_date` date DEFAULT NULL,
-  `field` varchar(50) NOT NULL,
   `bio_id` int(12) DEFAULT NULL,
   `link_id` int(12) DEFAULT NULL,
   `schedule_id` int(12) DEFAULT NULL,
-  `review_id` int(12) DEFAULT NULL
+  `review_id` int(12) DEFAULT NULL,
+  `services` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `field`, `bio_id`, `link_id`, `schedule_id`, `review_id`) VALUES
-(1, NULL, 'company@com.pany', '111', '2147483647', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL);
+INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `bio_id`, `link_id`, `schedule_id`, `review_id`, `services`) VALUES
+(1, 'Companier', 'company@com.pany', '111', '09191919191', 'Naic, Cavite', 'Test Industry', 'Piri Kyle', '1969-06-09', NULL, NULL, NULL, NULL, NULL),
+(2, NULL, 'co@mpa.ny', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, 'a@a.a', 'aaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, 'tutorial123@mail.me', '111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `industry`
+--
+
+CREATE TABLE `industry` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `category` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `industry`
+--
+
+INSERT INTO `industry` (`id`, `name`, `category`) VALUES
+(1, 'Beauty Salon', 1),
+(1, 'Beauty Salon', 1),
+(2, 'Hair Salon', 1),
+(3, 'Nail Salon', 1),
+(4, 'Massage and Body Treatments', 1),
+(5, 'Tutorial Lessons', 2),
+(6, 'Dental Clinic', 3),
+(7, 'Medical Clinic', 3),
+(8, 'Gyms', 4),
+(9, 'Yoga Classes', 4),
+(10, 'Fitness Classes', 4),
+(11, 'Child Care', 5),
+(12, 'Pet Services', 5),
+(13, 'Auto Work Services', 5),
+(14, 'Detailing Services', 5);
 
 -- --------------------------------------------------------
 
@@ -139,6 +176,26 @@ CREATE TABLE `schedule` (
   `client_id` int(12) NOT NULL,
   `date_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `owner_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `name`, `owner_id`) VALUES
+(1, 'Guitar Tutorial', 1),
+(2, 'Elementary Tutorial', 1);
 
 --
 -- Indexes for dumped tables
@@ -195,6 +252,12 @@ ALTER TABLE `schedule`
   ADD KEY `schedule_company` (`company_id`);
 
 --
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -214,13 +277,13 @@ ALTER TABLE `bio`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `client_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `client_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `company_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `links`

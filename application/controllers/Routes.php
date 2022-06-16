@@ -28,7 +28,7 @@ class Routes extends CI_Controller {
             ($udata = $this->session->userdata('UserLoginSession'));
 
         if($id_exist == false)
-            redirect(base_url('newsfeed'));
+            redirect(base_url('home'));
 
         $this->load->model('User_model');
 
@@ -37,11 +37,11 @@ class Routes extends CI_Controller {
             $user_details = $this->User_model->get_client_id($_GET['id']);
         else if($_GET['ut'] == 2)
             $user_details = $this->User_model->get_company_id($_GET['id']);
-        else redirect(base_url('newsfeed'));
+        else redirect(base_url('home'));
 
 
         if(!isset($user_details)) 
-            redirect(base_url('newsfeed'));
+            redirect(base_url('home'));
 
         print_r($user_details);
 
@@ -76,6 +76,6 @@ class Routes extends CI_Controller {
     {
         $this->session->unset_userdata('UserLoginSession');
         $this->session->sess_destroy();
-        redirect('newsfeed');
+        redirect('home');
     }
 }

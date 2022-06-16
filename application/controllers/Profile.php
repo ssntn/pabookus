@@ -11,11 +11,30 @@ class Profile extends CI_Controller {
         $this->load->library('session');
     }
 
-    public function edit_profile(){
+    public function edit_user(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
             
-   
-            echo $_POST['name'];
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $contact = $_POST['contact'];
+            $address = $_POST['address'];
+            $industry = $_POST['industry'];
+            $owner = $_POST['owner'];
+            $founding_date = $_POST['founding_date'];
+            $user_type = $_POST['user_type'];
+
+            $data = array(
+                $name,
+                $email,
+                $contact,
+                $address,
+                $industry,
+                $owner,
+                $founding_date,
+                $user_type
+            );
+
+            echo $this->User_model->update_user($data);
         }
     }
 }
