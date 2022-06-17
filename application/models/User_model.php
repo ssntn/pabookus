@@ -40,9 +40,8 @@ class User_model extends CI_Model {
     public function get_client_id($id){
         $this->db->select(
             'client_id,
+            fullname,
             email,
-            first_name,
-            last_name,
             contact,
             address,
             birthdate,
@@ -84,6 +83,7 @@ class User_model extends CI_Model {
         $this->db->where('company_id', $id);
         
         $q = $this->db->update('company');
+
         if($q) return true;
         else return false;
     }
@@ -93,6 +93,7 @@ class User_model extends CI_Model {
         $this->db->where('client_id', $id);
         
         $q = $this->db->update('client');
+
         if($q) return true;
         else return false;
     }
@@ -102,6 +103,7 @@ class User_model extends CI_Model {
         $this->db->where('client_id', $id);
         
         $q = $this->db->update('client');
+
         if($q) return true;
         else return false;
     }
@@ -111,6 +113,7 @@ class User_model extends CI_Model {
         $this->db->where('company_id', $id);
         
         $q = $this->db->update('company');
+
         if($q) return true;
         else return false;
     }

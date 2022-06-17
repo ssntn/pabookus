@@ -1,5 +1,4 @@
 
-<body>
 <!-- THIS IS PROFILE PICTURE -->
 <div id="" style="width:200px;height:200px;background-color:red">
     <img src="#" alt="Profile Picture">
@@ -11,7 +10,7 @@
 <p  class="u_inf" id="name_lbl">
 <?php echo isset($key_details['company_name'])
     ? $key_details['company_name']
-    : "user_".$key_details['company_id'];
+    : "company_".$key_details['company_id'];
 ?>
 </p>
 <input class="edit_box" type="text" name="name_edt" id="name_edt">

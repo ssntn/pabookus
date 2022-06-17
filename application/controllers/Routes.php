@@ -33,27 +33,23 @@ class Routes extends CI_Controller {
         $this->load->model('User_model');
 
         // 1 = client, 2 = company
-        if($_GET['ut'] == 1)
+        if($_GET['ut'] == 1) {
             $user_details = $this->User_model->get_client_id($_GET['id']);
-        else if($_GET['ut'] == 2)
+            $page = 'inc/profile_client';
+        } else if($_GET['ut'] == 2) {
             $user_details = $this->User_model->get_company_id($_GET['id']);
-        else redirect(base_url('home'));
-
+            $page = 'inc/profile_company';
+        } else redirect(base_url('home'));
 
         if(!isset($user_details)) 
             redirect(base_url('home'));
 
-        print_r($user_details);
-
         $data['key_details'] = $user_details;
+        print_r($data);
 
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
-        $this->load->view(
-            ($_GET['ut']==1)
-                ?'inc/profile_client'
-                :'inc/profile_company',
-            $data);
+        $this->load->view($page, $data);
         $this->load->view('inc/footer');
     }
 
