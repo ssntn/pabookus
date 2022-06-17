@@ -55,7 +55,9 @@ class Profile extends CI_Controller {
                 $birthdate
             );
 
-            if(!$this->User_model->update_client($id, $data)) echo true;
+            $q = $this->User_model->update_client($id, $data);
+
+            if($q) echo true;
             else echo false;
         }
     }

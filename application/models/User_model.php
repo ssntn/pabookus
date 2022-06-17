@@ -79,9 +79,16 @@ class User_model extends CI_Model {
     }
 
     public function update_company($id, $data){
-        $this->db->set($data);
-        $this->db->where('company_id', $id);
-        
+    
+        $this->db->set("company_name", $data['name']);
+        $this->db->set("email", $data['email']);
+        $this->db->set("contact", $data['contact']);
+        $this->db->set("address", $data['address']);
+        $this->db->set("industry", $data['industry']);
+        $this->db->set("owner", $data['owner']);
+        $this->db->set("founding_date", $data['founding_date']);
+
+        $this->db->where('company_id', $id);        
         $q = $this->db->update('company');
 
         if($q) return true;
@@ -89,9 +96,14 @@ class User_model extends CI_Model {
     }
 
     public function update_client($id, $data){
-        $this->db->set($data);
-        $this->db->where('client_id', $id);
         
+        $this->db->set("fullname", $data['fullname']);
+        $this->db->set("email", $data['email']);
+        $this->db->set("contact", $data['contact']);
+        $this->db->set("address", $data['address']);
+        $this->db->set("birthdate", $data['birthdate']);
+
+        $this->db->where('client_id', $id);        
         $q = $this->db->update('client');
 
         if($q) return true;
