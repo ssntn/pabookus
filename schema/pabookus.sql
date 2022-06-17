@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 08:06 AM
+-- Generation Time: Jun 17, 2022 at 05:17 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -53,8 +53,7 @@ CREATE TABLE `bio` (
 
 CREATE TABLE `client` (
   `client_id` int(12) NOT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
+  `fullname` varchar(50) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `contact` int(12) DEFAULT NULL,
@@ -67,11 +66,10 @@ CREATE TABLE `client` (
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`client_id`, `first_name`, `last_name`, `email`, `password`, `contact`, `address`, `birthdate`, `schedule_id`) VALUES
-(1, NULL, NULL, 'user123@bla.bla', '123', NULL, NULL, NULL, NULL),
-(2, NULL, NULL, 'me@me.me', 'meme', NULL, NULL, NULL, NULL),
-(3, NULL, NULL, 'aaa@aa.a', 'aaa', NULL, NULL, NULL, NULL),
-(4, NULL, NULL, 'ian@sisan.te', 'asd', NULL, NULL, NULL, NULL);
+INSERT INTO `client` (`client_id`, `fullname`, `email`, `password`, `contact`, `address`, `birthdate`, `schedule_id`) VALUES
+(2, NULL, 'me@me.me', 'meme', NULL, NULL, NULL, NULL),
+(3, NULL, 'aaa@aa.a', 'aaa', NULL, NULL, NULL, NULL),
+(4, NULL, 'ian@sisan.te', 'asd', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
