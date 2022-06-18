@@ -25,12 +25,13 @@ class Routes extends CI_Controller {
     public function profile()
     {
         $id_exist = isset($_GET['id']) ||
-            ($udata = $this->session->userdata('UserLoginSession'));
+            ($this->session->userdata('UserLoginSession'));
 
         if($id_exist == false)
             redirect(base_url('home'));
 
         $this->load->model('User_model');
+        $this->load->model('Industry_model');
 
         // 1 = client, 2 = company
         if($_GET['ut'] == 1) {
@@ -44,7 +45,11 @@ class Routes extends CI_Controller {
         if(!isset($user_details)) 
             redirect(base_url('home'));
 
+        $industry = $this->Industry_model->get_table();
+        
         $data['key_details'] = $user_details;
+        $data['key_industry'] = $industry;
+
         print_r($data);
 
         $this->load->view('inc/header');

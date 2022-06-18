@@ -48,10 +48,9 @@
 <select class="edit_box" name="industry_list" id="industry_edts">
 <option value="null">Select</option>
 <?php
-    $industry = ["Industry 1","Industry 2","Industry 3"];
-    foreach($industry as $i){?>
+    foreach($key_industry as $i){?>
         
-    <option value="<?php echo $i ?>"><?php echo $i ?></option>
+    <option value="<?php echo $i['id'] ?>"><?php echo $i['name'] ?></option>
         
 <?php } ?>
 </select>
