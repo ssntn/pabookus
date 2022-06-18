@@ -41,18 +41,18 @@ class Profile extends CI_Controller {
         if($_SERVER['REQUEST_METHOD']=='POST'){
             
             $id = $_POST['id'];
-            $fullname = $_POST['name'];
-            $email = $_POST['email'];
-            $contact = $_POST['contact'];
-            $address = $_POST['address'];
-            $birthdate = $_POST['birthdate'];
+            $fullname = (empty($_POST['name']))? "user_".$id :$_POST['name'];
+            $email = (empty($_POST['email']))? null :$_POST['email'];
+            $contact = (empty($_POST['contact']))? null :$_POST['contact'];
+            $address = (empty($_POST['address']))? null :$_POST['address'];
+            $birthdate = (empty($_POST['birthdate']))? null :$_POST['birthdate'];
 
             $data = array(
-                $fullname,
-                $email,
-                $contact,
-                $address,
-                $birthdate
+                "fullname" => $fullname,
+                "email" => $email,
+                "contact" => $contact,
+                "address" => $address,
+                "birthdate" => $birthdate
             );
 
             $q = $this->User_model->update_client($id, $data);

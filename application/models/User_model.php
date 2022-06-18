@@ -97,12 +97,7 @@ class User_model extends CI_Model {
 
     public function update_client($id, $data){
         
-        $this->db->set("fullname", $data['fullname']);
-        $this->db->set("email", $data['email']);
-        $this->db->set("contact", $data['contact']);
-        $this->db->set("address", $data['address']);
-        $this->db->set("birthdate", $data['birthdate']);
-
+        $this->db->set($data);
         $this->db->where('client_id', $id);        
         $q = $this->db->update('client');
 

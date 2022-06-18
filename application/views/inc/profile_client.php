@@ -13,7 +13,7 @@
 
 <p class="inf_title">Name:</p>
 <p class="u_inf" id="name_lbl"><?php 
-    echo isset($key_details['fullname'])
+    echo (isset($key_details['fullname']) || empty($key_details['fullname']))
         ? $key_details['fullname']
         : "user_".$key_details['client_id'];
     ?>
@@ -26,7 +26,7 @@
 
 <p class="inf_title">Contact numbers:</p>
 <p class="u_inf" id="contact_lbl"><?php 
-    echo isset($key_details['contact'])
+    echo (isset($key_details['contact']))
         ? $key_details['contact']
         : "Not set"
     ?>
@@ -35,7 +35,7 @@
 
 <p class="inf_title">Address</p>
 <p class="u_inf" id="address_lbl"><?php 
-    echo isset($key_details['contact'])
+    echo (isset($key_details['address']))
         ? $key_details['address']
         : "Not set"
     ?>
@@ -44,23 +44,15 @@
 
 <p class="inf_title">Birthdate</p>
 <p class="u_inf" id="birthdate_lbl"><?php 
-    echo isset($key_details['birthdate'])
+    echo (isset($key_details['birthdate']))
         ? $key_details['birthdate']
         : "Not set"
     ?>
 </p>
 <input class="edit_box" type="date" name="birthdate_edt" id="birthdate_edt">
 
-<button onclick="sett()">set</button>
-<button onclick="unsett()">unset</button>
+<!-- JAVASCRIPT | JAVASCRIPT | JAVASCRIPT | JAVASCRIPT  -->
 <script type="text/javascript">
-    function sett(){
-        $("#birthdate_edt").val("2000-07-22");
-    }
-
-    function unsett(){
-        $("#birthdate_edt").val(null);
-    }
 
     $(document).ready(function(){
         $('.edit_box').css("display", "none");    
@@ -79,18 +71,28 @@
         else $("#birthdate_edt").val($('#birthdate_lbl').html());
     }
 
+    function checkValue(theVar){
+        return (theVar == "Not set") ?null :theVar;
+    }
+
     //===================== AJAX ===========================
     function edit_user(){
         $.post("<?=base_url('Profile/edit_client')?>",{
             
             id: <?php echo $key_details['client_id']; ?>,
-            name: $('#name_edt').val(),
-            email: $('#email_edt').val(),
-            contact: $('#contact_edt').val(),
-            address: $('#address_edt').val(),
-            birthdate: $('#birthdate_edt').val()
+            name: checkValue($('#name_edt').val()),
+            email: checkValue($('#email_edt').val()),
+            contact: checkValue($('#contact_edt').val()),
+            address: checkValue($('#address_edt').val()),
+            birthdate: checkValue($('#birthdate_edt').val())
         }, function(data){
-            console.log(data);
+            if(data == 1){
+                window.location.replace(
+                    "<?php echo base_url(
+                        "profile?id=".$udata['id']."&ut=".$udata['user_type']);
+                    ?>"
+                );
+            }
         });
     }
 
