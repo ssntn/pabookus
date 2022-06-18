@@ -17,7 +17,7 @@ class Profile extends CI_Controller {
             $id = $_POST['id'];
             $company_name = (empty($_POST['name']))? "company_".$id :$_POST['name'];
             $email = (empty($_POST['email']))? null :$_POST['email'];
-            $contact = (empty($_POST['contact']))? null :$_POST['contac'];
+            $contact = (empty($_POST['contact']))? null :$_POST['contact'];
             $address = (empty($_POST['address']))? null :$_POST['address'];
             $industry = (empty($_POST['industry']))? null :$_POST['industry'];
             $owner = (empty($_POST['owner']))? null :$_POST['owner'];

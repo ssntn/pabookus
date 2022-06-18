@@ -122,9 +122,9 @@
 
     //===================== AJAX ===========================
     function edit_user(){
-        console.log(checkValue($('#name_lbl').val()));
-        console.log(checkValue($('#email_lbl').val()));
-        console.log(checkValue($('#contact_lbl').val()));
+        alert($('#name_edt').val());
+        alert(($('#email_edt').val()));
+        alert(checkValue($('#contact_edt').val()));
         
         $.post("<?=base_url('Profile/edit_company')?>",{
 
@@ -135,10 +135,10 @@
             address: checkValue($('#address_edt').val()),
             industry: checkValue($('#industry_edt').val()),
             owner: checkValue($('#owner_edt').val()),
-            founding_date: checkValue($('#founding_date_lbl').val())
+            founding_date: checkValue($('#founding_date_edt').val())
         }, function(data){
                 console.log(data);
-            //window.location.reload();
+                location.reload();
         });
     }
 
