@@ -7,42 +7,41 @@
 <button id="edit_btn">Edit info</button>
 <button id="save_btn">Save</button>
 <p class="inf_title">Name:</p>
-<p  class="u_inf" id="name_lbl">
-<?php echo isset($key_details['company_name'])
-    ? $key_details['company_name']
-    : "company_".$key_details['company_id'];
+<p  class="u_inf" id="name_lbl"><?php 
+    echo isset($key_details['company_name'])
+        ? $key_details['company_name']
+        : "company_".$key_details['company_id'];
 ?>
 </p>
 <input class="edit_box" type="text" name="name_edt" id="name_edt">
 
 <p class="inf_title">Email:</p>
-<p class="u_inf" id="email_lbl">
-<?php echo $key_details['email']; ?></p>
+<p class="u_inf" id="email_lbl"><?php echo $key_details['email']; ?></p>
 <input class="edit_box" type="text" name="email_edt" id="email_edt">
 
 <p class="inf_title">Contact numbers:</p>
-<p class="u_inf" id="contact_lbl">
-<?php echo isset($key_details['contact'])
-    ? $key_details['contact']
-    : "Not set"
+<p class="u_inf" id="contact_lbl"><?php
+    echo isset($key_details['contact'])
+        ? $key_details['contact']
+        : "Not set"
 ?>
 </p>
 <input class="edit_box" type="text" name="contact_edt" id="contact_edt">
 
 <p class="inf_title">Address</p>
-<p class="u_inf" id="address_lbl">
-<?php echo isset($key_details['address'])
-    ? $key_details['address']
-    : "Not set"
+<p class="u_inf" id="address_lbl"><?php
+    echo isset($key_details['address'])
+        ? $key_details['address']
+        : "Not set"
 ?>
 </p>
 <input class="edit_box" type="text" name="address_edt" id="address_edt">
 
 <p class="inf_title">Industry</p>
-<p class="u_inf" id="industry_lbl">
-<?php echo isset($key_details['industry'])
-    ? $key_details['industry']
-    : "Not set"
+<p class="u_inf" id="industry_lbl"><?php 
+    echo isset($key_details['industry'])
+        ? $key_details['industry']
+        : "Not set"
 ?>
 </p>
 <input class="edit_box" type="text" name="industry_edt" id="industry_edt">
@@ -98,7 +97,6 @@
         $('.edit_box').css("display", "none");    
         $("#save_btn").css("display", "none");
         $('#industry_lbl').attr("readonly", "true");
-        alert(<?php ; ?>);
     });
 
     function print(){
@@ -111,28 +109,35 @@
         $('#email_edt').val($('#email_lbl').html());
         $('#contact_edt').val($('#contact_lbl').html());
         $('#address_edt').val($('#address_lbl').html());
-        $('#industry_edt').val($('#industry_lbl').html());
+        $('#industry_edt').val($('#industry_birthdatelbl').html());
         $('#owner_edt').val($('#owner_lbl').html());
 
-        var f_date = $("#founding_date_lbl").html();
-        f_date = f_date.toString();
-        $("#founding_date_edt").val(f_date);
+        var bd = '<?php echo $key_details['founding_date'] ?>';
+        if(bd == "" ) $("#founding_date_edt").val(bd);
+        else $("#founding_date_edt").val($('#founding_date_lbl').html());
+    }
+    function checkValue(theVar){
+        return (theVar == "Not set") ?null :theVar;
     }
 
     //===================== AJAX ===========================
     function edit_user(){
+        console.log(checkValue($('#name_lbl').val()));
+        console.log(checkValue($('#email_lbl').val()));
+        console.log(checkValue($('#contact_lbl').val()));
+        
         $.post("<?=base_url('Profile/edit_company')?>",{
 
-            name: $('#name_lbl').html(),
-            email: $('#email_lbl').html(),
-            contact: $('#contact_lbl').html(),
-            address: $('#address_lbl').html(),
-            industry: $('#industry_lbl').html(),
-            owner: $('#owner_lbl').html(),
-            founding_date: $('#founding_date_lbl').html()
+            id: <?php echo $key_details['company_id']; ?>,
+            name: checkValue($('#name_edt').val()),
+            email: checkValue($('#email_edt').val()),
+            contact: checkValue($('#contact_edt').val()),
+            address: checkValue($('#address_edt').val()),
+            industry: checkValue($('#industry_edt').val()),
+            owner: checkValue($('#owner_edt').val()),
+            founding_date: checkValue($('#founding_date_lbl').val())
         }, function(data){
-            if(data==false)
-                alert("fase");
+                console.log(data);
             //window.location.reload();
         });
     }

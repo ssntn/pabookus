@@ -15,25 +15,28 @@ class Profile extends CI_Controller {
         if($_SERVER['REQUEST_METHOD']=='POST'){
             
             $id = $_POST['id'];
-            $company_name = $_POST['name'];
-            $email = $_POST['email'];
-            $contact = $_POST['contact'];
-            $address = $_POST['address'];
-            $industry = $_POST['industry'];
-            $owner = $_POST['owner'];
-            $founding_date = $_POST['founding_date'];
+            $company_name = (empty($_POST['name']))? "company_".$id :$_POST['name'];
+            $email = (empty($_POST['email']))? null :$_POST['email'];
+            $contact = (empty($_POST['contact']))? null :$_POST['contac'];
+            $address = (empty($_POST['address']))? null :$_POST['address'];
+            $industry = (empty($_POST['industry']))? null :$_POST['industry'];
+            $owner = (empty($_POST['owner']))? null :$_POST['owner'];
+            $founding_date = (empty($_POST['founding_date']))? null :$_POST['founding_date'];
 
             $data = array(
-                $company_name,
-                $email,
-                $contact,
-                $address,
-                $industry,
-                $owner,
-                $founding_date
+                "company_name" => $company_name,
+                "email" => $email,
+                "contact" => $contact,
+                "address" => $address,
+                "industry" => $industry,
+                "owner" => $owner,
+                "founding_date" => $founding_date
             );
 
-            echo $this->User_model->update_company($id, $data);
+            $q = $this->User_model->update_company($id, $data);
+
+            if($q) echo true;
+            else echo false;
         }
     }
     
