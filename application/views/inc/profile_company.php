@@ -40,12 +40,12 @@
 <p class="inf_title">Industry</p>
 <p class="u_inf" id="industry_lbl"><?php 
     echo isset($key_details['industry'])
-        ? $key_details['industry']
+        ? $key_industry_default[$key_details['industry']]['name']
         : "Not set"
 ?>
 </p>
-<input class="edit_box" type="text" name="industry_edt" id="industry_edt">
-<select class="edit_box" name="industry_list" id="industry_edts">
+
+<select class="edit_box" name="industry_list" id="industry_edt">
 <option value="null">Select</option>
 <?php
     foreach($key_industry as $i){?>
@@ -73,7 +73,6 @@
 ?>
 </p>
 <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
-<button onclick="print()">print</button>
 <p>Bio</p>
 
 <p>Link</p>
@@ -98,17 +97,13 @@
         $('#industry_lbl').attr("readonly", "true");
     });
 
-    function print(){
-        alert($('#founding_date_edt').val());
-    }
-
     function edit_profile(){
 
         $('#name_edt').val($('#name_lbl').html());
         $('#email_edt').val($('#email_lbl').html());
         $('#contact_edt').val($('#contact_lbl').html());
         $('#address_edt').val($('#address_lbl').html());
-        $('#industry_edt').val($('#industry_birthdatelbl').html());
+        $('#industry_edt').val(<?php echo $key_details['industry'] ?>);
         $('#owner_edt').val($('#owner_lbl').html());
 
         var bd = '<?php echo $key_details['founding_date'] ?>';
@@ -121,9 +116,6 @@
 
     //===================== AJAX ===========================
     function edit_user(){
-        alert($('#name_edt').val());
-        alert(($('#email_edt').val()));
-        alert(checkValue($('#contact_edt').val()));
         
         $.post("<?=base_url('Profile/edit_company')?>",{
 

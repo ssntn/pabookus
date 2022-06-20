@@ -33,6 +33,7 @@ class Routes extends CI_Controller {
         $this->load->model('User_model');
         $this->load->model('Industry_model');
 
+        // RETURNS INFO
         // 1 = client, 2 = company
         if($_GET['ut'] == 1) {
             $user_details = $this->User_model->get_client_id($_GET['id']);
@@ -40,17 +41,26 @@ class Routes extends CI_Controller {
         } else if($_GET['ut'] == 2) {
             $user_details = $this->User_model->get_company_id($_GET['id']);
             $page = 'inc/profile_company';
+            
+            // RETURNS INDUSTRY DATA
+            $temp_i = $this->Industry_model->get_table();
+            $industry = array();
+            foreach($temp_i as $i){
+                $industry[$i['name']] = $i;
+            }
+            
+            // echo "<pre>";
+            ksort($industry);     
+            $data['key_industry'] = $industry;
+            $data['key_industry_default'] = $temp_i;
+            // print_r($data['key_industry_default']);
+            
         } else redirect(base_url('home'));
 
         if(!isset($user_details)) 
             redirect(base_url('home'));
 
-        $industry = $this->Industry_model->get_table();
-        
         $data['key_details'] = $user_details;
-        $data['key_industry'] = $industry;
-
-        print_r($data);
 
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
