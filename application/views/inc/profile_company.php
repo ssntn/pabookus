@@ -85,17 +85,34 @@
 
 <div id="service_section">
     <p>Service</p>
+    <table id="service_table">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>asd</td>
+            <td>100</td>
+        </tr>
+    </table>
 
-    <div id="service_items">
-            <label for="service_name">Name</label>
-            <input class="service_item" type="text" name="service_name" id="s_name_edt">
-            <br>
-            <label for="service_price">Price</label>
-            <input class="service_item" type="text" name="service_price" id="s_prize_edt">
-    </div>
+    <?php
+        if($udata['id'] == $key_details['company_id']){?>
+        <div id="service_items">
+                <label for="service_name">Name</label>
+                <input class="service_item" type="text" name="service_name"
+                    id="s_name_edt" placeholder="Service Name" required>
 
-    <button id="service_btn">Add service</button>
-    <button id="save_service_btn">Save service</button>
+                <br>
+                <label for="service_price">Price</label>
+                <input class="service_item" type="number" name="service_price" 
+                    id="s_price_edt" min='1' placeholder="Price">
+        </div>
+
+        <button id="service_btn">Add service</button>
+        <button id="save_service_btn">Save service</button>
+    <?php } ?>
+
 </div>
 
 <p>Link</p>
@@ -124,7 +141,6 @@
     });
 
     function edit_profile(){
-
         $('#name_edt').val($('#name_lbl').html());
         $('#email_edt').val($('#email_lbl').html());
         $('#contact_edt').val($('#contact_lbl').html());
@@ -136,6 +152,19 @@
         if(bd == "" ) $("#founding_date_edt").val(bd);
         else $("#founding_date_edt").val($('#founding_date_lbl').html());
     }
+    
+    function service_switch(){        
+        if ($('#service_items').css("display") == "none"){
+            $('#service_items').css("display", "");
+            $("#save_service_btn").css("display", "");
+            $("#service_btn").html("Cancel");
+        }else{
+            $('#service_items').css("display", "none");
+            $("#save_service_btn").css("display", "none");
+            $("#service_btn").html("Add service");
+        }
+    }
+
     function checkValue(theVar){
         return (theVar == "Not set") ?null :theVar;
     }
@@ -158,6 +187,18 @@
         });
     }
 
+    function add_service(name, price){
+        
+        $.post("<?=base_url('Service/add_service')?>",{
+            user_id: <?php echo $key_details['company_id']; ?>,
+            name: name,
+            price: price 
+        }, function(data){
+            var tr = $("#service_table").append("<tr></tr>");
+            $(tr).append("<td>"+name+"</td>");
+            $(tr).append("<td>"+price+"</td>");
+        });
+    }
 
     //================= on change =======================
     $('#edit_btn').click(function(){
@@ -182,16 +223,18 @@
     });
 
     $('#service_btn').click(function(){
-        if ($('#service_items').css("display") == "none"){
-            $('#service_items').css("display", "");
-            $("#save_service_btn").css("display", "");
-            $("#service_btn").html("Cancel");
-        }else{
-            $('#service_items').css("display", "none");
-            $("#save_service_btn").css("display", "none");
-            $("#service_btn").html("Add service");
-        }
+        service_switch();
+    });
 
+    $("#save_service_btn").click(function(){
+        var name = $("#s_name_edt").val();
+        var price = $("#s_price_edt").val();
+
+        add_service(name, price);
+
+        $("#s_name_edt").val("");
+        $("#s_price_edt").val("");
+        service_switch();
     });
 
     $("#save_btn").click(function(){

@@ -42,7 +42,8 @@ class Service_model extends CI_Model {
     }
 
     public function add_service($id, $data){
-        $q = $this->db->insert("company".$id."_service", $data);
+        $t_name = "company".$id."_service";
+        $q = $this->db->insert($t_name, $data);
 
         if($q) return true;
         return false;

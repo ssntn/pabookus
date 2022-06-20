@@ -16,4 +16,23 @@ class Service extends CI_Controller {
             $this->Service_model->add_table($id);
         }
     }
+
+    public function add_service(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+
+            $user_id = $_POST['user_id'];
+            $name = $_POST['name'];
+            $price = $_POST['price'];
+
+            $data = array(
+                "name" => $name,
+                "price" => $price
+            );
+
+            $q = $this->Service_model->add_service($user_id, $data);
+
+            if($q) echo true;
+            else echo false;        
+        }
+    }
 }
