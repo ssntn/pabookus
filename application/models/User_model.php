@@ -8,8 +8,8 @@ class User_model extends CI_Model {
     }
 
     public function add_user($user_type, $data){
-        if($this->db->insert($user_type, $data))
-            return true;
+        $q = $this->db->insert($user_type, $data);
+        if($q) return $this->db->insert_id();
         else return false;
     }
 

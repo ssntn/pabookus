@@ -16,14 +16,22 @@ class Routes extends CI_Controller {
     
 	public function newsfeed()
 	{
+        if(!empty($this->session->flashdata('signinSuccess')))
+            echo $this->session->flashdata('signinSuccess');
+
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
 		$this->load->view('newsfeed');
+        
         $this->load->view('inc/footer');
 	}
 
     public function profile()
     {
+        
+        if(!empty($this->session->flashdata('signinSuccess')))
+            $this->session->unset_userdata('signinSuccess');
+
         $id_exist = isset($_GET['id']) ||
             ($this->session->userdata('UserLoginSession'));
 
@@ -85,6 +93,8 @@ class Routes extends CI_Controller {
 
     public function logout()
     {
+        if($this->session->has_userdata('signinSuccess'))
+            $this->session->unset_userdata('signinSuccess');
         $this->session->unset_userdata('UserLoginSession');
         $this->session->sess_destroy();
         redirect('home');
