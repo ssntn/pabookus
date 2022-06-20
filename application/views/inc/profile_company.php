@@ -3,7 +3,7 @@
     if($this->session->userdata('UserLoginSession'))
         $udata = $this->session->userdata('UserLoginSession');
 ?>
-    
+
 <!-- THIS IS PROFILE PICTURE -->
 <div id="" style="width:200px;height:200px;background-color:red">
     <img src="#" alt="Profile Picture">
@@ -85,16 +85,9 @@
 
 <div id="service_section">
     <p>Service</p>
-    <table id="service_table">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-        </tr>
-        <tr>
-            <td>asd</td>
-            <td>100</td>
-        </tr>
-    </table>
+    <div id="service_table">
+        
+    </div>
 
     <?php
         if($udata['id'] == $key_details['company_id']){?>
