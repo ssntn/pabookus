@@ -1,11 +1,20 @@
 
+<?php 
+    if($this->session->userdata('UserLoginSession'))
+        $udata = $this->session->userdata('UserLoginSession');
+?>
+    
 <!-- THIS IS PROFILE PICTURE -->
 <div id="" style="width:200px;height:200px;background-color:red">
     <img src="#" alt="Profile Picture">
 </div>
 
-<button id="edit_btn">Edit info</button>
-<button id="save_btn">Save</button>
+<?php
+    if($udata['id'] == $key_details['company_id']){?>
+        <button id="edit_btn">Edit info</button>
+        <button id="save_btn">Save</button>
+<?php } ?>
+
 <p class="inf_title">Name:</p>
 <p  class="u_inf" id="name_lbl"><?php 
     echo isset($key_details['company_name'])
@@ -78,6 +87,7 @@
 <p>Link</p>
 <ul>
 <?php
+
     $links = ["link 1","link 2","link 3"];
     foreach($links as $link){?>
         
@@ -128,8 +138,7 @@
             owner: checkValue($('#owner_edt').val()),
             founding_date: checkValue($('#founding_date_edt').val())
         }, function(data){
-                console.log(data);
-                location.reload();
+            location.reload();
         });
     }
 

@@ -8,8 +8,11 @@
     <img src="#" alt="Profile Picture">
 </div>
 
-<button id="edit_btn">Edit info</button>
-<button id="save_btn">Save</button>
+<?php
+    if($udata['id'] == $key_details['client_id']){?>
+        <button id="edit_btn">Edit info</button>
+        <button id="save_btn">Save</button>
+<?php } ?>
 
 <p class="inf_title">Name:</p>
 <p class="u_inf" id="name_lbl"><?php 
@@ -86,13 +89,7 @@
             address: checkValue($('#address_edt').val()),
             birthdate: checkValue($('#birthdate_edt').val())
         }, function(data){
-            if(data == 1){
-                window.location.replace(
-                    "<?php echo base_url(
-                        "profile?id=".$udata['id']."&ut=".$udata['user_type']);
-                    ?>"
-                );
-            }
+            location.reload();
         });
     }
 
