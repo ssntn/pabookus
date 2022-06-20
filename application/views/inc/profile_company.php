@@ -82,14 +82,21 @@
 ?>
 </p>
 <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
-<p>Service</p>
-<div>
-    <span>
-        
-    </span>
-</div>
-<button onclick="add_table()">add</button>
 
+<div id="service_section">
+    <p>Service</p>
+
+    <div id="service_items">
+            <label for="service_name">Name</label>
+            <input class="service_item" type="text" name="service_name" id="s_name_edt">
+            <br>
+            <label for="service_price">Price</label>
+            <input class="service_item" type="text" name="service_price" id="s_prize_edt">
+    </div>
+
+    <button id="service_btn">Add service</button>
+    <button id="save_service_btn">Save service</button>
+</div>
 
 <p>Link</p>
 <ul>
@@ -111,6 +118,8 @@
     $(document).ready(function(){
         $('.edit_box').css("display", "none");    
         $("#save_btn").css("display", "none");
+        $("#service_items").css("display", "none");
+        $("#save_service_btn").css("display", "none");
         $('#industry_lbl').attr("readonly", "true");
     });
 
@@ -149,12 +158,6 @@
         });
     }
 
-    function add_table(){
-        
-        $.post("<?=base_url('Service/add_table')?>", {id: 1},function(data){
-            console.log(data)
-        });
-    }
 
     //================= on change =======================
     $('#edit_btn').click(function(){
@@ -178,8 +181,17 @@
         }
     });
 
-    $("#industry_lbl").change(function(){
-        alert($("#industry_lbl").value());
+    $('#service_btn').click(function(){
+        if ($('#service_items').css("display") == "none"){
+            $('#service_items').css("display", "");
+            $("#save_service_btn").css("display", "");
+            $("#service_btn").html("Cancel");
+        }else{
+            $('#service_items').css("display", "none");
+            $("#save_service_btn").css("display", "none");
+            $("#service_btn").html("Add service");
+        }
+
     });
 
     $("#save_btn").click(function(){
