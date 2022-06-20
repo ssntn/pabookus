@@ -82,7 +82,14 @@
 ?>
 </p>
 <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
-<p>Bio</p>
+<p>Service</p>
+<div>
+    <span>
+        
+    </span>
+</div>
+<button onclick="add_table()">add</button>
+
 
 <p>Link</p>
 <ul>
@@ -139,6 +146,13 @@
             founding_date: checkValue($('#founding_date_edt').val())
         }, function(data){
             location.reload();
+        });
+    }
+
+    function add_table(){
+        
+        $.post("<?=base_url('Service/add_table')?>", {id: 1},function(data){
+            console.log(data)
         });
     }
 
