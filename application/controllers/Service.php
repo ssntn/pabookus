@@ -40,6 +40,7 @@ class Service extends CI_Controller {
         if($_SERVER['REQUEST_METHOD']=='POST'){
 
             $user_id = $_POST['user_id'];
+            $id = $_POST['service_id'];
             $name = $_POST['name'];
             $price = $_POST['price'];
 
@@ -48,7 +49,7 @@ class Service extends CI_Controller {
                 "price" => $price
             );
 
-            $q = $this->Service_model->edit_service($user_id, $data);
+            $q = $this->Service_model->edit_service($user_id, $id, $data);
 
             if($q) echo true;
             else echo false;        

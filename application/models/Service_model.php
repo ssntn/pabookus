@@ -49,8 +49,8 @@ class Service_model extends CI_Model {
         return false;
     }
 
-    public function edit_service($id, $data){
-        $t_name = "company".$id."_service";
+    public function edit_service($user_id, $id, $data){
+        $t_name = "company".$user_id."_service";
 
         $this->db->set($data);
         $this->db->where('id', $id);

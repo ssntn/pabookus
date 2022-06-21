@@ -229,7 +229,7 @@
             if($("#"+id+"_edit").html() == "Cancel")
                 so_edit_switch(id+"_edit");
             
-        }// so_2+_edit
+        }
     }
 
     function so_edit_switch(id){
@@ -292,7 +292,14 @@
     }
 
     function edit_service(id, name, price){
-        
+        $.post("<?=base_url('Service/edit_service')?>",{
+            user_id: <?php echo $key_details['company_id']; ?>,
+            service_id: id,
+            name: name,
+            price: price
+        }, function(data){
+
+        });
     }
 
     //================= on change =======================
