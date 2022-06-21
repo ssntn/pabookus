@@ -8,8 +8,8 @@ class User_model extends CI_Model {
     }
 
     public function add_user($user_type, $data){
-        if($this->db->insert($user_type, $data))
-            return true;
+        $q = $this->db->insert($user_type, $data);
+        if($q) return $this->db->insert_id();
         else return false;
     }
 
@@ -40,9 +40,8 @@ class User_model extends CI_Model {
     public function get_client_id($id){
         $this->db->select(
             'client_id,
+            fullname,
             email,
-            first_name,
-            last_name,
             contact,
             address,
             birthdate,
@@ -76,6 +75,46 @@ class User_model extends CI_Model {
         $q = $this->db->get('company')->row_array();
 
         if($q) return $q;
+        else return false;
+    }
+
+    public function update_company($id, $data){
+    
+        $this->db->set($data);
+        $this->db->where('company_id', $id);        
+        $q = $this->db->update('company');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_client($id, $data){
+        
+        $this->db->set($data);
+        $this->db->where('client_id', $id);        
+        $q = $this->db->update('client');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_client_password($id, $password){
+        $this->db->set($password);
+        $this->db->where('client_id', $id);
+        
+        $q = $this->db->update('client');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_company_password($id, $password){
+        $this->db->set($password);
+        $this->db->where('company_id', $id);
+        
+        $q = $this->db->update('company');
+
+        if($q) return true;
         else return false;
     }
 }

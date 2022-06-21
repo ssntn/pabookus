@@ -16,44 +16,72 @@ class Routes extends CI_Controller {
     
 	public function newsfeed()
 	{
+        if(!empty($this->session->flashdata('signinSuccess')))
+            echo $this->session->flashdata('signinSuccess');
+
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
 		$this->load->view('newsfeed');
+        
         $this->load->view('inc/footer');
 	}
 
     public function profile()
     {
+        
+        if(!empty($this->session->flashdata('signinSuccess')))
+            $this->session->unset_userdata('signinSuccess');
+
         $id_exist = isset($_GET['id']) ||
-            ($udata = $this->session->userdata('UserLoginSession'));
+            ($this->session->userdata('UserLoginSession'));
 
         if($id_exist == false)
             redirect(base_url('home'));
 
         $this->load->model('User_model');
+        $this->load->model('Industry_model');
+        $this->load->model("Service_model");
 
+        $id = $_GET['id'];
+
+        // RETURNS INFO
         // 1 = client, 2 = company
-        if($_GET['ut'] == 1)
-            $user_details = $this->User_model->get_client_id($_GET['id']);
-        else if($_GET['ut'] == 2)
-            $user_details = $this->User_model->get_company_id($_GET['id']);
-        else redirect(base_url('home'));
+        if($_GET['ut'] == 1) {
+            $user_details = $this->User_model->get_client_id($id);
+            $page = 'inc/profile_client';
+        } else if($_GET['ut'] == 2) {
 
+            // RETURN USER DATA
+            $user_details = $this->User_model->get_company_id($id);
+            $page = 'inc/profile_company';
+            
+            // RETURN INDUSTRY DATA
+            $temp_i = $this->Industry_model->get_table();
+            $industry = array();
+            foreach($temp_i as $i){
+                $industry[$i['name']] = $i;
+            }
+            
+            // echo "<pre>";
+            ksort($industry);     
+            $data['key_industry'] = $industry;
+            $data['key_industry_default'] = $temp_i;
+            // print_r($data['key_industry_default']);
+
+            // RETURN SERVICE DATA
+            $service = $this->Service_model->get_table($id);
+            $data['key_service'] = $service;
+            
+        } else redirect(base_url('home'));
 
         if(!isset($user_details)) 
             redirect(base_url('home'));
-
-        print_r($user_details);
 
         $data['key_details'] = $user_details;
 
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
-        $this->load->view(
-            ($_GET['ut']==1)
-                ?'inc/profile_client'
-                :'inc/profile_company',
-            $data);
+        $this->load->view($page, $data);
         $this->load->view('inc/footer');
     }
 
@@ -74,6 +102,8 @@ class Routes extends CI_Controller {
 
     public function logout()
     {
+        if($this->session->has_userdata('signinSuccess'))
+            $this->session->unset_userdata('signinSuccess');
         $this->session->unset_userdata('UserLoginSession');
         $this->session->sess_destroy();
         redirect('home');

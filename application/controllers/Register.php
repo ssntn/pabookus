@@ -26,14 +26,47 @@ class Register extends CI_Controller {
                 'password' => $password
             );
 
-            if (!$this->User_model->add_user($user_type,$data)){      
+            $i_id = $this->User_model->add_user($user_type,$data);
+            if (!$i_id){      
                 // display flashdata error msg
-                $this->session->set_flashdata('error','Can\'t create account. Try again');
+                $this->session->set_flashdata(
+                    'signinError',
+                    'We can\'t create your account.
+                    You could always try again or give up if you wanted to!');
+            }
 
-                redirect(base_url('login'));
+            if($user_type == "company"){
+                // CREATES UNIQUE SERVICE TABLE FOR COMPANY
+                $this->load->model('Service_model');
+                $q = $this->Service_model->add_table($i_id);
+
+                if(!$q){                
+                    // display flashdata error msg
+                    $this->session->set_flashdata(
+                        'signinError',
+                        'Some fn database error occured.
+                        We\'re not sorry, it\'s not us.'
+                    );
+
+                    return;
+                }
+
+                $this->session->set_flashdata(
+                    'signinSuccess',
+                    'We recommend first time users to put their nametags on!
+                    You can go to profile tab to edit your information.'
+                );
+            } else if ($user_type == "client");
+            else {
+                $this->session->set_flashdata(
+                    'signinError',
+                    'We can\'t recognize your type.
+                    Maybe try being someone first, like a client!'
+                );
             }
 
             redirect(base_url('login'));
+
         }
     }
 
