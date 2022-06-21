@@ -40,17 +40,22 @@ class Routes extends CI_Controller {
 
         $this->load->model('User_model');
         $this->load->model('Industry_model');
+        $this->load->model("Service_model");
+
+        $id = $_GET['id'];
 
         // RETURNS INFO
         // 1 = client, 2 = company
         if($_GET['ut'] == 1) {
-            $user_details = $this->User_model->get_client_id($_GET['id']);
+            $user_details = $this->User_model->get_client_id($id);
             $page = 'inc/profile_client';
         } else if($_GET['ut'] == 2) {
-            $user_details = $this->User_model->get_company_id($_GET['id']);
+
+            // RETURN USER DATA
+            $user_details = $this->User_model->get_company_id($id);
             $page = 'inc/profile_company';
             
-            // RETURNS INDUSTRY DATA
+            // RETURN INDUSTRY DATA
             $temp_i = $this->Industry_model->get_table();
             $industry = array();
             foreach($temp_i as $i){
@@ -62,6 +67,10 @@ class Routes extends CI_Controller {
             $data['key_industry'] = $industry;
             $data['key_industry_default'] = $temp_i;
             // print_r($data['key_industry_default']);
+
+            // RETURN SERVICE DATA
+            $service = $this->Service_model->get_table($id);
+            $data['key_service'] = $service;
             
         } else redirect(base_url('home'));
 

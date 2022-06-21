@@ -82,11 +82,18 @@
 ?>
 </p>
 <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
-
+<hr>
 <div id="service_section">
     <p>Service</p>
-    <div id="service_table">
-        
+    <div id="service_view">
+        <?php 
+            foreach($key_service as $s){?>
+                <div id="service_<?php echo $s['id']; ?>">
+                    <p>Name: <?php echo $s['name'] ?></p>
+                    <p>Price: <?php echo $s['price'] ?></p>
+                    <br>
+                </div>
+        <?php } ?>
     </div>
 
     <?php
@@ -107,7 +114,7 @@
     <?php } ?>
 
 </div>
-
+<hr>
 <p>Link</p>
 <ul>
 <?php
