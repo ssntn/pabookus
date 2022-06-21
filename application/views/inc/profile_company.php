@@ -88,37 +88,58 @@
         <p>Service</p>
         <?php 
             foreach($key_service as $s){?>
-                <div id="service_<?php echo $s['id']; ?>">
-
-                    <p>Name: <?php echo $s['name'] ?></p>
-                    <p>Price: <?php echo $s['price'] ?></p>
-
-                    <button class="so_btn" 
-                    id="so_<?php echo $s['id']; ?>">. . .</button>
-
-                    <div 
-                        class = "service_menu" 
-                        id = "so_<?php echo $s['id']; ?>_menu">
-
-                        <button
-                            class="so_edit"
-                            id="so_<?php echo $s['id']; ?>_edit">
-                            Edit
-                        </button>
-                        <button 
-                            class="so_save"
-                            id="so_<?php echo $s['id']; ?>_save">
-                            Save
-                        </button>
-                        <button
-                            class="so_delete"
-                            id="so_<?php echo $s['id']; ?>_delete">
-                            Delete
-                        </button>
-
-                    </div>
-                    <br><br>
+                <div 
+                    id="service_<?php echo $s['id']; ?>">
+                    <p>Name:</p>
+                    <p id="<?php echo $s['id']; ?>_n_lbl"><?php 
+                        echo $s['name'] ?></p>
+                    <p>Price:</p>
+                    <p id="<?php echo $s['id']; ?>_p_lbl"><?php
+                        echo $s['price'] ?></p>
                 </div>
+
+                <div 
+                    class="service_edt"
+                    id="service_<?php echo $s['id']; ?>_edt">
+
+                    <label for="<?php echo $s['id']; ?>_n_edt">Name</label>
+                    <input type="text" 
+                        name="<?php echo $s['id']; ?>_n_edt"
+                        id="<?php echo $s['id']; ?>_n_edt"
+                        placeholder="Service Name"><br>
+
+                    <label for="<?php echo $s['id']; ?>_p_edt">Price</label>
+                    <input type="number" 
+                        name="<?php echo $s['id']; ?>_p_edt"
+                        id="<?php echo $s['id']; ?>_p_edt"
+                        placeholder="Service Price">
+                </div>
+
+                <button class="so_btn" 
+                id="so_<?php echo $s['id']; ?>">. . .</button>
+
+                <div 
+                    class = "service_menu" 
+                    id = "so_<?php echo $s['id']; ?>_menu">
+
+                    <button
+                        class="so_edit"
+                        id="so_<?php echo $s['id']; ?>_edit">
+                        Edit
+                    </button>
+                    <button 
+                        class="so_save"
+                        id="so_<?php echo $s['id']; ?>_save">
+                        Save
+                    </button>
+                    <button
+                        class="so_delete"
+                        id="so_<?php echo $s['id']; ?>_delete">
+                        Delete
+                    </button>
+
+                </div>
+                <br><br>
         <?php } ?>
     </div>
 
@@ -160,14 +181,17 @@
 <script type="text/javascript">
     
     $(document).ready(function(){
-        $('.edit_box').css("display", "none");
-        $(".service_menu").css("display", "none");
-        $('.so_save').css("display", "none");
-        $("#save_btn").css("display", "none");
-        $("#service_items").css("display", "none");
-        $("#new_service").css("display", "none");
-        $('#industry_lbl').attr("readonly", "true");
+        hide($('.edit_box'));
+        hide($(".service_menu"));
+        hide($('.so_save'));
+        hide($('.service_edt'));
+        hide($("#save_btn"));
+        hide($("#service_items"));
+        hide($("#new_service"));
     });
+
+    function hide(sel){ sel.css("display", "none"); }
+    function show(sel){ sel.css("display", "");}
 
     function edit_profile(){
         $('#name_edt').val($('#name_lbl').html());
@@ -184,39 +208,51 @@
     
     function service_switch(){        
         if ($("#service_items").css("display") == "none"){
-            $("#service_items").css("display", "");
-            $("#new_service").css("display", "");
+            show($("#service_items"));
+            show($("#new_service"));
             $("#service_btn").html("Cancel");
         }else{
-            $("#service_items").css("display", "none");
-            $("#new_service").css("display", "none");
+            hide($("#service_items"));
+            hide($("#new_service"));
             $("#service_btn").html("Add service");
         }
     }
 
     function so_switch(id){
         if ($('#'+id+"_menu").css("display") == "none"){
-            $('#'+id+"_menu").css("display","");
+            show($('#'+id+"_menu"));
             $("#"+id).html("&#x274c;");
         }else {
-            $('#'+id+"_menu").css("display", "none");
+            hide($('#'+id+"_menu"));
             $("#"+id).html(". . .");
-        }
+
+            if($("#"+id+"_edit").html() == "Cancel")
+                so_edit_switch(id+"_edit");
+            
+        }// so_2+_edit
     }
 
-    function so_edit(id){
+    function so_edit_switch(id){
         s_id = id.replace("edit", "save");
         d_id = id.replace("edit", "delete");
+        c_id = id.replace("so_","").replace("_edit", "");
 
         if($("#"+s_id).css("display")=="none"){
-            $(id).html("Edit");
-            $('#'+s_id).css("display","");
-            $('#'+d_id).css("display","none");
-        }else {
-            $(id).html("Cancel");
-            $('#'+s_id).css("display","none");
-            $('#'+d_id).css("display","");
+            $("#"+id).html("Cancel");
+            show($('#'+s_id));
+            hide($('#'+d_id));
 
+            show($("#service_"+c_id+"_edt"));
+            hide($("#service_"+c_id));
+            $("#"+c_id+"_n_edt").val($("#"+c_id+"_n_lbl").html());
+            $("#"+c_id+"_p_edt").val($("#"+c_id+"_p_lbl").html());
+        }else {
+            $("#"+id).html("Edit");
+            hide($('#'+s_id));
+            show($('#'+d_id));
+
+            hide($("#service_"+c_id+"_edt"));
+            show($("#service_"+c_id));
         }
     }
 
@@ -253,6 +289,10 @@
             $(tr).append("<td>"+name+"</td>");
             $(tr).append("<td>"+price+"</td>");
         });
+    }
+
+    function edit_service(id, name, price){
+        
     }
 
     //================= on change =======================
@@ -301,8 +341,7 @@
     });
 
     $(".so_edit").click(function(){
-
-        so_edit(this.id);
+        so_edit_switch(this.id);
     });
     
 
