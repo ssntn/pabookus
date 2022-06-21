@@ -9,11 +9,11 @@
     <img src="#" alt="Profile Picture">
 </div>
 
-<?php
-    if($udata['id'] == $key_details['company_id']){?>
+<?php if(isset($udata)){
+    if($udata['id'] == $key_details['company_id'] ){?>
         <button id="edit_btn">Edit info</button>
         <button id="save_btn">Save</button>
-<?php } ?>
+<?php }} ?>
 
 <p class="inf_title">Name:</p>
 <p  class="u_inf" id="name_lbl"><?php 
@@ -96,7 +96,7 @@
         <?php } ?>
     </div>
 
-    <?php
+    <?php if(isset($udata)){
         if($udata['id'] == $key_details['company_id']){?>
         <div id="service_items">
                 <label for="service_name">Name</label>
@@ -111,7 +111,7 @@
 
         <button id="service_btn">Add service</button>
         <button id="save_service_btn">Save service</button>
-    <?php } ?>
+    <?php }} ?>
 
 </div>
 <hr>
