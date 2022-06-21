@@ -48,5 +48,16 @@ class Service_model extends CI_Model {
         if($q) return true;
         return false;
     }
+
+    public function edit_service($id, $data){
+        $t_name = "company".$id."_service";
+
+        $this->db->set($data);
+        $this->db->where('id', $id);
+        $q = $this->db->update($t_name);
+        
+        if($q) return true;
+        return false;
+    }
     
 }

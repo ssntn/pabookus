@@ -82,7 +82,7 @@ class Routes extends CI_Controller {
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
         $this->load->view($page, $data);
-        $this->load->view('inc/footer');
+        //$this->load->view('inc/footer');
     }
 
     public function login()
