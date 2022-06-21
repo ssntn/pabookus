@@ -84,13 +84,19 @@
 <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
 <hr>
 <div id="service_section">
-    <p>Service</p>
     <div id="service_view">
+        <p>Service</p>
         <?php 
             foreach($key_service as $s){?>
                 <div id="service_<?php echo $s['id']; ?>">
+
                     <p>Name: <?php echo $s['name'] ?></p>
                     <p>Price: <?php echo $s['price'] ?></p>
+
+                    <button class="service_options" id="so_<?php echo $s['id']; ?>">. . .</button>
+                    <button class="so_<?php echo $s['id']; ?>">Edit</button>
+                    <button class="so_<?php echo $s['id']; ?>">Save</button>
+                    <button class="so_<?php echo $s['id']; ?>" >Delete</button>
                     <br>
                 </div>
         <?php } ?>
@@ -110,7 +116,7 @@
         </div>
 
         <button id="service_btn">Add service</button>
-        <button id="save_service_btn">Save service</button>
+        <button id="new_service">Save service</button>
     <?php }} ?>
 
 </div>
@@ -132,11 +138,15 @@
 <p>Reviews</p>
 
 <script type="text/javascript">
+    
     $(document).ready(function(){
-        $('.edit_box').css("display", "none");    
+        $('.edit_box').css("display", "none");
+        $(".so_edit").css("display", "none");
+        $(".so_save").css("display", "none");
+        $(".so_delete").css("display", "none");  
         $("#save_btn").css("display", "none");
         $("#service_items").css("display", "none");
-        $("#save_service_btn").css("display", "none");
+        $("#new_service").css("display", "none");
         $('#industry_lbl').attr("readonly", "true");
     });
 
@@ -154,14 +164,26 @@
     }
     
     function service_switch(){        
-        if ($('#service_items').css("display") == "none"){
-            $('#service_items').css("display", "");
-            $("#save_service_btn").css("display", "");
+        if ($("#service_items").css("display") == "none"){
+            $("#service_items").css("display", "");
+            $("#new_service").css("display", "");
             $("#service_btn").html("Cancel");
         }else{
-            $('#service_items').css("display", "none");
-            $("#save_service_btn").css("display", "none");
+            $("#service_items").css("display", "none");
+            $("#new_service").css("display", "none");
             $("#service_btn").html("Add service");
+        }
+    }
+
+    function so_switch(){
+        if ($('.so_edit').css("display") == "none"){
+            $('.so_edit').css("display","");
+            $('.so_delete').css("display","");
+            $('.so_save').css("display","");
+        }else {
+            $(".so_edit").css("display", "none");
+            $(".so_save").css("display", "none");
+            $(".so_delete").css("display", "none");
         }
     }
 
@@ -226,7 +248,7 @@
         service_switch();
     });
 
-    $("#save_service_btn").click(function(){
+    $("#new_service").click(function(){
         var name = $("#s_name_edt").val();
         var price = $("#s_price_edt").val();
 
@@ -239,6 +261,10 @@
 
     $("#save_btn").click(function(){
         edit_user();
+    });
+
+    $(".service_options").click(function(){
+        so_switch();
     });
     
 
