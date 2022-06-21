@@ -93,11 +93,31 @@
                     <p>Name: <?php echo $s['name'] ?></p>
                     <p>Price: <?php echo $s['price'] ?></p>
 
-                    <button class="service_options" id="so_<?php echo $s['id']; ?>">. . .</button>
-                    <button class="so_<?php echo $s['id']; ?>">Edit</button>
-                    <button class="so_<?php echo $s['id']; ?>">Save</button>
-                    <button class="so_<?php echo $s['id']; ?>" >Delete</button>
-                    <br>
+                    <button class="so_btn" 
+                    id="so_<?php echo $s['id']; ?>">. . .</button>
+
+                    <div 
+                        class = "service_menu" 
+                        id = "so_<?php echo $s['id']; ?>_menu">
+
+                        <button
+                            class="so_edit"
+                            id="so_<?php echo $s['id']; ?>_edit">
+                            Edit
+                        </button>
+                        <button 
+                            class="so_save"
+                            id="so_<?php echo $s['id']; ?>_save">
+                            Save
+                        </button>
+                        <button
+                            class="so_delete"
+                            id="so_<?php echo $s['id']; ?>_delete">
+                            Delete
+                        </button>
+
+                    </div>
+                    <br><br>
                 </div>
         <?php } ?>
     </div>
@@ -141,9 +161,8 @@
     
     $(document).ready(function(){
         $('.edit_box').css("display", "none");
-        $(".so_edit").css("display", "none");
-        $(".so_save").css("display", "none");
-        $(".so_delete").css("display", "none");  
+        $(".service_menu").css("display", "none");
+        $('.so_save').css("display", "none");
         $("#save_btn").css("display", "none");
         $("#service_items").css("display", "none");
         $("#new_service").css("display", "none");
@@ -175,15 +194,29 @@
         }
     }
 
-    function so_switch(){
-        if ($('.so_edit').css("display") == "none"){
-            $('.so_edit').css("display","");
-            $('.so_delete').css("display","");
-            $('.so_save').css("display","");
+    function so_switch(id){
+        if ($('#'+id+"_menu").css("display") == "none"){
+            $('#'+id+"_menu").css("display","");
+            $("#"+id).html("&#x274c;");
         }else {
-            $(".so_edit").css("display", "none");
-            $(".so_save").css("display", "none");
-            $(".so_delete").css("display", "none");
+            $('#'+id+"_menu").css("display", "none");
+            $("#"+id).html(". . .");
+        }
+    }
+
+    function so_edit(id){
+        s_id = id.replace("edit", "save");
+        d_id = id.replace("edit", "delete");
+
+        if($("#"+s_id).css("display")=="none"){
+            $(id).html("Edit");
+            $('#'+s_id).css("display","");
+            $('#'+d_id).css("display","none");
+        }else {
+            $(id).html("Cancel");
+            $('#'+s_id).css("display","none");
+            $('#'+d_id).css("display","");
+
         }
     }
 
@@ -263,8 +296,13 @@
         edit_user();
     });
 
-    $(".service_options").click(function(){
-        so_switch();
+    $(".so_btn").click(function(){
+        so_switch(this.id);
+    });
+
+    $(".so_edit").click(function(){
+
+        so_edit(this.id);
     });
     
 
