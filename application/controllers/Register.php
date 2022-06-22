@@ -38,7 +38,9 @@ class Register extends CI_Controller {
             if($user_type == "company"){
                 // CREATES UNIQUE SERVICE TABLE FOR COMPANY
                 $this->load->model('Service_model');
-                $q = $this->Service_model->add_table($i_id);
+                $table_name = "company".$i_id."_service";
+                
+                $q = $this->Service_model->add_table($table_name);
 
                 if(!$q){                
                     // display flashdata error msg
@@ -50,6 +52,8 @@ class Register extends CI_Controller {
 
                     return;
                 }
+
+                $this->User_model->set_service_name($i_id, $table_name);
 
                 $this->session->set_flashdata(
                     'signinSuccess',

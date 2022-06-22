@@ -64,17 +64,26 @@ class User_model extends CI_Model {
             industry,
             contact,
             owner,
-            founding_date,
-            bio_id,
-            link_id,
-            schedule_id,
-            review_id'
+            founding_date'
+            // bio_id,
+            // link_id,
+            // schedule_id,
+            // review_id'
         );
 
         $this->db->where('company_id', $id);
         $q = $this->db->get('company')->row_array();
 
         if($q) return $q;
+        else return false;
+    }
+    
+    public function set_service_name($id, $t_name){
+        $this->db->set("services_id", $t_name);
+        $this->db->where('company_id', $id);        
+        $q = $this->db->update('company');
+
+        if($q) return true;
         else return false;
     }
 

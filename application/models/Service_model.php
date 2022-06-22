@@ -18,12 +18,12 @@ class Service_model extends CI_Model {
         return $this->db->get($t_name)->result_array();
     }
 
-    public function add_table($id){
+    public function add_table($t_name){
        
         $fields = array(
             'name' => array(
                 'type' => 'VARCHAR',
-                'constraint' => 5,
+                'constraint' => 50,
                 'unique' => TRUE,
             ),
             'price' => array(
@@ -33,9 +33,9 @@ class Service_model extends CI_Model {
             ),
         );
 
-        $this->dbforge->add_field($fields);
         $this->dbforge->add_field('id', true);
-        $q = $this->dbforge->create_table("company".$id."_service");
+        $this->dbforge->add_field($fields);
+        $q = $this->dbforge->create_table($t_name);
 
         if($q) return true;
         return false;
