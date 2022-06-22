@@ -317,10 +317,13 @@
 
     function delete_service(id){
         $.post("<?=base_url('Service/delete_service')?>",{
-            table: <?php echo $key_details['services_id']; ?>,
+            table: "<?php echo $key_details['services_id']; ?>",
             id: id,
         }, function(data){
-            location.reload();
+            if(data)
+                location.reload();
+            else 
+                alert("delete failed");
         });
     }
 

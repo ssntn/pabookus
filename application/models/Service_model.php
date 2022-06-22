@@ -62,9 +62,9 @@ class Service_model extends CI_Model {
 
     public function delete_service($table, $id){
         $this->db->where('id', $id);
-        $this->db->delete($table);
+        $q = $this->db->delete($table);
 
-        if($this->db->affected_rows()) return true;
+        if($q) return true;
         return false;
     }
     
