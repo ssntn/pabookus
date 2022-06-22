@@ -260,6 +260,16 @@
         return (theVar == "Not set") ?null :theVar;
     }
 
+    function so_save(id){
+        c_id = id.replace("so_","").replace("_save", "");
+        name = $("#"+c_id+"_n_edt").val();
+        price = $("#"+c_id+"_p_edt").val();
+        console.log("name"+name);
+        console.log("cid"+c_id);
+        console.log("price"+price);
+        edit_service(c_id, name, price);
+    }
+
     //===================== AJAX ===========================
     function edit_user(){
         
@@ -298,7 +308,16 @@
             name: name,
             price: price
         }, function(data){
+            location.reload();
+        });
+    }
 
+    function delete_service(id){
+        $.post("<?=base_url('Service/delete_service')?>",{
+            user_id: <?php echo $key_details['company_id']; ?>,
+            service_id: id,
+        }, function(data){
+            location.reload();
         });
     }
 
@@ -349,6 +368,10 @@
 
     $(".so_edit").click(function(){
         so_edit_switch(this.id);
+    });
+
+    $(".so_save").click(function(){
+        so_save(this.id);
     });
     
 
