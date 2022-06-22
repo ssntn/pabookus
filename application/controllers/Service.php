@@ -54,5 +54,18 @@ class Service extends CI_Controller {
             if($q) echo true;
             else echo false;        
         }
+    }    
+
+    public function delete_service(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+
+            $id = $_POST['id'];
+            $table = $_POST['table'];
+
+            $q = $this->Service_model->delete_service($table, $id);
+
+            if($q) echo true;
+            else echo false;        
+        }
     }
 }

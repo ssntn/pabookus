@@ -264,10 +264,12 @@
         c_id = id.replace("so_","").replace("_save", "");
         name = $("#"+c_id+"_n_edt").val();
         price = $("#"+c_id+"_p_edt").val();
-        console.log("name"+name);
-        console.log("cid"+c_id);
-        console.log("price"+price);
         edit_service(c_id, name, price);
+    }
+
+    function so_delete(id){        
+        c_id = id.replace("so_","").replace("_delete", "");
+        delete_service(c_id);
     }
 
     //===================== AJAX ===========================
@@ -298,6 +300,7 @@
             var tr = $("#service_table").append("<tr></tr>");
             $(tr).append("<td>"+name+"</td>");
             $(tr).append("<td>"+price+"</td>");
+            location.reload();
         });
     }
 
@@ -314,8 +317,8 @@
 
     function delete_service(id){
         $.post("<?=base_url('Service/delete_service')?>",{
-            user_id: <?php echo $key_details['company_id']; ?>,
-            service_id: id,
+            table: <?php echo $key_details['services_id']; ?>,
+            id: id,
         }, function(data){
             location.reload();
         });
@@ -372,6 +375,10 @@
 
     $(".so_save").click(function(){
         so_save(this.id);
+    });
+
+    $(".so_delete").click(function(){
+        so_delete(this.id);
     });
     
 

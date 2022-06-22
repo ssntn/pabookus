@@ -64,7 +64,8 @@ class User_model extends CI_Model {
             industry,
             contact,
             owner,
-            founding_date'
+            founding_date,
+            services_id'
             // bio_id,
             // link_id,
             // schedule_id,
