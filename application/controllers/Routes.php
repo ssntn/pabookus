@@ -16,7 +16,7 @@ class Routes extends CI_Controller {
     
 	public function newsfeed()
 	{
-        $this->session->set_userdata('page', 'newsfeed');
+        $this->session->set_userdata('page', 'home');
         if(!empty($this->session->flashdata('signinSuccess')))
             echo $this->session->flashdata('signinSuccess');
 
