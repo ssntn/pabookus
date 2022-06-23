@@ -19,7 +19,6 @@ class Routes extends CI_Controller {
         if(!empty($this->session->flashdata('signinSuccess')))
             echo $this->session->flashdata('signinSuccess');
 
-        echo "<pre>";
         $this->load->model('User_model');
         $this->load->model('Service_model');
         $company_table = $this->User_model->get_table();
@@ -33,10 +32,14 @@ class Routes extends CI_Controller {
                 $services[$x++] = $tbs;
             }
         }
+        $data["key_services"] = $services;
+        
+        // echo "<pre>";
+        // print_r($services);
 
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
-		$this->load->view('newsfeed');
+		$this->load->view('newsfeed', $data);
         $this->load->view('inc/footer');
 	}
 
