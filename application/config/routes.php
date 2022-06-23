@@ -55,7 +55,8 @@ $route['404_override'] = 'errors/page_missing';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'Routes/newsfeed';
-$route['profile'] = 'Routes/profile';
 $route['login'] = 'Routes/login';
 $route['schedule'] = 'Routes/schedule';
 $route['logout'] = 'Routes/logout';
+$route['profile/(:any)/(:num)'] = 'Routes/profile';
+

@@ -16,6 +16,7 @@ class Routes extends CI_Controller {
     
 	public function newsfeed()
 	{
+        $this->session->set_userdata('page', 'newsfeed');
         if(!empty($this->session->flashdata('signinSuccess')))
             echo $this->session->flashdata('signinSuccess');
 
@@ -45,12 +46,17 @@ class Routes extends CI_Controller {
 
     public function profile()
     {
-        
+        $this->session->set_userdata('page', 'profile');
         if(!empty($this->session->flashdata('signinSuccess')))
             $this->session->unset_userdata('signinSuccess');
 
-        $id_exist = isset($_GET['id']) ||
-            ($this->session->userdata('UserLoginSession'));
+        // GET USER TYPE FROM URI
+        $user_type = $this->uri->segment(2);
+        // GET ID FROM URI
+        $user_id = $this->uri->segment(3);
+
+        $id_exist = isset($user_id) ||
+             ($this->session->userdata('UserLoginSession'));
 
         if($id_exist == false)
             redirect(base_url('home'));
@@ -59,17 +65,14 @@ class Routes extends CI_Controller {
         $this->load->model('Industry_model');
         $this->load->model("Service_model");
 
-        $id = $_GET['id'];
-
         // RETURNS INFO
-        // 1 = client, 2 = company
-        if($_GET['ut'] == 1) {
-            $user_details = $this->User_model->get_client_id($id);
+        if($user_type == "client") {
+            $user_details = $this->User_model->get_client_id($user_id);
             $page = 'inc/profile_client';
-        } else if($_GET['ut'] == 2) {
+        } else if($user_type == "company") {
 
             // RETURN USER DATA
-            $user_details = $this->User_model->get_company_id($id);
+            $user_details = $this->User_model->get_company_id($user_id);
             $page = 'inc/profile_company';
             
             // RETURN INDUSTRY DATA
@@ -86,10 +89,9 @@ class Routes extends CI_Controller {
             // print_r($data['key_industry_default']);
 
             // RETURN SERVICE DATA
-            $service = $this->Service_model->get_table($id);
+            $service = $this->Service_model->get_table($user_id);
             $data['key_service'] = $service;
-            
-        } else redirect(base_url('home'));
+        }            
 
         if(!isset($user_details)) 
             redirect(base_url('home'));
@@ -104,6 +106,7 @@ class Routes extends CI_Controller {
 
     public function login()
     {
+        $this->session->set_userdata('page', 'login');
         $this->load->view('inc/header');
         $this->load->view('login');
         $this->load->view('inc/footer');
@@ -111,6 +114,7 @@ class Routes extends CI_Controller {
 
     public function schedule()
     {
+        $this->session->set_userdata('page', 'schedule');
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
         $this->load->view('schedule');
@@ -119,6 +123,7 @@ class Routes extends CI_Controller {
 
     public function logout()
     {
+        $this->session->set_userdata('page', 'logout');
         if($this->session->has_userdata('signinSuccess'))
             $this->session->unset_userdata('signinSuccess');
         $this->session->unset_userdata('UserLoginSession');
