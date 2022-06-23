@@ -98,6 +98,7 @@
                         echo $s['price'] ?></p>
                 </div>
 
+                <?php if($udata['id'] == $key_details["company_id"]){ ?>
                 <div 
                     class="service_edt"
                     id="service_<?php echo $s['id']; ?>_edt">
@@ -140,6 +141,7 @@
 
                 </div>
                 <br><br>
+                <?php } ?>
         <?php } ?>
     </div>
 
