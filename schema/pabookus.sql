@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2022 at 05:17 AM
+-- Generation Time: Jun 23, 2022 at 09:45 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -56,7 +56,7 @@ CREATE TABLE `client` (
   `fullname` varchar(50) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `contact` int(12) DEFAULT NULL,
+  `contact` varchar(12) DEFAULT NULL,
   `address` varchar(200) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   `schedule_id` int(12) DEFAULT NULL
@@ -67,8 +67,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`client_id`, `fullname`, `email`, `password`, `contact`, `address`, `birthdate`, `schedule_id`) VALUES
-(2, NULL, 'me@me.me', 'meme', NULL, NULL, NULL, NULL),
-(3, NULL, 'aaa@aa.a', 'aaa', NULL, NULL, NULL, NULL),
+(2, 'me me', 'me@me.me', 'meme', NULL, NULL, NULL, NULL),
+(3, 'aaa aaaa', 'aaa@aa.a', 'aaa', '09194691080', NULL, '2000-07-22', NULL),
 (4, NULL, 'ian@sisan.te', 'asd', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -91,18 +91,112 @@ CREATE TABLE `company` (
   `link_id` int(12) DEFAULT NULL,
   `schedule_id` int(12) DEFAULT NULL,
   `review_id` int(12) DEFAULT NULL,
-  `services` int(11) DEFAULT NULL
+  `services_id` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `bio_id`, `link_id`, `schedule_id`, `review_id`, `services`) VALUES
-(1, 'Companier', 'company@com.pany', '111', '09191919191', 'Naic, Cavite', 'Test Industry', 'Piri Kyle', '1969-06-09', NULL, NULL, NULL, NULL, NULL),
-(2, NULL, 'co@mpa.ny', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, NULL, 'a@a.a', 'aaa', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, 'tutorial123@mail.me', '111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `bio_id`, `link_id`, `schedule_id`, `review_id`, `services_id`) VALUES
+(1, 'Kyle\'s Salon', 'kylesalon@mail.me', '111', '09199991111', 'Pasay City?', '2', 'KyleRaiden', '1943-06-24', NULL, NULL, NULL, NULL, 'company1_service'),
+(5, 'Ian Sisante BusinessGe', 'ian.sisante@tup.edu.ph', '111', '09001110000', 'Naic, Cavite', '8', 'Ian Sisante', '2022-06-22', NULL, NULL, NULL, NULL, 'company5_service'),
+(6, 'Piri tuts', 'pirituts@mail.me', '111', '87000', 'Bacoor, Cavite', '5', 'Piri Bustarde', '2022-07-22', NULL, NULL, NULL, NULL, 'company6_service'),
+(10, 'Kim Salon', 'kim@ber.ley', '123', '09198883333', 'Pasay', '1', 'Kim Delgado', '2022-06-22', NULL, NULL, NULL, NULL, 'company10_service'),
+(11, 'AlexYoga', 'alex@min.on', '321', '091234561234', 'Somewhere', '9', 'Alex Minon', '2022-06-23', NULL, NULL, NULL, NULL, 'company11_service');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company1_service`
+--
+
+CREATE TABLE `company1_service` (
+  `name` varchar(50) NOT NULL,
+  `price` int(11) DEFAULT NULL,
+  `id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company5_service`
+--
+
+CREATE TABLE `company5_service` (
+  `name` varchar(50) NOT NULL,
+  `price` int(11) DEFAULT NULL,
+  `id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `company5_service`
+--
+
+INSERT INTO `company5_service` (`name`, `price`, `id`) VALUES
+('Training', 100, 9),
+('Sparring', 200, 11),
+('Advisor', 50, 12);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company6_service`
+--
+
+CREATE TABLE `company6_service` (
+  `name` varchar(50) NOT NULL,
+  `price` int(11) DEFAULT NULL,
+  `id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `company6_service`
+--
+
+INSERT INTO `company6_service` (`name`, `price`, `id`) VALUES
+('Guitar Tutorial', 234, 1),
+('Headshot Tutorials', 99999, 2),
+('How to get A+ on Japanese Proficiency Test', 500, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company10_service`
+--
+
+CREATE TABLE `company10_service` (
+  `id` int(9) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `price` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `company10_service`
+--
+
+INSERT INTO `company10_service` (`id`, `name`, `price`) VALUES
+(1, 'Serbisyong Totoo', 777);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company11_service`
+--
+
+CREATE TABLE `company11_service` (
+  `id` int(9) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `price` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `company11_service`
+--
+
+INSERT INTO `company11_service` (`id`, `name`, `price`) VALUES
+(1, 'Home Service', 100),
+(2, 'Coach', 800);
 
 -- --------------------------------------------------------
 
@@ -229,6 +323,41 @@ ALTER TABLE `company`
   ADD KEY `company_review` (`review_id`);
 
 --
+-- Indexes for table `company1_service`
+--
+ALTER TABLE `company1_service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `company5_service`
+--
+ALTER TABLE `company5_service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `company6_service`
+--
+ALTER TABLE `company6_service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `company10_service`
+--
+ALTER TABLE `company10_service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `company11_service`
+--
+ALTER TABLE `company11_service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `links`
 --
 ALTER TABLE `links`
@@ -281,7 +410,37 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `company_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `company_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `company1_service`
+--
+ALTER TABLE `company1_service`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `company5_service`
+--
+ALTER TABLE `company5_service`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `company6_service`
+--
+ALTER TABLE `company6_service`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `company10_service`
+--
+ALTER TABLE `company10_service`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `company11_service`
+--
+ALTER TABLE `company11_service`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `links`
