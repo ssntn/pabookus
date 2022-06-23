@@ -18,6 +18,11 @@ class Service_model extends CI_Model {
         return $this->db->get($t_name)->result_array();
     }
 
+    public function get_table_full($t_name){
+        $this->db->select('*');
+        return $this->db->get($t_name)->result_array();
+    }
+
     public function add_table($t_name){
        
         $fields = array(

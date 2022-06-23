@@ -7,6 +7,11 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
+    public function get_table(){
+        $this->db->select('*');
+        return $this->db->get("company")->result_array();
+    }
+
     public function add_user($user_type, $data){
         $q = $this->db->insert($user_type, $data);
         if($q) return $this->db->insert_id();

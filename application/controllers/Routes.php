@@ -19,10 +19,24 @@ class Routes extends CI_Controller {
         if(!empty($this->session->flashdata('signinSuccess')))
             echo $this->session->flashdata('signinSuccess');
 
+        echo "<pre>";
+        $this->load->model('User_model');
+        $this->load->model('Service_model');
+        $company_table = $this->User_model->get_table();
+        $services = array();
+        $x=0;
+
+        foreach($company_table as $c){            
+            foreach($this->Service_model->get_table_full($c['services_id']) as $tbs){
+                $tbs["company_name"] = $c["company_name"];
+                $tbs["company_id"] = $c["company_id"];
+                $services[$x++] = $tbs;
+            }
+        }
+
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
 		$this->load->view('newsfeed');
-        
         $this->load->view('inc/footer');
 	}
 
