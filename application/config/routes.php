@@ -58,5 +58,8 @@ $route['home'] = 'Routes/newsfeed';
 $route['login'] = 'Routes/login';
 $route['schedule'] = 'Routes/schedule';
 $route['logout'] = 'Routes/logout';
-$route['profile/(:any)/(:num)'] = 'Routes/profile';
+$route['profile/company/(:num)'] = 'Routes/profile';
+$route['my_account'] = 'Routes/user_profile';
+$route['profile/client/(:num)'] = 'errors/page_missing';
+
 

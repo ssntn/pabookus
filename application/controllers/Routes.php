@@ -46,10 +46,6 @@ class Routes extends CI_Controller {
 
     public function profile()
     {
-        $this->session->set_userdata('page', 'profile');
-        if(!empty($this->session->flashdata('signinSuccess')))
-            $this->session->unset_userdata('signinSuccess');
-
         // GET USER TYPE FROM URI
         $user_type = $this->uri->segment(2);
         // GET ID FROM URI
@@ -65,7 +61,55 @@ class Routes extends CI_Controller {
         $this->load->model('Industry_model');
         $this->load->model("Service_model");
 
-        // RETURNS INFO
+        // RETURN USER DATA
+        $user_details = $this->User_model->get_company_id($user_id);
+        
+        // RETURN INDUSTRY DATA
+        $temp_i = $this->Industry_model->get_table();
+        $industry = array();
+        foreach($temp_i as $i){
+            $industry[$i['name']] = $i;
+        }
+        
+        // echo "<pre>";
+        ksort($industry);     
+        $data['key_industry'] = $industry;
+        $data['key_industry_default'] = $temp_i;
+        // print_r($data['key_industry_default']);
+
+        // RETURN SERVICE DATA
+        $service = $this->Service_model->get_table($user_id);
+        $data['key_service'] = $service;
+               
+        if(!isset($user_details)) 
+            redirect(base_url('home'));
+
+        $data['key_details'] = $user_details;
+
+        $this->load->view('inc/header');
+        $this->load->view('inc/navbar');
+        $this->load->view("inc/profile_company", $data);
+        //$this->load->view('inc/footer');
+    }
+
+    public function user_profile(){
+
+        $this->session->set_userdata('page', 'profile');
+        if(!empty($this->session->flashdata('signinSuccess')))
+            $this->session->unset_userdata('signinSuccess');
+        
+        if($this->session->userdata('UserLoginSession'))
+            $udata = $this->session->userdata('UserLoginSession');
+        else redirect(base_url("Routes/login"));
+
+        $user_id = $udata['id'];
+        $user_type = $udata['user_type'];
+        echo $user_type;
+
+        $this->load->model('User_model');
+        $this->load->model('Industry_model');
+        $this->load->model("Service_model");
+        
         if($user_type == "client") {
             $user_details = $this->User_model->get_client_id($user_id);
             $page = 'inc/profile_client';
@@ -74,6 +118,15 @@ class Routes extends CI_Controller {
             // RETURN USER DATA
             $user_details = $this->User_model->get_company_id($user_id);
             $page = 'inc/profile_company';
+            
+            $id_exist = isset($user_id) ||
+            ($this->session->userdata('UserLoginSession'));
+
+            if($id_exist == false)
+                redirect(base_url('home'));
+
+            // RETURN USER DATA
+            $user_details = $this->User_model->get_company_id($user_id);
             
             // RETURN INDUSTRY DATA
             $temp_i = $this->Industry_model->get_table();
@@ -91,8 +144,8 @@ class Routes extends CI_Controller {
             // RETURN SERVICE DATA
             $service = $this->Service_model->get_table($user_id);
             $data['key_service'] = $service;
-        }            
-
+        }
+                
         if(!isset($user_details)) 
             redirect(base_url('home'));
 

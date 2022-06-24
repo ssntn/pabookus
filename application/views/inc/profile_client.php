@@ -8,11 +8,11 @@
     <img src="#" alt="Profile Picture">
 </div>
 
-<?php
+<?php if(isset($udata)){
     if($udata['id'] == $key_details['client_id']){?>
         <button id="edit_btn">Edit info</button>
         <button id="save_btn">Save</button>
-<?php } ?>
+<?php }} ?>
 
 <p class="inf_title">Name:</p>
 <p class="u_inf" id="name_lbl"><?php 

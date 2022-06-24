@@ -11,9 +11,9 @@
 		<a href="<?php echo base_url();?>"
 		<?php if($page=="home") echo"class=active";?>>Home</a>
 
-		<a href="<?php if(isset($udata)){
-			echo base_url()."profile/".$udata['user_type']."/".$udata['id'];
-			}else echo 'login'; ?>"
+		<a href="<?php 
+			if(isset($udata)) echo  base_url()."my_account";
+			else echo 'login'; ?>"
 			<?php if($page=="profile") echo"class=active";?>>Profile
 		</a>
 
