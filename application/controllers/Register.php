@@ -26,14 +26,51 @@ class Register extends CI_Controller {
                 'password' => $password
             );
 
-            if (!$this->User_model->add_user($user_type,$data)){                
-                $this->session->set_flashdata('error','Can\'t create account. Try again');
+            $i_id = $this->User_model->add_user($user_type,$data);
+            if (!$i_id){      
+                // display flashdata error msg
+                $this->session->set_flashdata(
+                    'signinError',
+                    'We can\'t create your account.
+                    You could always try again or give up if you wanted to!');
+            }
 
-                if($user_type == 'client') redirect(base_url('login'));
-                else if ($user_type == 'company') redirect(base_url('login'));
+            if($user_type == "company"){
+                // CREATES UNIQUE SERVICE TABLE FOR COMPANY
+                $this->load->model('Service_model');
+                $table_name = "company".$i_id."_service";
+                
+                $q = $this->Service_model->add_table($table_name);
+
+                if(!$q){                
+                    // display flashdata error msg
+                    $this->session->set_flashdata(
+                        'signinError',
+                        'Some fn database error occured.
+                        We\'re not sorry, it\'s not us.'
+                    );
+
+                    return;
+                }
+
+                $this->User_model->set_service_name($i_id, $table_name);
+
+                $this->session->set_flashdata(
+                    'signinSuccess',
+                    'We recommend first time users to put their nametags on!
+                    You can go to profile tab to edit your information.'
+                );
+            } else if ($user_type == "client");
+            else {
+                $this->session->set_flashdata(
+                    'signinError',
+                    'We can\'t recognize your type.
+                    Maybe try being someone first, like a client!'
+                );
             }
 
             redirect(base_url('login'));
+
         }
     }
 

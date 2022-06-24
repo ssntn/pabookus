@@ -54,8 +54,12 @@ $route['default_controller'] = 'Routes/newsfeed';
 $route['404_override'] = 'errors/page_missing';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['newsfeed'] = 'Routes/newsfeed';
-$route['profile'] = 'Routes/profile';
+$route['home'] = 'Routes/newsfeed';
 $route['login'] = 'Routes/login';
 $route['schedule'] = 'Routes/schedule';
 $route['logout'] = 'Routes/logout';
+$route['profile/company/(:num)'] = 'Routes/profile';
+$route['my_account'] = 'Routes/user_profile';
+$route['profile/client/(:num)'] = 'errors/page_missing';
+
+
