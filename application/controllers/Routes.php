@@ -34,9 +34,6 @@ class Routes extends CI_Controller {
             }
         }
         $data["key_services"] = $services;
-        
-        // echo "<pre>";
-        // print_r($services);
 
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
@@ -75,7 +72,6 @@ class Routes extends CI_Controller {
         ksort($industry);     
         $data['key_industry'] = $industry;
         $data['key_industry_default'] = $temp_i;
-        // print_r($data['key_industry_default']);
 
         // RETURN SERVICE DATA
         $service = $this->Service_model->get_table($user_id);
@@ -89,7 +85,7 @@ class Routes extends CI_Controller {
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
         $this->load->view("inc/profile_company", $data);
-        //$this->load->view('inc/footer');
+        $this->load->view('inc/footer');
     }
 
     public function user_profile(){
@@ -104,7 +100,6 @@ class Routes extends CI_Controller {
 
         $user_id = $udata['id'];
         $user_type = $udata['user_type'];
-        echo $user_type;
 
         $this->load->model('User_model');
         $this->load->model('Industry_model');
@@ -135,11 +130,9 @@ class Routes extends CI_Controller {
                 $industry[$i['name']] = $i;
             }
             
-            // echo "<pre>";
             ksort($industry);     
             $data['key_industry'] = $industry;
             $data['key_industry_default'] = $temp_i;
-            // print_r($data['key_industry_default']);
 
             // RETURN SERVICE DATA
             $service = $this->Service_model->get_table($user_id);
@@ -154,7 +147,7 @@ class Routes extends CI_Controller {
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
         $this->load->view($page, $data);
-        //$this->load->view('inc/footer');
+        $this->load->view('inc/footer');
     }
 
     public function login()
