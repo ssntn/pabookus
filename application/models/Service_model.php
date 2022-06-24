@@ -23,6 +23,12 @@ class Service_model extends CI_Model {
         return $this->db->get($t_name)->result_array();
     }
 
+    public function get_service($table, $service_id){
+        $this->db->select('id, name, price');
+        $this->db->where('id', $service_id);
+        return $this->db->get($table)->row_array();
+    }
+
     public function add_table($t_name){
        
         $fields = array(

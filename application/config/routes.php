@@ -56,7 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'Routes/newsfeed';
 $route['login'] = 'Routes/login';
-$route['schedule'] = 'Routes/schedule';
+$route['schedule/(:num)/(:num)'] = 'Routes/schedule';
 $route['logout'] = 'Routes/logout';
 $route['profile/company/(:num)'] = 'Routes/profile';
 $route['my_account'] = 'Routes/user_profile';

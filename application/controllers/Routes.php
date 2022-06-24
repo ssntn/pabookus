@@ -159,11 +159,39 @@ class Routes extends CI_Controller {
     }
 
     public function schedule()
-    {
+    { 
+        // GET COMPANY ID FROM URI
+        $company_id = $this->uri->segment(2);
+ 
+        // GET SERVICE ID FROM URI
+        $service_id = $this->uri->segment(3);
+
+            
+        $id_exist = isset($company_id) ||
+            ($this->session->userdata('UserLoginSession'));
+
+        if($id_exist == false)
+            redirect(base_url('home'));
+
+            
+        $this->load->model('User_model');
+        $this->load->model('Service_model');
+
+        // RETURN COMPANY DATA
+        $company = $this->User_model->get_company_id($company_id);
+        
+        // RETURN SERVICE DATA
+        $service = $this->Service_model
+            ->get_service($company['services_id'], $service_id);
+        $data['key_service'] = $service;
+        $data['key_company'] = $company;
+
+        print_r($service);
+ 
         $this->session->set_userdata('page', 'schedule');
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
-        $this->load->view('schedule');
+        $this->load->view('schedule', $data);
         $this->load->view('inc/footer');
     }
 
