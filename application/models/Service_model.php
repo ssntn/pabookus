@@ -18,12 +18,17 @@ class Service_model extends CI_Model {
         return $this->db->get($t_name)->result_array();
     }
 
-    public function add_table($id){
+    public function get_table_full($t_name){
+        $this->db->select('*');
+        return $this->db->get($t_name)->result_array();
+    }
+
+    public function add_table($t_name){
        
         $fields = array(
             'name' => array(
                 'type' => 'VARCHAR',
-                'constraint' => 5,
+                'constraint' => 50,
                 'unique' => TRUE,
             ),
             'price' => array(
@@ -33,9 +38,9 @@ class Service_model extends CI_Model {
             ),
         );
 
-        $this->dbforge->add_field($fields);
         $this->dbforge->add_field('id', true);
-        $q = $this->dbforge->create_table("company".$id."_service");
+        $this->dbforge->add_field($fields);
+        $q = $this->dbforge->create_table($t_name);
 
         if($q) return true;
         return false;
@@ -44,6 +49,25 @@ class Service_model extends CI_Model {
     public function add_service($id, $data){
         $t_name = "company".$id."_service";
         $q = $this->db->insert($t_name, $data);
+
+        if($q) return true;
+        return false;
+    }
+
+    public function edit_service($user_id, $id, $data){
+        $t_name = "company".$user_id."_service";
+
+        $this->db->set($data);
+        $this->db->where('id', $id);
+        $q = $this->db->update($t_name);
+        
+        if($q) return true;
+        return false;
+    }
+
+    public function delete_service($table, $id){
+        $this->db->where('id', $id);
+        $q = $this->db->delete($table);
 
         if($q) return true;
         return false;

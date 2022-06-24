@@ -7,6 +7,11 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
+    public function get_table(){
+        $this->db->select('*');
+        return $this->db->get("company")->result_array();
+    }
+
     public function add_user($user_type, $data){
         $q = $this->db->insert($user_type, $data);
         if($q) return $this->db->insert_id();
@@ -65,16 +70,26 @@ class User_model extends CI_Model {
             contact,
             owner,
             founding_date,
-            bio_id,
-            link_id,
-            schedule_id,
-            review_id'
+            services_id'
+            // bio_id,
+            // link_id,
+            // schedule_id,
+            // review_id'
         );
 
         $this->db->where('company_id', $id);
         $q = $this->db->get('company')->row_array();
 
         if($q) return $q;
+        else return false;
+    }
+    
+    public function set_service_name($id, $t_name){
+        $this->db->set("services_id", $t_name);
+        $this->db->where('company_id', $id);        
+        $q = $this->db->update('company');
+
+        if($q) return true;
         else return false;
     }
 
