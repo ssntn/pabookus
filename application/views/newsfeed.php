@@ -3,8 +3,6 @@
         $udata = $this->session->userdata('UserLoginSession');
 ?>
 
-<body>
-<p><?php if(isset($udata)) echo $udata['email']; ?></p>
 <div class="container">
 
 	<div class="search">
@@ -69,6 +67,7 @@
 
 </div>
 
+
 <?php 
 if(isset($key_services)){
     foreach($key_services as $s){?>
@@ -88,6 +87,5 @@ if(isset($key_services)){
 <p>No Services</p>
 
 <?php } ?>
-<div>
 
-</div>
+<p><?php if(isset($udata)) echo $udata['email'] ?></p>
