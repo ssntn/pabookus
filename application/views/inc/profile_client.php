@@ -60,7 +60,7 @@
         <br>
 
 
-        <p class="inf_title">Address</p>
+        <p class="inf_title">Address:</p>
         <p class="u_inf" id="address_lbl"><?php 
             echo (isset($key_details['address']))
                 ? $key_details['address']
@@ -71,7 +71,7 @@
         <br>
 
 
-        <p class="inf_title">Birthdate</p>
+        <p class="inf_title">Birthdate:</p>
         <p class="u_inf" id="birthdate_lbl"><?php 
             echo (isset($key_details['birthdate']))
                 ? $key_details['birthdate']

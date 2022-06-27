@@ -13,89 +13,77 @@
         </div>
 
         <div class="flexbox-item flexbox-item-2">
-            <hr>
             <div id="service_section">
-                <div id="service_view">
-                    <p>Service</p>
-                    <?php 
+            	<div id="service_view">
+            		<p class="service_title">SERVICES:</p><br>
+                    
+            		<?php 
                         foreach($key_service as $s){?>
-                            <div 
-                                id="service_<?php echo $s['id']; ?>">
-                                <p>Name:</p>
-                                <p id="<?php echo $s['id']; ?>_n_lbl"><?php 
-                                    echo $s['name'] ?></p>
-                                <p>Price:</p>
-                                <p id="<?php echo $s['id']; ?>_p_lbl"><?php
-                                    echo $s['price'] ?></p>
-                            </div>
-
-                            <?php if($udata['id'] == $key_details["company_id"]){ ?>
-                            <div 
-                                class="service_edt"
-                                id="service_<?php echo $s['id']; ?>_edt">
-
-                                <label for="<?php echo $s['id']; ?>_n_edt">Name</label>
-                                <input type="text" 
-                                    name="<?php echo $s['id']; ?>_n_edt"
-                                    id="<?php echo $s['id']; ?>_n_edt"
-                                    placeholder="Service Name"><br>
-
-                                <label for="<?php echo $s['id']; ?>_p_edt">Price</label>
-                                <input type="number" 
-                                    name="<?php echo $s['id']; ?>_p_edt"
-                                    id="<?php echo $s['id']; ?>_p_edt"
-                                    placeholder="Service Price">
-                            </div>
-
-                            <button class="so_btn" 
-                            id="so_<?php echo $s['id']; ?>">. . .</button>
-
-                            <div 
-                                class = "service_menu" 
-                                id = "so_<?php echo $s['id']; ?>_menu">
-
-                                <button
-                                    class="so_edit"
-                                    id="so_<?php echo $s['id']; ?>_edit">
-                                    Edit
-                                </button>
-                                <button 
-                                    class="so_save"
-                                    id="so_<?php echo $s['id']; ?>_save">
-                                    Save
-                                </button>
-                                <button
-                                    class="so_delete"
-                                    id="so_<?php echo $s['id']; ?>_delete">
-                                    Delete
-                                </button>
-
-                            </div>
-                            <br><br>
-                            <?php } ?>
-                    <?php } ?>
-                </div>
-
-                <?php if(isset($udata)){
-                    if($udata['id'] == $key_details['company_id']){?>
-                    <div id="service_items">
-                            <label for="service_name">Name</label>
-                            <input class="service_item" type="text" name="service_name"
-                                id="s_name_edt" placeholder="Service Name" required>
-
+                        <div class="service_group" id="service_<?php echo $s['id']; ?>">
+                            <p class="service_label">Name:</p>
+                            <p class="service_label_data" id="<?php echo $s['id']; ?>_n_lbl"><?php 
+                                        echo $s['name'] ?></p>
                             <br>
-                            <label for="service_price">Price</label>
-                            <input class="service_item" type="number" name="service_price" 
-                                id="s_price_edt" min='1' placeholder="Price">
-                    </div>
+                            <p class="service_label">Price:</p>
+                            <p class="service_label_data" id="<?php echo $s['id']; ?>_p_lbl"><?php
+                                        echo $s['price'] ?></p>
+                        </div>
 
-                    <button id="service_btn">Add service</button>
-                    <button id="new_service">Save service</button>
-                <?php }} ?>
+            		<?php if($udata['id'] == $key_details["company_id"]){ ?>
+                        <div class="service_edt" id="service_<?php echo $s['id']; ?>_edt">
+
+                            <label class="service_label" for="<?php echo $s['id']; ?>_n_edt">Name:</label>
+                            <input class="service_label_data" type="text" name="<?php echo $s['id']; ?>_n_edt" id="<?php echo $s['id']; ?>_n_edt"
+                                placeholder="Service Name"><br>
+
+                            <label class="service_label" for="<?php echo $s['id']; ?>_p_edt">Price:</label>
+                            <input class="service_label_data" type="number" name="<?php echo $s['id']; ?>_p_edt" id="<?php echo $s['id']; ?>_p_edt"
+                                placeholder="Service Price">
+                        </div>
+
+            		<button class="so_btn" id="so_<?php echo $s['id']; ?>">. . .</button>
+
+            		<div class="service_menu" id="so_<?php echo $s['id']; ?>_menu">
+
+            			<button class="so_edit" id="so_<?php echo $s['id']; ?>_edit">
+            				Edit
+            			</button>
+            			<button class="so_save" id="so_<?php echo $s['id']; ?>_save">
+            				Save
+            			</button>
+            			<button class="so_delete" id="so_<?php echo $s['id']; ?>_delete">
+            				Delete
+            			</button>
+
+            		</div>
+            		<br><br>
+            		<?php } ?>
+            		<?php } ?>
+            	</div>
+
+            	<?php if(isset($udata)){
+                    if($udata['id'] == $key_details['company_id']){?>
+            	<div id="service_items">
+            		<label class="service_label" for="service_name">Name:</label>
+            		<input class="service_item" type="text" name="service_name" id="s_name_edt"
+            			placeholder="Service Name" required>
+
+            		<br>
+            		<label class="service_label" for="service_price">Price:</label>
+            		<input class="service_item" type="number" name="service_price" id="s_price_edt" min='1'
+            			placeholder="Price">
+            	</div>
+
+                <br>
+            	<button id="service_btn">Add service</button>
+            	<button id="new_service">Save service</button>
+            	<?php }} ?>
 
             </div>
-            <hr>
-            <p>Link</p>
+            
+
+            <br>
+            <p>Links:</p>
             <ul>
             <?php
 
@@ -149,7 +137,7 @@
         <br>
 
 
-        <p class="inf_title">Address</p>
+        <p class="inf_title">Address:</p>
         <p class="u_inf" id="address_lbl"><?php
             echo isset($key_details['address'])
                 ? $key_details['address']
@@ -160,7 +148,7 @@
         <br>
 
 
-        <p class="inf_title">Industry</p>
+        <p class="inf_title">Industry:</p>
         <p class="u_inf" id="industry_lbl"><?php 
             echo isset($key_details['industry'])
                 ? $key_industry_default[$key_details['industry']]['name']
@@ -179,7 +167,7 @@
         <br>
 
 
-        <p class="inf_title">Owner</p>
+        <p class="inf_title">Owner:</p>
         <p class="u_inf" id="owner_lbl">
         <?php echo isset($key_details['owner'])
             ? $key_details['owner']
@@ -190,7 +178,7 @@
         <br>
 
                 
-        <p class="inf_title">Founding Date</p>
+        <p class="inf_title">Founding Date:</p>
 
         <p class="u_inf" id="founding_date_lbl"><?php 
             echo isset($key_details['founding_date'])

@@ -333,9 +333,9 @@
 }
 .flexbox-container {
 	flex-direction: column;
+	width: 400px;
 }
 .flexbox-item {
-	
 	border-radius: 20px;
 	width: 250px;
 	margin: 20px;
@@ -343,10 +343,12 @@
 	border: 3px solid #333;
 }
 
+/**** PROFILE PICTURE ****/
 .flexbox-item-1 {
 	min-height: 200px;
 	border: none;
 	background-color: none;
+	margin: 10px auto;
 }
 .flexbox-item-1 button {
 	border-style: 2px solid black;
@@ -354,12 +356,39 @@
 	margin: 5px 0px 0px 20px;
 }
 
+
+/**** SERVICES ****/
 .flexbox-item-2 {
 	background-color: #E0E0E0;
+	width: 350px;
 	min-height: 300px;
 	flex-grow: 1;
-
 }
+
+.flexbox-item-2 div,p {
+	display: inline-block; 
+}
+
+.flex-box-item-2, ul li {
+	list-style-type: none;
+}
+
+.service_title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.service_label {
+	display: inline-block; 
+	width: 50px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.service_label_data, .service_item {
+	display: inline-block;
+}
+/**** COMPANY/CLIENT DETAISL ****/
 .flexbox-item-3 {
 	background-color: #E0E0E0;
 	width: 450px;
@@ -376,11 +405,16 @@
 	display: inline-block; 
 	width: 130px;
 	text-align: left;
+	font-weight: bold;
 }
 
 .flexbox-item-3 .u_inf,.flexbox-item-3 {
 	display: inline-block;
-  	float: right;
+}
+
+.flexbox-item-3 input, select {
+	width: 60%;
+	padding: 2px;
 }
 
 
