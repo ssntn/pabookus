@@ -13,95 +13,6 @@
         </div>
 
         <div class="flexbox-item flexbox-item-2">
-            <div id="service_section">
-            	<div id="service_view">
-            		<p class="service_title">SERVICES:</p><br>
-                    
-            		<?php 
-                        foreach($key_service as $s){?>
-                        <div class="service_group" id="service_<?php echo $s['id']; ?>">
-                            <p class="service_label">Name:</p>
-                            <p class="service_label_data" id="<?php echo $s['id']; ?>_n_lbl"><?php 
-                                        echo $s['name'] ?></p>
-                            <br>
-                            <p class="service_label">Price:</p>
-                            <p class="service_label_data" id="<?php echo $s['id']; ?>_p_lbl"><?php
-                                        echo $s['price'] ?></p>
-                        </div>
-
-            		<?php if($udata['id'] == $key_details["company_id"]){ ?>
-                        <div class="service_edt" id="service_<?php echo $s['id']; ?>_edt">
-
-                            <label class="service_label" for="<?php echo $s['id']; ?>_n_edt">Name:</label>
-                            <input class="service_label_data" type="text" name="<?php echo $s['id']; ?>_n_edt" id="<?php echo $s['id']; ?>_n_edt"
-                                placeholder="Service Name"><br>
-
-                            <label class="service_label" for="<?php echo $s['id']; ?>_p_edt">Price:</label>
-                            <input class="service_label_data" type="number" name="<?php echo $s['id']; ?>_p_edt" id="<?php echo $s['id']; ?>_p_edt"
-                                placeholder="Service Price">
-                        </div>
-
-            		<button class="so_btn" id="so_<?php echo $s['id']; ?>">. . .</button>
-
-            		<div class="service_menu" id="so_<?php echo $s['id']; ?>_menu">
-
-            			<button class="so_edit" id="so_<?php echo $s['id']; ?>_edit">
-            				Edit
-            			</button>
-            			<button class="so_save" id="so_<?php echo $s['id']; ?>_save">
-            				Save
-            			</button>
-            			<button class="so_delete" id="so_<?php echo $s['id']; ?>_delete">
-            				Delete
-            			</button>
-
-            		</div>
-            		<br><br>
-            		<?php } ?>
-            		<?php } ?>
-            	</div>
-
-            	<?php if(isset($udata)){
-                    if($udata['id'] == $key_details['company_id']){?>
-            	<div id="service_items">
-            		<label class="service_label" for="service_name">Name:</label>
-            		<input class="service_item" type="text" name="service_name" id="s_name_edt"
-            			placeholder="Service Name" required>
-
-            		<br>
-            		<label class="service_label" for="service_price">Price:</label>
-            		<input class="service_item" type="number" name="service_price" id="s_price_edt" min='1'
-            			placeholder="Price">
-            	</div>
-
-                <br>
-            	<button id="service_btn">Add service</button>
-            	<button id="new_service">Save service</button>
-            	<?php }} ?>
-
-            </div>
-            
-
-            <br>
-            <p>Links:</p>
-            <ul>
-            <?php
-
-                $links = ["link 1","link 2","link 3"];
-                foreach($links as $link){?>
-                    
-                <li><a href="#"><?php echo $link ?></a></li>
-                    
-            <?php } ?>
-            </ul>   
-
-            <p><button><a href="schedule">Schedule</a></button></p>
-
-            <p>Reviews</p>
-        </div>
-    </div>
-
-    <div class="flexbox-item flexbox-item-3">
         <?php if(isset($udata)){
         if($udata['id'] == $key_details['company_id'] ){?>
             <button id="edit_btn">Edit info</button>
@@ -126,7 +37,7 @@
         <br>
 
 
-        <p class="inf_title">Contact numbers:</p>
+        <p class="inf_title">Contact:</p>
         <p class="u_inf" id="contact_lbl"><?php
             echo isset($key_details['contact'])
                 ? $key_details['contact']
@@ -187,6 +98,95 @@
         ?>
         </p>
         <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
+            
+        </div>
+    </div>
+
+    <div class="flexbox-item flexbox-item-3">
+        <div id="service_section">
+            <div id="service_view">
+                <p class="service_title">SERVICES:</p><br>
+                
+                <?php 
+                    foreach($key_service as $s){?>
+                    <div class="service_group" id="service_<?php echo $s['id']; ?>">
+                        <p class="service_label">Name:</p>
+                        <p class="service_label_data" id="<?php echo $s['id']; ?>_n_lbl"><?php 
+                                    echo $s['name'] ?></p>
+                        <br>
+                        <p class="service_label">Price:</p>
+                        <p class="service_label_data" id="<?php echo $s['id']; ?>_p_lbl"><?php
+                                    echo $s['price'] ?></p>
+                    </div>
+
+                <?php if($udata['id'] == $key_details["company_id"]){ ?>
+                    <div class="service_edt" id="service_<?php echo $s['id']; ?>_edt">
+
+                        <label class="service_label" for="<?php echo $s['id']; ?>_n_edt">Name:</label>
+                        <input class="service_label_data" type="text" name="<?php echo $s['id']; ?>_n_edt" id="<?php echo $s['id']; ?>_n_edt"
+                            placeholder="Service Name"><br>
+
+                        <label class="service_label" for="<?php echo $s['id']; ?>_p_edt">Price:</label>
+                        <input class="service_label_data" type="number" name="<?php echo $s['id']; ?>_p_edt" id="<?php echo $s['id']; ?>_p_edt"
+                            placeholder="Service Price">
+                    </div>
+
+                <button class="so_btn" id="so_<?php echo $s['id']; ?>">. . .</button>
+
+                <div class="service_menu" id="so_<?php echo $s['id']; ?>_menu">
+
+                    <button class="so_edit" id="so_<?php echo $s['id']; ?>_edit">
+                        Edit
+                    </button>
+                    <button class="so_save" id="so_<?php echo $s['id']; ?>_save">
+                        Save
+                    </button>
+                    <button class="so_delete" id="so_<?php echo $s['id']; ?>_delete">
+                        Delete
+                    </button>
+
+                </div>
+                <br><br>
+                <?php } ?>
+                <?php } ?>
+            </div><br>
+
+            <div class="add_services">
+                <?php if(isset($udata)){
+                    if($udata['id'] == $key_details['company_id']){?>
+                <div id="service_items">
+                    <label class="service_label" for="service_name">Name:</label>
+                    <input class="service_item" type="text" name="service_name" id="s_name_edt"
+                        placeholder="Service Name" required>
+
+                    <br>
+                    <label class="service_label" for="service_price">Price:</label>
+                    <input class="service_item" type="number" name="service_price" id="s_price_edt" min='1'
+                        placeholder="Price">
+                </div><br>
+                <button class="service_btn" id="service_btn">Add service</button>
+                <button id="new_service">Save service</button>
+                <?php }} ?>
+            </div><br><br><br><br>
+
+
+            <div class="links">
+                <p>Links:</p>
+                <ul>
+                <?php
+                    $links = ["link 1","link 2","link 3"];
+                    foreach($links as $link){?>
+                    <li><a href="#"><?php echo $link ?></a></li>
+                <?php } ?>
+                </ul> 
+            </div>
+            
+            <br><br><br>
+            <div class="company-buttons">
+                <button><a href="schedule" style="text-decoration: none;">Schedule</a></button>
+                <button><a href="#" style="text-decoration: none;">Review</a></button>
+            </div>
+            
     </div>
 
 </div>
