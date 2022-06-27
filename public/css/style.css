@@ -310,7 +310,7 @@
 
 }
 
-/**** NEWSFEED ****/
+/**** GENERAL ****/
 .container {
 	justify-content: center;
 	background-color: #A3CEF1;
@@ -318,6 +318,144 @@
 	margin-top: 20px;
 	border-radius: 10px;
 }
+
+.flexbox-main-container {
+	background-color: #A3CEF1;
+	margin: 50px 200px 100px 200px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	overflow-wrap: break-word;
+}
+.flexbox-container {
+	flex-direction: column;
+	width: 400px;
+}
+.flexbox-item {
+	border-radius: 20px;
+	width: 250px;
+	margin: 20px;
+	padding: 20px;
+	border: 3px solid rgb(200, 194, 194);
+}
+
+/**** PROFILE PICTURE ****/
+.flexbox-item-1 {
+	min-height: 200px;
+	border: none;
+	background-color: none;
+	margin: 10px auto;
+}
+.flexbox-item-1 button {
+	border-style: 1px solid black;
+	padding: 5px;
+	margin: 5px 0px 0px 20px;
+}
+
+
+/**** COMPANY/CLIENT DETAISL ****/
+.flexbox-item-2 {
+	background-color: #E0E0E0;
+	width: 350px;
+	min-height: 100px;
+}
+.flexbox-item-2 button {
+	float: right;
+	padding: 10px;
+	margin-right: 10px;
+	border-radius: 10px;
+	border-style: none;
+}
+.flexbox-item-2 .inf_title {
+	display: inline-block; 
+	width: 80px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.flexbox-item-2 .u_inf,.flexbox-item-3 {
+	display: inline-block;
+}
+
+.flexbox-item-2 input, select {
+	width: 60%;
+	padding: 2px;
+}
+
+#address_lbl {
+	width: 200px;
+	word-wrap: break-word;
+}
+
+/**** SERVICES ****/
+.flexbox-item-3 {
+	background-color: #E0E0E0;
+	width: 400px;
+	min-height: 300px;
+}
+
+.flexbox-item-3 div,p {
+	display: inline-block; 
+}
+
+.flex-box-item-3, ul li {
+	list-style-type: none;
+}
+.service_edt input {
+	padding: 2px;
+}
+.service_menu button {
+	padding: 2px;
+}
+
+.service_title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.service_label {
+	display: inline-block; 
+	width: 50px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.service_label_data, .service_item {
+	display: inline-block;
+}
+
+.add_services button{
+	margin-right: 2px;
+	padding: 3px;
+}
+
+.company-buttons {
+}
+
+.company-buttons button {
+	font-size: 20px;
+	padding: 5px;
+	border-radius: 10px;
+	border-style: none;
+	margin-right: 10px;
+}
+
+@media only screen and (min-width : 150px) and (max-width : 780px) {
+	
+	.flexbox-main-container {
+		border-radius: 0px;
+		margin: 0px 0px 50px 0px;
+		height: auto;
+	}
+}
+
+
+
 
 /**** DROPDOWN ****/
 .category-container {
