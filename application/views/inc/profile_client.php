@@ -3,56 +3,91 @@
     if($this->session->userdata('UserLoginSession'))
         $udata = $this->session->userdata('UserLoginSession'); 
 ?>
-<!-- THIS IS PROFILE PICTURE -->
-<div id="" style="width:200px;height:200px;background-color:red">
-    <img src="#" alt="Profile Picture">
+<div class="flexbox-main-container">
+    <div class="flexbox-container">
+
+        <div class="flexbox-item flexbox-item-1" id="dp">
+            <img src="<?php echo base_url(); ?>public/img/profile/ayaka_heh.jpg" alt="Profile Picture" style="border: 3px solid black; height: 200px; width: 200px; border-radius: 10000px;">
+            <button>Change profile picture</button>
+        </div>
+
+        <!--------------------------------->
+        <div class="flexbox-item flexbox-item-2">
+            SERVICES:<br>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Voluptatum neque necessitatibus illum quia! Exercitationem, 
+            cum ea! A earum temporibus blanditiis voluptatem nihil architecto, 
+            quis rerum sint dolorum velit magnam ipsam!
+
+        </div>
+    </div>
+        
+
+    <div class="flexbox-item flexbox-item-3"> 
+        <?php if(isset($udata)){
+            if($udata['id'] == $key_details['client_id']){?>
+                <button id="edit_btn">Edit info</button>
+                <button id="save_btn">Save</button>
+        <?php }} ?>
+        <br><br><br><br>
+
+
+        <p class="inf_title">Name:</p>
+        <p class="u_inf" id="name_lbl"><?php 
+            echo (isset($key_details['fullname']) || empty($key_details['fullname']))
+                ? $key_details['fullname']
+                : "user_".$key_details['client_id'];
+            ?>
+        </p>
+        <input class="edit_box" type="text" name="name_edt" id="name_edt">
+        <br>
+
+
+        <p class="inf_title">Email:</p>
+        <p class="u_inf" id="email_lbl"><?php echo $key_details['email']; ?></p>
+        <input class="edit_box" type="text" name="email_edt" id="email_edt">
+        <br>
+
+
+        <p class="inf_title">Contact numbers:</p>
+        <p class="u_inf" id="contact_lbl"><?php 
+            echo (isset($key_details['contact']))
+                ? $key_details['contact']
+                : "Not set"
+            ?>
+        </p>
+        <input class="edit_box" type="text" name="contact_edt" id="contact_edt">
+        <br>
+
+
+        <p class="inf_title">Address</p>
+        <p class="u_inf" id="address_lbl"><?php 
+            echo (isset($key_details['address']))
+                ? $key_details['address']
+                : "Not set"
+            ?>
+        </p>
+        <input class="edit_box" type="text" name="address_edt" id="address_edt">
+        <br>
+
+
+        <p class="inf_title">Birthdate</p>
+        <p class="u_inf" id="birthdate_lbl"><?php 
+            echo (isset($key_details['birthdate']))
+                ? $key_details['birthdate']
+                : "Not set"
+            ?>
+        </p>
+        <input class="edit_box" type="date" name="birthdate_edt" id="birthdate_edt">
+    </div>
+    
 </div>
 
-<?php if(isset($udata)){
-    if($udata['id'] == $key_details['client_id']){?>
-        <button id="edit_btn">Edit info</button>
-        <button id="save_btn">Save</button>
-<?php }} ?>
 
-<p class="inf_title">Name:</p>
-<p class="u_inf" id="name_lbl"><?php 
-    echo (isset($key_details['fullname']) || empty($key_details['fullname']))
-        ? $key_details['fullname']
-        : "user_".$key_details['client_id'];
-    ?>
-</p>
-<input class="edit_box" type="text" name="name_edt" id="name_edt">
 
-<p class="inf_title">Email:</p>
-<p class="u_inf" id="email_lbl"><?php echo $key_details['email']; ?></p>
-<input class="edit_box" type="text" name="email_edt" id="email_edt">
 
-<p class="inf_title">Contact numbers:</p>
-<p class="u_inf" id="contact_lbl"><?php 
-    echo (isset($key_details['contact']))
-        ? $key_details['contact']
-        : "Not set"
-    ?>
-</p>
-<input class="edit_box" type="text" name="contact_edt" id="contact_edt">
 
-<p class="inf_title">Address</p>
-<p class="u_inf" id="address_lbl"><?php 
-    echo (isset($key_details['address']))
-        ? $key_details['address']
-        : "Not set"
-    ?>
-</p>
-<input class="edit_box" type="text" name="address_edt" id="address_edt">
 
-<p class="inf_title">Birthdate</p>
-<p class="u_inf" id="birthdate_lbl"><?php 
-    echo (isset($key_details['birthdate']))
-        ? $key_details['birthdate']
-        : "Not set"
-    ?>
-</p>
-<input class="edit_box" type="date" name="birthdate_edt" id="birthdate_edt">
 
 <!-- JAVASCRIPT | JAVASCRIPT | JAVASCRIPT | JAVASCRIPT  -->
 <script type="text/javascript">

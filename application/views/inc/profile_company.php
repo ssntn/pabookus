@@ -4,181 +4,207 @@
         $udata = $this->session->userdata('UserLoginSession');
 ?>
 
-<!-- THIS IS PROFILE PICTURE -->
-<div id="" style="width:200px;height:200px;background-color:red">
-    <img src="#" alt="Profile Picture">
-</div>
+<div class="flexbox-main-container">
 
-<?php if(isset($udata)){
-    if($udata['id'] == $key_details['company_id'] ){?>
-        <button id="edit_btn">Edit info</button>
-        <button id="save_btn">Save</button>
-<?php }} ?>
-
-<p class="inf_title">Name:</p>
-<p  class="u_inf" id="name_lbl"><?php 
-    echo isset($key_details['company_name'])
-        ? $key_details['company_name']
-        : "company_".$key_details['company_id'];
-?>
-</p>
-<input class="edit_box" type="text" name="name_edt" id="name_edt">
-
-<p class="inf_title">Email:</p>
-<p class="u_inf" id="email_lbl"><?php echo $key_details['email']; ?></p>
-<input class="edit_box" type="text" name="email_edt" id="email_edt">
-
-<p class="inf_title">Contact numbers:</p>
-<p class="u_inf" id="contact_lbl"><?php
-    echo isset($key_details['contact'])
-        ? $key_details['contact']
-        : "Not set"
-?>
-</p>
-<input class="edit_box" type="text" name="contact_edt" id="contact_edt">
-
-<p class="inf_title">Address</p>
-<p class="u_inf" id="address_lbl"><?php
-    echo isset($key_details['address'])
-        ? $key_details['address']
-        : "Not set"
-?>
-</p>
-<input class="edit_box" type="text" name="address_edt" id="address_edt">
-
-<p class="inf_title">Industry</p>
-<p class="u_inf" id="industry_lbl"><?php 
-    echo isset($key_details['industry'])
-        ? $key_industry_default[$key_details['industry']]['name']
-        : "Not set"
-?>
-</p>
-
-<select class="edit_box" name="industry_list" id="industry_edt">
-<option value="null">Select</option>
-<?php
-    foreach($key_industry as $i){?>
-        
-    <option value="<?php echo $i['id'] ?>"><?php echo $i['name'] ?></option>
-        
-<?php } ?>
-</select>
-
-<p class="inf_title">Owner</p>
-<p class="u_inf" id="owner_lbl">
-<?php echo isset($key_details['owner'])
-    ? $key_details['owner']
-    : "Not set"
-?>
-</p>
-<input class="edit_box" type="text" name="owner_edt" id="owner_edt">
-
-<p>Founding Date</p>
-
-<p class="u_inf" id="founding_date_lbl"><?php 
-    echo isset($key_details['founding_date'])
-        ? $key_details['founding_date']
-        : "Not set"
-?>
-</p>
-<input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
-<hr>
-<div id="service_section">
-    <div id="service_view">
-        <p>Service</p>
-        <?php 
-            foreach($key_service as $s){?>
-                <div 
-                    id="service_<?php echo $s['id']; ?>">
-                    <p>Name:</p>
-                    <p id="<?php echo $s['id']; ?>_n_lbl"><?php 
-                        echo $s['name'] ?></p>
-                    <p>Price:</p>
-                    <p id="<?php echo $s['id']; ?>_p_lbl"><?php
-                        echo $s['price'] ?></p>
-                </div>
-
-                <?php if($udata['id'] == $key_details["company_id"]){ ?>
-                <div 
-                    class="service_edt"
-                    id="service_<?php echo $s['id']; ?>_edt">
-
-                    <label for="<?php echo $s['id']; ?>_n_edt">Name</label>
-                    <input type="text" 
-                        name="<?php echo $s['id']; ?>_n_edt"
-                        id="<?php echo $s['id']; ?>_n_edt"
-                        placeholder="Service Name"><br>
-
-                    <label for="<?php echo $s['id']; ?>_p_edt">Price</label>
-                    <input type="number" 
-                        name="<?php echo $s['id']; ?>_p_edt"
-                        id="<?php echo $s['id']; ?>_p_edt"
-                        placeholder="Service Price">
-                </div>
-
-                <button class="so_btn" 
-                id="so_<?php echo $s['id']; ?>">. . .</button>
-
-                <div 
-                    class = "service_menu" 
-                    id = "so_<?php echo $s['id']; ?>_menu">
-
-                    <button
-                        class="so_edit"
-                        id="so_<?php echo $s['id']; ?>_edit">
-                        Edit
-                    </button>
-                    <button 
-                        class="so_save"
-                        id="so_<?php echo $s['id']; ?>_save">
-                        Save
-                    </button>
-                    <button
-                        class="so_delete"
-                        id="so_<?php echo $s['id']; ?>_delete">
-                        Delete
-                    </button>
-
-                </div>
-                <br><br>
-                <?php } ?>
-        <?php } ?>
-    </div>
-
-    <?php if(isset($udata)){
-        if($udata['id'] == $key_details['company_id']){?>
-        <div id="service_items">
-                <label for="service_name">Name</label>
-                <input class="service_item" type="text" name="service_name"
-                    id="s_name_edt" placeholder="Service Name" required>
-
-                <br>
-                <label for="service_price">Price</label>
-                <input class="service_item" type="number" name="service_price" 
-                    id="s_price_edt" min='1' placeholder="Price">
+    <div class="flexbox-container">
+        <div class="flexbox-item flexbox-item-1" id="dp">
+            <img src="<?php echo base_url(); ?>public/img/profile/ayaka_heh.jpg" alt="Profile Picture" style="border: 3px solid black; height: 200px; width: 200px; border-radius: 10000px;">
+            <button>Change profile picture</button>
         </div>
 
-        <button id="service_btn">Add service</button>
-        <button id="new_service">Save service</button>
-    <?php }} ?>
+        <div class="flexbox-item flexbox-item-2">
+            <hr>
+            <div id="service_section">
+                <div id="service_view">
+                    <p>Service</p>
+                    <?php 
+                        foreach($key_service as $s){?>
+                            <div 
+                                id="service_<?php echo $s['id']; ?>">
+                                <p>Name:</p>
+                                <p id="<?php echo $s['id']; ?>_n_lbl"><?php 
+                                    echo $s['name'] ?></p>
+                                <p>Price:</p>
+                                <p id="<?php echo $s['id']; ?>_p_lbl"><?php
+                                    echo $s['price'] ?></p>
+                            </div>
+
+                            <?php if($udata['id'] == $key_details["company_id"]){ ?>
+                            <div 
+                                class="service_edt"
+                                id="service_<?php echo $s['id']; ?>_edt">
+
+                                <label for="<?php echo $s['id']; ?>_n_edt">Name</label>
+                                <input type="text" 
+                                    name="<?php echo $s['id']; ?>_n_edt"
+                                    id="<?php echo $s['id']; ?>_n_edt"
+                                    placeholder="Service Name"><br>
+
+                                <label for="<?php echo $s['id']; ?>_p_edt">Price</label>
+                                <input type="number" 
+                                    name="<?php echo $s['id']; ?>_p_edt"
+                                    id="<?php echo $s['id']; ?>_p_edt"
+                                    placeholder="Service Price">
+                            </div>
+
+                            <button class="so_btn" 
+                            id="so_<?php echo $s['id']; ?>">. . .</button>
+
+                            <div 
+                                class = "service_menu" 
+                                id = "so_<?php echo $s['id']; ?>_menu">
+
+                                <button
+                                    class="so_edit"
+                                    id="so_<?php echo $s['id']; ?>_edit">
+                                    Edit
+                                </button>
+                                <button 
+                                    class="so_save"
+                                    id="so_<?php echo $s['id']; ?>_save">
+                                    Save
+                                </button>
+                                <button
+                                    class="so_delete"
+                                    id="so_<?php echo $s['id']; ?>_delete">
+                                    Delete
+                                </button>
+
+                            </div>
+                            <br><br>
+                            <?php } ?>
+                    <?php } ?>
+                </div>
+
+                <?php if(isset($udata)){
+                    if($udata['id'] == $key_details['company_id']){?>
+                    <div id="service_items">
+                            <label for="service_name">Name</label>
+                            <input class="service_item" type="text" name="service_name"
+                                id="s_name_edt" placeholder="Service Name" required>
+
+                            <br>
+                            <label for="service_price">Price</label>
+                            <input class="service_item" type="number" name="service_price" 
+                                id="s_price_edt" min='1' placeholder="Price">
+                    </div>
+
+                    <button id="service_btn">Add service</button>
+                    <button id="new_service">Save service</button>
+                <?php }} ?>
+
+            </div>
+            <hr>
+            <p>Link</p>
+            <ul>
+            <?php
+
+                $links = ["link 1","link 2","link 3"];
+                foreach($links as $link){?>
+                    
+                <li><a href="#"><?php echo $link ?></a></li>
+                    
+            <?php } ?>
+            </ul>   
+
+            <p><button><a href="schedule">Schedule</a></button></p>
+
+            <p>Reviews</p>
+        </div>
+    </div>
+
+    <div class="flexbox-item flexbox-item-3">
+        <?php if(isset($udata)){
+        if($udata['id'] == $key_details['company_id'] ){?>
+            <button id="edit_btn">Edit info</button>
+            <button id="save_btn">Save</button>
+        <?php }} ?>
+        <br><br><br><br>
+
+        <p class="inf_title">Name:</p>
+        <p  class="u_inf" id="name_lbl"><?php 
+            echo isset($key_details['company_name'])
+                ? $key_details['company_name']
+                : "company_".$key_details['company_id'];
+        ?>
+        </p>
+        <input class="edit_box" type="text" name="name_edt" id="name_edt">
+        <br>
+
+
+        <p class="inf_title">Email:</p>
+        <p class="u_inf" id="email_lbl"><?php echo $key_details['email']; ?></p>
+        <input class="edit_box" type="text" name="email_edt" id="email_edt">
+        <br>
+
+
+        <p class="inf_title">Contact numbers:</p>
+        <p class="u_inf" id="contact_lbl"><?php
+            echo isset($key_details['contact'])
+                ? $key_details['contact']
+                : "Not set"
+        ?>
+        </p>
+        <input class="edit_box" type="text" name="contact_edt" id="contact_edt">
+        <br>
+
+
+        <p class="inf_title">Address</p>
+        <p class="u_inf" id="address_lbl"><?php
+            echo isset($key_details['address'])
+                ? $key_details['address']
+                : "Not set"
+        ?>
+        </p>
+        <input class="edit_box" type="text" name="address_edt" id="address_edt">
+        <br>
+
+
+        <p class="inf_title">Industry</p>
+        <p class="u_inf" id="industry_lbl"><?php 
+            echo isset($key_details['industry'])
+                ? $key_industry_default[$key_details['industry']]['name']
+                : "Not set"
+        ?>
+        </p>
+        <select class="edit_box" name="industry_list" id="industry_edt">
+        <option value="null">Select</option>
+        <?php
+            foreach($key_industry as $i){?>
+                
+            <option value="<?php echo $i['id'] ?>"><?php echo $i['name'] ?></option>
+                
+        <?php } ?>
+        </select>
+        <br>
+
+
+        <p class="inf_title">Owner</p>
+        <p class="u_inf" id="owner_lbl">
+        <?php echo isset($key_details['owner'])
+            ? $key_details['owner']
+            : "Not set"
+        ?>
+        </p>
+        <input class="edit_box" type="text" name="owner_edt" id="owner_edt">
+        <br>
+
+                
+        <p class="inf_title">Founding Date</p>
+
+        <p class="u_inf" id="founding_date_lbl"><?php 
+            echo isset($key_details['founding_date'])
+                ? $key_details['founding_date']
+                : "Not set"
+        ?>
+        </p>
+        <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
+    </div>
 
 </div>
-<hr>
-<p>Link</p>
-<ul>
-<?php
 
-    $links = ["link 1","link 2","link 3"];
-    foreach($links as $link){?>
-        
-    <li><a href="#"><?php echo $link ?></a></li>
-        
-<?php } ?>
-</ul>   
 
-<p><button><a href="schedule">Schedule</a></button></p>
 
-<p>Reviews</p>
 
 <script type="text/javascript">
     

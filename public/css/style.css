@@ -310,7 +310,7 @@
 
 }
 
-/**** NEWSFEED ****/
+/**** GENERAL ****/
 .container {
 	justify-content: center;
 	background-color: #A3CEF1;
@@ -318,6 +318,83 @@
 	margin-top: 20px;
 	border-radius: 10px;
 }
+
+.flexbox-main-container {
+	background-color: #A3CEF1;
+	margin: 50px 300px 100px 300px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.flexbox-container {
+	flex-direction: column;
+}
+.flexbox-item {
+	
+	border-radius: 20px;
+	width: 250px;
+	margin: 20px;
+	padding: 20px;
+	border: 3px solid #333;
+}
+
+.flexbox-item-1 {
+	min-height: 200px;
+	border: none;
+	background-color: none;
+}
+.flexbox-item-1 button {
+	border-style: 2px solid black;
+	padding: 5px;
+	margin: 5px 0px 0px 20px;
+}
+
+.flexbox-item-2 {
+	background-color: #E0E0E0;
+	min-height: 300px;
+	flex-grow: 1;
+
+}
+.flexbox-item-3 {
+	background-color: #E0E0E0;
+	width: 450px;
+	min-height: 100px;
+}
+.flexbox-item-3 button {
+	float: right;
+	padding: 10px;
+	margin-right: 10px;
+	border-radius: 10px;
+	border-style: none;
+}
+.flexbox-item-3 .inf_title {
+	display: inline-block; 
+	width: 130px;
+	text-align: left;
+}
+
+.flexbox-item-3 .u_inf,.flexbox-item-3 {
+	display: inline-block;
+  	float: right;
+}
+
+
+
+@media only screen and (min-width : 150px) and (max-width : 780px) {
+	
+	.flexbox-main-container {
+		margin: 0px 0px 50px 0px;
+		height: auto;
+	}
+}
+
+
+
 
 /**** DROPDOWN ****/
 .category-container {
