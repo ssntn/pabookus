@@ -1,9 +1,10 @@
 /**** INITIALIZATIONS ****/
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Quicksand');
 
-*{
-    font-family: 'quicksand',Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+* {
+	font-family: 'quicksand', Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 
@@ -20,18 +21,18 @@
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
-    color: white;
+	color: white;
 }
 
 .topnav a:hover {
-    text-decoration: none;
+	text-decoration: none;
 	color: black;
 }
 
 .topnav a.active {
 	background-color: #274C77;
 	color: white;
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .topnav .icon {
@@ -69,197 +70,436 @@
 
 /**** SIGN IN / SIGN UP ****/
 
-.form-modal{
-    position:relative;
-    width:450px;
-    height:auto;
-    margin-top:4em;
-    left:50%;
-    transform:translateX(-50%);
-    background:#fff;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    box-shadow:0 3px 20px 0px rgba(0, 0, 0, 0.1)
+.form-modal {
+	position: relative;
+	width: 450px;
+	height: auto;
+	margin-top: 4em;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1)
 }
 
-.form-modal button{
-    cursor: pointer;
-    position: relative;
-    text-transform: capitalize;
-    font-size:1em;
-    z-index: 2;
-    outline: none;
-    background:#fff;
-    transition:0.2s;
+.form-modal button {
+	cursor: pointer;
+	position: relative;
+	text-transform: capitalize;
+	font-size: 1em;
+	z-index: 2;
+	outline: none;
+	background: #fff;
+	transition: 0.2s;
 }
 
-.form-modal .btn{
-    border-radius: 10px;
-    border:none;
-    font-weight: bold;
-    font-size:1.2em;
-    padding:0.8em 1em 0.8em 1em!important;
-    transition:0.5s;
-    border:1px solid #ebebeb;
-    margin-bottom:0.5em;
-    margin-top:0.5em;
+.form-modal .btn {
+	border-radius: 10px;
+	border: none;
+	font-weight: bold;
+	font-size: 1.2em;
+	padding: 0.8em 1em 0.8em 1em !important;
+	transition: 0.5s;
+	border: 1px solid #ebebeb;
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
 }
 
-.form-modal .login , .form-modal .signup{
-    background:#6096BA;
-    color:#fff;
+.form-modal .login,
+.form-modal .signup {
+	background: #6096BA;
+	color: #fff;
 }
 
-.form-modal .login:hover , .form-modal .signup:hover{
-    background:#274C77;
-    color: white;
+.form-modal .login:hover,
+.form-modal .signup:hover {
+	background: #274C77;
+	color: white;
 }
 
-.form-toggle{
-    position: relative;
-    width:100%;
-    height:auto;
+.form-toggle {
+	position: relative;
+	width: 100%;
+	height: auto;
 }
 
-.form-toggle button{
-    width:50%;
-    float:left;
-    padding:1.5em;
-    margin-bottom:1.5em;
-    border:none;
-    transition: 0.2s;
-    font-size:1.1em;
-    font-weight: bold;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+.form-toggle button {
+	width: 50%;
+	float: left;
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+	border: none;
+	transition: 0.2s;
+	font-size: 1.1em;
+	font-weight: bold;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
-.form-toggle button:nth-child(1){
-    border-bottom-right-radius: 10px;
+.form-toggle button:nth-child(1) {
+	border-bottom-right-radius: 10px;
 }
 
-.form-toggle button:nth-child(2){
-    border-bottom-left-radius: 10px;
+.form-toggle button:nth-child(2) {
+	border-bottom-left-radius: 10px;
 }
 
-#login-toggle{
-    background:#6096BA;
-    color:#ffff;
+#login-toggle {
+	background: #6096BA;
+	color: #ffff;
 }
 
-.form-modal form{
-    position: relative;
-    width:90%;
-    height:auto;
-    left:50%;
-    transform:translateX(-50%);  
+.form-modal form {
+	position: relative;
+	width: 90%;
+	height: auto;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
-#login-form , #signup-form{
-    position:relative;
-    width:100%;
-    height:auto;
-    padding-bottom:1em;
+#login-form,
+#signup-form {
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding-bottom: 1em;
 }
 
-#signup-form{
-    display: none;
+#signup-form {
+	display: none;
 }
 
-#login-form button , #signup-form button{
-    width:100%;
-    margin-top:0.5em;
-    padding:0.6em;
+#login-form button,
+#signup-form button {
+	width: 100%;
+	margin-top: 0.5em;
+	padding: 0.6em;
 }
 
-.form-modal input{
-    position: relative;
-    width:100%;
-    font-size:1em;
-    padding:1.2em 1.7em 1.2em 1.7em;
-    margin-top:0.6em;
-    margin-bottom:0.6em;
-    border-radius: 10px;
-    border:none;
-    background:#ebebeb;
-    outline:none;
-    font-weight: bold;
-    transition:0.4s;
+.form-modal input {
+	position: relative;
+	width: 100%;
+	font-size: 1em;
+	padding: 1.2em 1.7em 1.2em 1.7em;
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+	border-radius: 10px;
+	border: none;
+	background: #ebebeb;
+	outline: none;
+	font-weight: bold;
+	transition: 0.4s;
 }
 
-.form-modal input:focus , .form-modal input:active{
-    transform:scaleX(1.02);
+.form-modal input:focus,
+.form-modal input:active {
+	transform: scaleX(1.02);
 }
 
-.form-modal input::-webkit-input-placeholder{
-    color:#222;
+.form-modal input::-webkit-input-placeholder {
+	color: #222;
 }
 
 
-.form-modal p{
-    font-size:16px;
-    font-weight: bold;
+.form-modal p {
+	font-size: 16px;
+	font-weight: bold;
 }
 
-.form-modal p a{
-    color:#6096BA;
-    text-decoration: none;
-    transition:0.2s;
+.form-modal p a {
+	color: #6096BA;
+	text-decoration: none;
+	transition: 0.2s;
 }
 
-.form-modal p a:hover{
-    color:#222;
+.form-modal p a:hover {
+	color: #222;
 }
 
 
 .form-modal i {
-    position: absolute;
-    left:10%;
-    top:50%;
-    transform:translateX(-10%) translateY(-50%); 
+	position: absolute;
+	left: 10%;
+	top: 50%;
+	transform: translateX(-10%) translateY(-50%);
 }
 
-.fa-google{
-    color:#dd4b39;
+.fa-google {
+	color: #dd4b39;
 }
 
-.fa-linkedin{
-    color:#3b5998;
+.fa-linkedin {
+	color: #3b5998;
 }
 
-.fa-windows{
-    color:#0072c6;
+.fa-windows {
+	color: #0072c6;
 }
 
-.-box-sd-effect:hover{
-    box-shadow: 0 4px 8px hsla(210,2%,84%,.2);
+.-box-sd-effect:hover {
+	box-shadow: 0 4px 8px hsla(210, 2%, 84%, .2);
 }
 
-@media only screen and (max-width:500px){
-    .form-modal{
-        width:100%;
-    }
+@media only screen and (max-width:500px) {
+	.form-modal {
+		width: 100%;
+	}
 }
 
-@media only screen and (max-width:400px){
-    i{
-        display: none!important;
-    }
+@media only screen and (max-width:400px) {
+	i {
+		display: none !important;
+	}
+}
+
+
+/**** SEARCH BAR ****/
+.search {
+	overflow: auto;
+	margin: 15px;
+}
+
+.search input[type="text"] {
+	border: 0px;
+	width: 94.1%;
+	padding: 10px;
+	border-top-left-radius: 5px;
+	-moz-border-radius-top-left: 5px;
+	-webkit-border-radius-top-left: 5px;
+	border-bottom-left-radius: 5px;
+	-moz-border-radius-bottom-left: 5px;
+	-webkit-border-radius-bottom-left: 5px;
+}
+
+.search input[type="text"]:hover {
+	outline: 0;
+}
+
+.search input[type="submit"] {
+	border: 0px;
+	background: none;
+	background-color: #274C77;
+	color: #fff;
+	float: right;
+	padding: 10px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-top-right: 5px;
+	-webkit-border-radius-top-right: 5px;
+	border-bottom-right-radius: 5px;
+	-moz-border-radius-bottom-right: 5px;
+	-webkit-border-radius-bottom-right: 5px;
+	cursor: pointer;
+}
+
+/* ===========================
+   ====== Medua Query for Search Box ====== 
+   =========================== */
+
+@media only screen and (min-width : 150px) and (max-width : 780px) {
+	.search input[type="text"] {
+		width: 75%;
+		margin: 0 auto;
+	}
+
+	.search input[type="submit"] {
+		width: 25%;
+		margin: 0 auto;
+	}
+
+}
+
+/**** GENERAL ****/
+.container {
+	justify-content: center;
+	background-color: #A3CEF1;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+	border-radius: 10px;
+}
+
+.flexbox-main-container {
+	background-color: #A3CEF1;
+	margin: 50px 200px 100px 200px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	overflow-wrap: break-word;
+}
+.flexbox-container {
+	flex-direction: column;
+	width: 400px;
+}
+.flexbox-item {
+	border-radius: 20px;
+	width: 250px;
+	margin: 20px;
+	padding: 20px;
+	border: 3px solid rgb(200, 194, 194);
+}
+
+/**** PROFILE PICTURE ****/
+.flexbox-item-1 {
+	min-height: 200px;
+	border: none;
+	background-color: none;
+	margin: 10px auto;
+}
+.flexbox-item-1 button {
+	border-style: 1px solid black;
+	padding: 5px;
+	margin: 5px 0px 0px 20px;
+}
+
+
+/**** COMPANY/CLIENT DETAISL ****/
+.flexbox-item-2 {
+	background-color: #E0E0E0;
+	width: 350px;
+	min-height: 100px;
+}
+.flexbox-item-2 button {
+	float: right;
+	padding: 10px;
+	margin-right: 10px;
+	border-radius: 10px;
+	border-style: none;
+}
+.flexbox-item-2 .inf_title {
+	display: inline-block; 
+	width: 80px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.flexbox-item-2 .u_inf,.flexbox-item-3 {
+	display: inline-block;
+}
+
+.flexbox-item-2 input, select {
+	width: 60%;
+	padding: 2px;
+}
+
+#address_lbl {
+	width: 200px;
+	word-wrap: break-word;
+}
+
+/**** SERVICES ****/
+.flexbox-item-3 {
+	background-color: #E0E0E0;
+	width: 400px;
+	min-height: 300px;
+}
+
+.flexbox-item-3 div,p {
+	display: inline-block; 
+}
+
+.flex-box-item-3, ul li {
+	list-style-type: none;
+}
+.service_edt input {
+	padding: 2px;
+}
+.service_menu button {
+	padding: 2px;
+}
+
+.service_title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.service_label {
+	display: inline-block; 
+	width: 50px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.service_label_data, .service_item {
+	display: inline-block;
+}
+
+.add_services button{
+	margin-right: 2px;
+	padding: 3px;
+}
+
+.company-buttons {
+}
+
+.company-buttons button {
+	font-size: 20px;
+	padding: 5px;
+	border-radius: 10px;
+	border-style: none;
+	margin-right: 10px;
+}
+
+@media only screen and (min-width : 150px) and (max-width : 780px) {
+	
+	.flexbox-main-container {
+		border-radius: 0px;
+		margin: 0px 0px 50px 0px;
+		height: auto;
+	}
 }
 
 
 
+
+/**** DROPDOWN ****/
+.category-container {
+	margin-top: 10px;
+}
+.dropdown {
+	position: relative;
+	display: inline-block;
+	background-color: #E7ECEF;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: 8px 10px 0px 10px;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #E7ECEF;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	padding: 12px 16px;
+	z-index: 1;
+	list-style-type: none;
+}
+
+.dropdown-content li{
+	padding: 5px;
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 /******* FOOTER *******/
-footer{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #274C77;
-    height: auto;
-    width: 100vw;
-    padding: 15px;
-    color: #fff;
-    font-size: 16px;
+footer {
+	position:fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #274C77;
+	height: auto;
+	width: 100vw;
+	padding: 15px;
+	color: #fff;
+	font-size: 16px;
 }
