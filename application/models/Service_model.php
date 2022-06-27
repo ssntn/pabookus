@@ -24,7 +24,7 @@ class Service_model extends CI_Model {
     }
 
     public function get_service($table, $service_id){
-        $this->db->select('id, name, price');
+        $this->db->select('id, name, price, duration');
         $this->db->where('id', $service_id);
         return $this->db->get($table)->row_array();
     }
@@ -41,6 +41,11 @@ class Service_model extends CI_Model {
                 'type' => 'int',
                 'constraint' => 11,
                 'default' => null
+            ),
+            'duration' => array(
+                'type' => 'int',
+                'constraint' => 4,
+                'default' => 0
             ),
         );
 
