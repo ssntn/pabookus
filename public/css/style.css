@@ -413,7 +413,7 @@
 	padding: 2px;
 }
 
-.service_title {
+.service_title, .links p {
 	font-size: 24px;
 	font-weight: bold;
 }
@@ -425,6 +425,14 @@
 	font-weight: bold;
 }
 
+#service_section, #service_view {
+	width: 100%;
+}
+
+.service_group {
+	width: 90%;
+}
+
 .service_label_data, .service_item {
 	display: inline-block;
 }
@@ -434,9 +442,6 @@
 	padding: 3px;
 }
 
-.company-buttons {
-}
-
 .company-buttons button {
 	font-size: 20px;
 	padding: 5px;
@@ -444,6 +449,16 @@
 	border-style: none;
 	margin-right: 10px;
 }
+
+.more-btn {
+	border-style: none;
+}
+
+.so_btn {
+	border-radius: 10000px;
+	border-style: 1px solid red;
+}
+
 
 @media only screen and (min-width : 150px) and (max-width : 780px) {
 	

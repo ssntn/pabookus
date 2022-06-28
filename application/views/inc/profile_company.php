@@ -25,8 +25,7 @@
             echo isset($key_details['company_name'])
                 ? $key_details['company_name']
                 : "company_".$key_details['company_id'];
-        ?>
-        </p>
+        ?></p>
         <input class="edit_box" type="text" name="name_edt" id="name_edt">
         <br>
 
@@ -42,8 +41,7 @@
             echo isset($key_details['contact'])
                 ? $key_details['contact']
                 : "Not set"
-        ?>
-        </p>
+        ?></p>
         <input class="edit_box" type="text" name="contact_edt" id="contact_edt">
         <br>
 
@@ -53,8 +51,7 @@
             echo isset($key_details['address'])
                 ? $key_details['address']
                 : "Not set"
-        ?>
-        </p>
+        ?></p>
         <input class="edit_box" type="text" name="address_edt" id="address_edt">
         <br>
 
@@ -64,8 +61,7 @@
             echo isset($key_details['industry'])
                 ? $key_industry_default[$key_details['industry']]['name']
                 : "Not set"
-        ?>
-        </p>
+        ?></p>
         <select class="edit_box" name="industry_list" id="industry_edt">
         <option value="null">Select</option>
         <?php
@@ -79,12 +75,10 @@
 
 
         <p class="inf_title">Owner:</p>
-        <p class="u_inf" id="owner_lbl">
-        <?php echo isset($key_details['owner'])
+        <p class="u_inf" id="owner_lbl"><?php echo isset($key_details['owner'])
             ? $key_details['owner']
             : "Not set"
-        ?>
-        </p>
+        ?></p>
         <input class="edit_box" type="text" name="owner_edt" id="owner_edt">
         <br>
 
@@ -95,8 +89,7 @@
             echo isset($key_details['founding_date'])
                 ? $key_details['founding_date']
                 : "Not set"
-        ?>
-        </p>
+        ?></p>
         <input class="edit_box" type="date" name="founding_date_edt" id="founding_date_edt">
             
         </div>
@@ -131,7 +124,7 @@
                             placeholder="Service Price">
                     </div>
 
-                <button class="so_btn" id="so_<?php echo $s['id']; ?>">. . .</button>
+                <span class="more-btn"><button class="so_btn" id="so_<?php echo $s['id']; ?>">. . .</button></span>
 
                 <div class="service_menu" id="so_<?php echo $s['id']; ?>_menu">
 
@@ -171,7 +164,7 @@
 
 
             <div class="links">
-                <p>Links:</p>
+                <p>LINKS:</p>
                 <ul>
                 <?php
                     $links = ["link 1","link 2","link 3"];
