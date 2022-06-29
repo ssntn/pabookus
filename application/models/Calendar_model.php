@@ -15,12 +15,9 @@ class Calendar_model extends CI_Model {
         return $this->db->get("schedule")->result_array();
     }
 
-    public function add_schedule($data){
-
+    public function book($data){
         $q = $this->db->insert("schedule", $data);
-        if($q) return true;
-        return false;
-
+        return $q;
     }
 
     public function delete_schedule($id){

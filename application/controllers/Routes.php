@@ -253,7 +253,7 @@ class Routes extends CI_Controller {
             $booked_list[$s['day']] ="";
         }
 
-        print_r($schedule);
+        print_r($service);
 
         $data['key_service'] = $service;
         $data['key_company'] = $company; 

@@ -1,4 +1,10 @@
 <body>
+<?php 
+    if($this->session->userdata('UserLoginSession'))
+        $udata = $this->session->userdata('UserLoginSession');
+    print_r($udata);
+?>
+
 <p>
     Schedule
 </p>
@@ -101,21 +107,51 @@
     //===================== AJAX ===========================
     function get_service_info(day){
         $.post("<?=base_url('Calendar/get_bookings')?>",{
-            company_id : "<?php echo $key_company['company_id']; ?>",
-            service_id : "<?php echo $key_service["id"]; ?>",
-            day : day,
-            month : "<?php echo $month; ?>",
-            year : "<?php echo $year; ?>"
+            company_id: "<?php echo $key_company['company_id']; ?>",
+            service_id: "<?php echo $key_service["id"]; ?>",
+            day: day,
+            month: "<?php echo $month; ?>",
+            year: "<?php echo $year; ?>"
         }, function(data){
             if(data){ 
-                $("#slot_count").html("Booked: "+data+"/<?php echo $key_service['slot'];?>");
+                total_slot = parseInt("<?php echo $key_service['slot'];?>");
+                $("#slot_count").html("Booked: "+data+"/"+total_slot);
+
+                if(data==total_slot)
+                    $("#book_btn").prop("disabled", true); // if full disable button
+            }
+        });
+    }
+
+    function book_service(day){
+        console.log("<?php echo $key_company['company_id']; ?>");
+        console.log("<?php echo $udata['id']; ?>");
+        console.log("<?php echo $key_service["id"]; ?>");
+        console.log(day);
+        console.log("<?php echo $month; ?>");
+        console.log("<?php echo $year; ?>");
+        $.post("<?=base_url('Calendar/add_booking')?>",{
+            client_id:  "<?php echo $udata['id']; ?>",
+            company_id: "<?php echo $key_company['company_id']; ?>",
+            service_id: "<?php echo $key_service["id"]; ?>",
+            day: day,
+            month: "<?php echo $month; ?>",
+            year:"<?php echo $year; ?>"
+        }, function(data){
+            if(data){ 
+                
             }
         });
     }
 
     //================== on change =========================
+    var theDay = 0;
     $(".calendar_table td").click(function(){
-        theDay = $(this).attr("id")
+        theDay = $(this).attr("id");
         get_service_info(theDay);
-    })
+    });
+    
+    $("#book_btn").click(function(){
+        book_service(theDay);2
+    });
 </script>
