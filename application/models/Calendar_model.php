@@ -30,4 +30,15 @@ class Calendar_model extends CI_Model {
         if($q) return true;
         return false;
     }
+
+    public function get($company, $service, $year, $month){
+
+        $this->db->select('*');
+        $this->db->where('company_id', $company);
+        $this->db->where('service_id', $service);
+        $this->db->where('year', $year);
+        $this->db->where('month', $month);
+        
+        return $this->db->get("schedule")->result_array();
+    }
 }

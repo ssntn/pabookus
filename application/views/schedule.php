@@ -4,15 +4,30 @@
 </p>
 
 <img src="#" alt="Service Image"><br><br><br>
-<p><?php echo $key_service['name'];?></p>
-<p><?php echo $key_service['price'];?></p>
-<p><?php echo $key_service["duration"];?> mins</p>
-<p><?php echo $key_company['company_name']; ?></p>
-<br>
+<p><?php  
+    echo isset($key_service['name'])
+        ?$key_service['name']
+        :"error";
+?></p><br>
+<p> &#8369 <?php 
+    echo isset($key_service['price'])
+        ?$key_service['price']
+        :"error";
+?></p><br>
+<p><?php 
+    echo isset($key_service["duration"])
+        ?$key_service['duration']
+        :"error";
+?> mins</p><br>
+<p><?php 
+    echo isset($key_company['company_name'])
+        ?$key_company['company_name']
+        :"error"; 
+?></p><br>
+
+
 <div id="sched">
 <center>
-    <button class="calendar_control" id="prev_month">prev</button>
-    <button class="calendar_control" id="next_month">next</button>
     <div id="calendar"><?php 
         if(isset($calendar)) echo $calendar;
         else {?>
@@ -23,11 +38,38 @@
     </div>
 </center>
 </div>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><?php
+                    echo isset($key_service['name'])
+                        ?$key_service['name']
+                        :"error";
+                    ?>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p id="the_some_text">Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready(function(){
-        $('#calendar').css("width", "25%");
-        $('#calendar').css("margin", "auto");
+        // $('#calendar').css("width", "25%");
+        // $('#calendar').css("margin", "auto");
 
         function calendar_update(data){
             $("#calendar").remove();
@@ -44,6 +86,14 @@
             $("#sched").append(calendar);
 
         }
+
+        $(".calendar_table td").each(function(){
+            if($(this).html()!="&nbsp;"){
+                $(this).attr("id", $(this).html());
+                $(this).attr("data-toggle", "modal");
+                $(this).attr("data-target", "#myModal");
+            }
+        });
     });
 
     
@@ -51,5 +101,9 @@
     //===================== AJAX ===========================
 
     //================== on change =========================
-             
+    $(".calendar_table td").click(function(){
+        theId = $(this).attr("id")
+        $("#the_some_text").html(theId);
+        alert(theId);
+    })
 </script>
