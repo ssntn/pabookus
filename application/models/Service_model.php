@@ -24,13 +24,14 @@ class Service_model extends CI_Model {
     }
 
     public function get_service($table, $service_id){
-        $this->db->select('id, name, price, duration');
+        $this->db->select('id, name, price, duration, slot');
         $this->db->where('id', $service_id);
         return $this->db->get($table)->row_array();
     }
 
     public function add_table($t_name){
        
+        $this->dbforge->add_field('id', true);
         $fields = array(
             'name' => array(
                 'type' => 'VARCHAR',
@@ -42,14 +43,18 @@ class Service_model extends CI_Model {
                 'constraint' => 11,
                 'default' => null
             ),
+            'slot' => array(
+                'type' => 'int',
+                'constraint' => 11,
+                'default' => 0
+            ),
             'duration' => array(
                 'type' => 'int',
                 'constraint' => 4,
                 'default' => 0
-            ),
+            )
         );
 
-        $this->dbforge->add_field('id', true);
         $this->dbforge->add_field($fields);
         $q = $this->dbforge->create_table($t_name);
 

@@ -41,4 +41,18 @@ class Calendar_model extends CI_Model {
         
         return $this->db->get("schedule")->result_array();
     }
+
+    public function count_slot($data){
+
+        $this->db->select('schedule_id');
+        $this->db->where('company_id', $data["company_id"]);
+        $this->db->where('service_id', $data["service_id"]);
+        $this->db->where('year', $data["year"]);
+        $this->db->where('month', $data["month"]);
+        $this->db->where('day', $data["day"]);
+        
+        $this->db->from('schedule');
+        return $this->db->count_all_results();
+    }
+
 }

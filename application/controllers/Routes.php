@@ -250,14 +250,17 @@ class Routes extends CI_Controller {
 
         $booked_list = array();
         foreach($schedule as $s){
-            $booked_list[$s['day']] = "sa kung saan";
+            $booked_list[$s['day']] ="";
         }
 
         print_r($schedule);
 
         $data['key_service'] = $service;
         $data['key_company'] = $company; 
-        $data['calendar'] = $this->calendar->generate($year, $month, $booked_list);
+        $data['bookings'] = $booked_list;
+        $data['year'] = $year;
+        $data['month'] = $month;
+        $data['calendar'] = $this->calendar->generate($year, $month);
 
         $this->session->set_userdata('page', 'schedule');
         $this->load->view('inc/header');

@@ -39,7 +39,7 @@
 </center>
 </div>
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -53,11 +53,11 @@
                     echo isset($key_service['name'])
                         ?$key_service['name']
                         :"error";
-                    ?>
-                </h4>
+                ?>: Current Bookings</h4>
             </div>
             <div class="modal-body">
-                <p id="the_some_text">Some text in the modal.</p>
+                <p id="slot_count">0</p><br>
+                <button id="book_btn">Book now!</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -99,11 +99,23 @@
     
 
     //===================== AJAX ===========================
+    function get_service_info(day){
+        $.post("<?=base_url('Calendar/get_bookings')?>",{
+            company_id : "<?php echo $key_company['company_id']; ?>",
+            service_id : "<?php echo $key_service["id"]; ?>",
+            day : day,
+            month : "<?php echo $month; ?>",
+            year : "<?php echo $year; ?>"
+        }, function(data){
+            if(data){ 
+                $("#slot_count").html("Booked: "+data+"/<?php echo $key_service['slot'];?>");
+            }
+        });
+    }
 
     //================== on change =========================
     $(".calendar_table td").click(function(){
-        theId = $(this).attr("id")
-        $("#the_some_text").html(theId);
-        alert(theId);
+        theDay = $(this).attr("id")
+        get_service_info(theDay);
     })
 </script>
