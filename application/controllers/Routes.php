@@ -159,35 +159,55 @@ class Routes extends CI_Controller {
     }
 
     public function schedule()
-    { 
+    {
         // GET COMPANY ID FROM URI
         $company_id = $this->uri->segment(2);
  
         // GET SERVICE ID FROM URI
         $service_id = $this->uri->segment(3);
+        
+        // GET YEAR FROM URI/CURRENT
+        $year = ($this->uri->segment(4)=="")
+            ?date("Y") 
+            :$this->uri->segment(4);
 
-            
-        $id_exist = isset($company_id) ||
+        // GET MONTH FROM URI/CURRENT
+        $month = ($this->uri->segment(5)=="")
+            ?date("n") 
+            :$this->uri->segment(5);
+
+        $id_exist = isset($company_id) || 
             ($this->session->userdata('UserLoginSession'));
 
         if($id_exist == false)
-            redirect(base_url('home'));
-
+            redirect(base_url('error/page_missing'));
             
+        $cur_link = $company_id."/".$service_id."/";
+
+        // CALENDAR PREFERENCES
+        $prefs = array(
+            'start_day' => 'sunday',
+            'month_type' => 'long',
+            'day_type' => 'short',
+            'show_next_prev' => true,
+            'next_prev_url' => base_url("schedule/".$cur_link),
+        );
+        
         $this->load->model('User_model');
         $this->load->model('Service_model');
+        $this->load->library('calendar', $prefs);
 
-        // RETURN COMPANY DATA
+        // GET COMPANY DATA
         $company = $this->User_model->get_company_id($company_id);
         
-        // RETURN SERVICE DATA
+        // GET SERVICE DATA
         $service = $this->Service_model
             ->get_service($company['services_id'], $service_id);
-        $data['key_service'] = $service;
-        $data['key_company'] = $company;
 
-        print_r($service);
- 
+        $data['key_service'] = $service;
+        $data['key_company'] = $company; 
+        $data['calendar'] = $this->calendar->generate($year, $month);
+
         $this->session->set_userdata('page', 'schedule');
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
