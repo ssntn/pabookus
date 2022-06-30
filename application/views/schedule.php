@@ -4,44 +4,57 @@
         $udata = $this->session->userdata('UserLoginSession');
 ?>
 
-<p>
-    Schedule
-</p>
-
-<img src="#" alt="Service Image"><br><br><br>
-<p><?php  
-    echo isset($key_service['name'])
-        ?$key_service['name']
-        :"error";
-?></p><br>
-<p> &#8369 <?php 
-    echo isset($key_service['price'])
-        ?$key_service['price']
-        :"error";
-?></p><br>
-<p><?php 
-    echo isset($key_service["duration"])
-        ?$key_service['duration']
-        :"error";
-?> mins</p><br>
-<p><?php 
-    echo isset($key_company['company_name'])
-        ?$key_company['company_name']
-        :"error"; 
-?></p><br>
+<div class="schedule-main-container">
 
 
-<div id="sched">
-<center>
-    <div id="calendar"><?php 
-        if(isset($calendar)) echo $calendar;
-        else {?>
-            <div>
-                <p>Error loading calendar</p>
-            </div>
-        <?php } ?>
+    <div class="schedule-container">
+        <img class="schedule-service-img" src="<?php echo base_url(); ?>public/img/category/teaching.jpg" alt="Service Image"><br><br><br>
+        <div class="schedule-details">
+            <p><?php  
+                echo isset($key_service['name'])
+                    ?$key_service['name']
+                    :"error";
+            ?></p><br>
+            <p> &#8369 <?php 
+                echo isset($key_service['price'])
+                    ?$key_service['price']
+                    :"error";
+            ?></p><br>
+            <p><?php 
+                echo isset($key_service["duration"])
+                    ?$key_service['duration']
+                    :"error";
+            ?> mins</p><br>
+            <p><a href="<?php echo base_url()."profile/company/".$key_company["company_id"];?>"><?php 
+                echo isset($key_company['company_name'])
+                    ?$key_company['company_name']
+                    :"error"; 
+            ?></a></p><br>
+        </div>
+        
     </div>
-</center>
+
+    <div class="flexbox-container">
+        <div id="sched">
+            <center>
+                <div id="calendar"><?php 
+                    if(isset($calendar)) echo $calendar;
+                    else {?>
+                        <div>
+                            <p>Error loading calendar</p>
+                        </div>
+                    <?php } ?>
+                </div>
+            </center>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
 
 <!-- Book Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -86,6 +99,7 @@
             $("#sched").append(calendar);
         }
 
+        
         $(".calendar_table td").each(function(){
             if($(this).html()!="&nbsp;"){
                 $(this).attr("id", $(this).html());
@@ -93,7 +107,26 @@
                 $(this).attr("data-target", "#myModal");
             }
         });
+
+        set_current_date_color();
     });
+
+    function set_current_date_color(){
+
+        var month = parseInt("<?php echo $month; ?>");
+        var year = parseInt("<?php echo $year; ?>");
+
+        // RETURN CURRENT DATE
+        var d = new Date();
+        var dt = d.getDate();
+        var mo = d.getMonth() + 1;
+        var yr = d.getFullYear();
+
+        if (month ==  mo && year == yr){
+            $("#" + dt).css("background-color","yellow");
+        }
+
+    }
 
     function set_book_date(str){
         $("#book_date").html(str);
@@ -136,6 +169,7 @@
 
                 if(data==total_slot)
                     $("#book_btn").prop("disabled", true); // if full disable button
+                    
             }
         });
     }
