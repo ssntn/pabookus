@@ -52,4 +52,21 @@ class Calendar_model extends CI_Model {
         return $this->db->count_all_results();
     }
 
+    public function client_schedule($id){
+        $this->db->select('*');
+        $this->db->where('booker_id', $id);
+        return $this->db->get("schedule")->result_array();
+    }
+
+    public function company_schedule($id){
+        $this->db->select('*');
+        $this->db->where('company_id', $id);
+        return $this->db->get("schedule")->result_array();
+    }
+
+    public function cancel($id){
+        $this->db->where('schedule_id', $id);
+        return $this->db->delete('schedule');
+    }
+
 }

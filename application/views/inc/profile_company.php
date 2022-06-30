@@ -9,7 +9,9 @@
     <div class="flexbox-container">
         <div class="flexbox-item flexbox-item-1" id="dp">
             <img src="<?php echo base_url(); ?>public/img/profile/ayaka_heh.jpg" alt="Profile Picture" style="border: 3px solid black; height: 200px; width: 200px; border-radius: 10000px;">
-            <button>Change profile picture</button>
+            <?php if(isset($udata) && $udata["user_type"]=="company"){ ?>
+                <button>Change profile picture</button>
+            <?php } ?>
         </div>
 
         <div class="flexbox-item flexbox-item-2">
@@ -112,7 +114,7 @@
                                     echo $s['price'] ?></p>
                     </div>
 
-                <?php if($udata['id'] == $key_details["company_id"]){ ?>
+                <?php if(isset($udata)){if($udata['id'] == $key_details["company_id"]){ ?>
                     <div class="service_edt" id="service_<?php echo $s['id']; ?>_edt">
 
                         <label class="service_label" for="<?php echo $s['id']; ?>_n_edt">Name:</label>
@@ -140,6 +142,7 @@
 
                 </div>
                 <br><br>
+                <?php } ?>
                 <?php } ?>
                 <?php } ?>
             </div><br>

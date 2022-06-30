@@ -8,26 +8,28 @@
 
         <div class="flexbox-item flexbox-item-1" id="dp">
             <img src="<?php echo base_url(); ?>public/img/profile/ayaka_heh.jpg" alt="Profile Picture" style="border: 3px solid black; height: 200px; width: 200px; border-radius: 10000px;">
-            <button>Change profile picture</button>
+            <?php if(isset($udata)){ ?>
+                <button>Change profile picture</button>
+            <?php } ?>
         </div>
 
         <!--------------------------------->
         <div class="flexbox-item flexbox-item-2">
-            <?php if(isset($udata)){
-                if($udata['id'] == $key_details['client_id']){?>
-                    <button id="edit_btn">Edit info</button>
-                    <button id="save_btn">Save</button>
-            <?php }} ?>
-            <br><br><br><br>
+            <div style="display:flex;flex-direction:row;justify-content:space-around;height:fit-content">
+                <h2>User info</h2>
+                <?php if(isset($udata)){
+                    if($udata['id'] == $key_details['client_id']){?>
+                        <button id="edit_btn">Edit info</button>
+                        <button id="save_btn">Save</button>
+                <?php }} ?>
+            </div><hr>
 
 
             <p class="inf_title">Name:</p>
-            <p class="u_inf" id="name_lbl"><?php 
-                echo (isset($key_details['fullname']) || empty($key_details['fullname']))
+            <p class="u_inf" id="name_lbl"><?php echo isset($key_details['fullname']) || empty($key_details['fullname'])
                     ? $key_details['fullname']
                     : "user_".$key_details['client_id'];
-                ?>
-            </p>
+            ?></p>
             <input class="edit_box" type="text" name="name_edt" id="name_edt">
             <br>
 
@@ -43,8 +45,7 @@
                 echo (isset($key_details['contact']))
                     ? $key_details['contact']
                     : "Not set"
-                ?>
-            </p>
+            ?></p>
             <input class="edit_box" type="text" name="contact_edt" id="contact_edt">
             <br>
 
@@ -54,8 +55,7 @@
                 echo (isset($key_details['address']))
                     ? $key_details['address']
                     : "Not set"
-                ?>
-            </p>
+            ?></p>
             <input class="edit_box" type="text" name="address_edt" id="address_edt">
             <br>
 
@@ -76,20 +76,34 @@
         
 
     <div class="flexbox-item flexbox-item-3"> 
-            SERVICES:<br>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-            Voluptatum neque necessitatibus illum quia! Exercitationem, 
-            cum ea! A earum temporibus blanditiis voluptatem nihil architecto, 
-            quis rerum sint dolorum velit magnam ipsam!
+            <h2>Bookings:</h2><hr>
+            <?php if(isset($booked)){
+                foreach($booked as $b){?>
+
+                    <p><a href="<?php echo "schedule/".$b["company_id"]."/".$b["service_id"];?>"><?php
+                        echo $b['service_name']; ?>
+                    </a></p><br>
+
+                    <p><a href="<?php echo "profile/company/".$b["company_id"]?>"><?php 
+                        echo $b['company_name']; ?>
+                    </a></p><br>
+                    
+                    <p>Price: <?php echo $b['service_price']; ?></p><br>
+                    <p>Date: <?php 
+                        echo $b['month']; ?>/<?php 
+                        echo $b['day']; ?>/<?php
+                        echo $b['year']; ?>
+                        
+                    <button class="booking_delete" 
+                        id="b_<?php echo $b["schedule_id"]?>">
+                        Cancel Booking
+                    </button>
+                    </p><br><br><hr>
+
+            <?php }}?>
     </div>
     
 </div>
-
-
-
-
-
-
 
 <!-- JAVASCRIPT | JAVASCRIPT | JAVASCRIPT | JAVASCRIPT  -->
 <script type="text/javascript">
@@ -118,7 +132,6 @@
     //===================== AJAX ===========================
     function edit_user(){
         $.post("<?=base_url('Profile/edit_client')?>",{
-            
             id: <?php echo $key_details['client_id']; ?>,
             name: checkValue($('#name_edt').val()),
             email: checkValue($('#email_edt').val()),
@@ -126,8 +139,27 @@
             address: checkValue($('#address_edt').val()),
             birthdate: checkValue($('#birthdate_edt').val())
         }, function(data){
-            location.reload();
+            if(data){
+                location.reload();
+            }else {
+                alert("Cannot edit profile.");
+                location.reload
+            }
         });
+    }
+
+    function cancel_booking(id){
+        $.post("<?=base_url('Calendar/cancel_book')?>",{
+            schedule_id: id,
+        }, function(data){
+            if(data){
+                location.reload();
+            }else {
+                alert("Cannot cancel book.");
+                location.reload
+            }
+        });
+
     }
 
     //================= on change =======================
@@ -154,6 +186,11 @@
 
     $("#save_btn").click(function(){
         edit_user();
+    });
+
+    $(".booking_delete").click(function(){
+        id = $(this).attr("id").replace("b_", "");
+        cancel_booking(id);
     });
     
 

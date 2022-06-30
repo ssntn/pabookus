@@ -59,4 +59,14 @@ class Calendar extends CI_Controller {
         }
     }
 
+    public function cancel_book(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $schedule_id = $_POST["schedule_id"];
+
+            $q = $this->Calendar_model->cancel($schedule_id);
+            if($q) return true;
+            return false;
+        }
+    }
+
 }
