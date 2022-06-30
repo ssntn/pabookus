@@ -89,8 +89,7 @@
 	<?php }}else{?>
 	<p>No Services</p>	
 
-	<?php } ?>
-</div>
+
 
 
 <p><?php if(isset($udata)) echo $udata['email'] ?></p>
