@@ -105,10 +105,35 @@ class Routes extends CI_Controller {
         $this->load->model('User_model');
         $this->load->model('Industry_model');
         $this->load->model("Service_model");
+        $this->load->model("Calendar_model");
         
+        $data["booked"] = array();
         if($user_type == "client") {
             $user_details = $this->User_model->get_client_id($user_id);
             $page = 'inc/profile_client';
+            $book_data = $this->Calendar_model->client_schedule($user_id);
+
+            $book_counter=0;
+            $temp_booked = array();
+            foreach($book_data as $b){
+
+                if($b["status"]!=1) continue;
+                $temp_company = $this->User_model->get_company_id($b['company_id']);
+                $temp_service = $this->Service_model->get_service($temp_company['services_id'], $b["service_id"]);
+                
+                $temp_booked[$book_counter++] = array(
+                    "company_name" => $temp_company['company_name'],
+                    "company_id" => $temp_company['company_id'],
+                    "service_name" => $temp_service["name"],
+                    "service_id" => $temp_service["id"],
+                    "service_price" => $temp_service["price"],
+                    "month" => $b["month"],
+                    "day" => $b["day"],
+                    "year" => $b["year"],
+                );
+            }
+            $data["booked"] = $temp_booked;
+
         } else if($user_type == "company") {
 
             // RETURN USER DATA
@@ -124,6 +149,9 @@ class Routes extends CI_Controller {
             // RETURN USER DATA
             $user_details = $this->User_model->get_company_id($user_id);
             
+            // RETURN COMPANY BOOKING DATA
+            $booking = $this->Calendar_model->company_schedule($user_id);
+            
             // RETURN INDUSTRY DATA
             $temp_i = $this->Industry_model->get_table();
             $industry = array();
@@ -131,7 +159,7 @@ class Routes extends CI_Controller {
                 $industry[$i['name']] = $i;
             }
             
-            ksort($industry);     
+            ksort($industry); 
             $data['key_industry'] = $industry;
             $data['key_industry_default'] = $temp_i;
 
@@ -143,7 +171,9 @@ class Routes extends CI_Controller {
         if(!isset($user_details)) 
             redirect(base_url('home'));
 
+
         $data['key_details'] = $user_details;
+
 
         $this->load->view('inc/header');
         $this->load->view('inc/navbar');
