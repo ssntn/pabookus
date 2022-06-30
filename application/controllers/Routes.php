@@ -122,6 +122,7 @@ class Routes extends CI_Controller {
                 $temp_service = $this->Service_model->get_service($temp_company['services_id'], $b["service_id"]);
                 
                 $temp_booked[$book_counter++] = array(
+                    "schedule_id" => $b["schedule_id"],
                     "company_name" => $temp_company['company_name'],
                     "company_id" => $temp_company['company_id'],
                     "service_name" => $temp_service["name"],

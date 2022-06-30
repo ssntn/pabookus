@@ -26,12 +26,10 @@
 
 
             <p class="inf_title">Name:</p>
-            <p class="u_inf" id="name_lbl"><?php 
-                echo (isset($key_details['fullname']) || empty($key_details['fullname']))
+            <p class="u_inf" id="name_lbl"><?php echo isset($key_details['fullname']) || empty($key_details['fullname'])
                     ? $key_details['fullname']
                     : "user_".$key_details['client_id'];
-                ?>
-            </p>
+            ?></p>
             <input class="edit_box" type="text" name="name_edt" id="name_edt">
             <br>
 
@@ -47,8 +45,7 @@
                 echo (isset($key_details['contact']))
                     ? $key_details['contact']
                     : "Not set"
-                ?>
-            </p>
+            ?></p>
             <input class="edit_box" type="text" name="contact_edt" id="contact_edt">
             <br>
 
@@ -58,8 +55,7 @@
                 echo (isset($key_details['address']))
                     ? $key_details['address']
                     : "Not set"
-                ?>
-            </p>
+            ?></p>
             <input class="edit_box" type="text" name="address_edt" id="address_edt">
             <br>
 
@@ -97,17 +93,17 @@
                         echo $b['month']; ?>/<?php 
                         echo $b['day']; ?>/<?php
                         echo $b['year']; ?>
+                        
+                    <button class="booking_delete" 
+                        id="b_<?php echo $b["schedule_id"]?>">
+                        Cancel Booking
+                    </button>
                     </p><br><br><hr>
+
             <?php }}?>
     </div>
     
 </div>
-
-
-
-
-
-
 
 <!-- JAVASCRIPT | JAVASCRIPT | JAVASCRIPT | JAVASCRIPT  -->
 <script type="text/javascript">
@@ -136,7 +132,6 @@
     //===================== AJAX ===========================
     function edit_user(){
         $.post("<?=base_url('Profile/edit_client')?>",{
-            
             id: <?php echo $key_details['client_id']; ?>,
             name: checkValue($('#name_edt').val()),
             email: checkValue($('#email_edt').val()),
@@ -144,8 +139,27 @@
             address: checkValue($('#address_edt').val()),
             birthdate: checkValue($('#birthdate_edt').val())
         }, function(data){
-            location.reload();
+            if(data){
+                location.reload();
+            }else {
+                alert("Cannot edit profile.");
+                location.reload
+            }
         });
+    }
+
+    function cancel_booking(id){
+        $.post("<?=base_url('Calendar/cancel_book')?>",{
+            schedule_id: id,
+        }, function(data){
+            if(data){
+                location.reload();
+            }else {
+                alert("Cannot cancel book.");
+                location.reload
+            }
+        });
+
     }
 
     //================= on change =======================
@@ -172,6 +186,11 @@
 
     $("#save_btn").click(function(){
         edit_user();
+    });
+
+    $(".booking_delete").click(function(){
+        id = $(this).attr("id").replace("b_", "");
+        cancel_booking(id);
     });
     
 

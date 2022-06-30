@@ -64,4 +64,9 @@ class Calendar_model extends CI_Model {
         return $this->db->get("schedule")->result_array();
     }
 
+    public function cancel($id){
+        $this->db->where('schedule_id', $id);
+        return $this->db->delete('schedule');
+    }
+
 }
