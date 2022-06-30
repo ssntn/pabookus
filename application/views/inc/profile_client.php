@@ -65,8 +65,7 @@
                 echo (isset($key_details['birthdate']))
                     ? $key_details['birthdate']
                     : "Not set"
-                ?>
-            </p>
+                ?></p>
             <input class="edit_box" type="date" name="birthdate_edt" id="birthdate_edt">
 
             

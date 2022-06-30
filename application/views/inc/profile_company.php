@@ -177,11 +177,11 @@
                 </ul> 
             </div>
             
-            <br><br><br>
+            <br><br><br><!--
             <div class="company-buttons">
                 <button><a href="schedule" style="text-decoration: none;">Schedule</a></button>
                 <button><a href="#" style="text-decoration: none;">Review</a></button>
-            </div>
+            </div>-->
             
     </div>
 

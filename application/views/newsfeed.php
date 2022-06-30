@@ -83,5 +83,3 @@
 
 <?php } ?>
 
-
-<p><?php if(isset($udata)) echo $udata['email']; ?></p>

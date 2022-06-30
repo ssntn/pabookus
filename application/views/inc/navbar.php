@@ -20,8 +20,6 @@
 		<?php if(!isset($udata)){ ?>
 			<a href="<?php echo base_url();?>/login">Log-in</a>
 		<?php } else { ?>
-
-		<button>notifications</button>
 		    
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
 			<i class="fa fa-bars"></i>
