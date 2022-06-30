@@ -7,9 +7,14 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
+    public function get_table(){
+        $this->db->select('*');
+        return $this->db->get("company")->result_array();
+    }
+
     public function add_user($user_type, $data){
-        if($this->db->insert($user_type, $data))
-            return true;
+        $q = $this->db->insert($user_type, $data);
+        if($q) return $this->db->insert_id();
         else return false;
     }
 
@@ -31,10 +36,100 @@ class User_model extends CI_Model {
         $this->db->select($user_type."_id");
         $this->db->where('email', $email);
         $this->db->where('password', $password);
-        $q = $this->db->get($user_type);
+        $q = $this->db->get($user_type)->row_array();
 
         if($q) return $q;
         else return false;
     }
 
+    public function get_client_id($id){
+        $this->db->select(
+            'client_id,
+            fullname,
+            email,
+            contact,
+            address,
+            birthdate,
+            schedule_id'
+        );
+
+        $this->db->where('client_id', $id);
+        $q = $this->db->get('client')->row_array();
+
+        if($q) return $q;
+        else return false;
+    }
+
+    public function get_company_id($id){
+        $this->db->select(
+            'company_id,
+            company_name,
+            email,
+            address,
+            industry,
+            contact,
+            owner,
+            founding_date,
+            services_id'
+            // bio_id,
+            // link_id,
+            // schedule_id,
+            // review_id'
+        );
+
+        $this->db->where('company_id', $id);
+        $q = $this->db->get('company')->row_array();
+
+        if($q) return $q;
+        else return false;
+    }
+    
+    public function set_service_name($id, $t_name){
+        $this->db->set("services_id", $t_name);
+        $this->db->where('company_id', $id);        
+        $q = $this->db->update('company');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_company($id, $data){
+    
+        $this->db->set($data);
+        $this->db->where('company_id', $id);        
+        $q = $this->db->update('company');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_client($id, $data){
+        
+        $this->db->set($data);
+        $this->db->where('client_id', $id);        
+        $q = $this->db->update('client');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_client_password($id, $password){
+        $this->db->set($password);
+        $this->db->where('client_id', $id);
+        
+        $q = $this->db->update('client');
+
+        if($q) return true;
+        else return false;
+    }
+
+    public function update_company_password($id, $password){
+        $this->db->set($password);
+        $this->db->where('company_id', $id);
+        
+        $q = $this->db->update('company');
+
+        if($q) return true;
+        else return false;
+    }
 }
