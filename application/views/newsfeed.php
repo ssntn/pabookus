@@ -55,16 +55,6 @@
 			</ul>
 		</div>
 	</div>
-
-
-	<div class="card-container">
-		<div class="service-card" style="background-color: red;">
-
-		</div>
-	</div>
-
-
-
 </div>
 
 <div class="card_container">
@@ -72,24 +62,24 @@
 	if(isset($key_services)){
 		foreach($key_services as $s){?>
 		<div class="service_card">
-			<img src="<?php echo base_url(); ?>public/img/category/teaching.jpg" height="200" width="200" alt="Service Picture"><br><br><br>
+			<img src="<?php echo base_url(); ?>public/img/category/teaching.jpg" 
+				height="200" width="200" alt="Service Picture">
+
+			<br><br><br>
 
 			<div class="service_details"> 
 				<p><a href="schedule/<?php echo $s["company_id"]."/".$s["id"];?>">
-					<?php echo $s["name"];?></a>
-				</p>
-				<br>
-				<p><a href="<?php echo base_url()."profile/company/".$s["company_id"];?>">
-
-					<?php echo $s["company_name"];?></a>
-				</p>
+					<?php echo $s["name"];
+				?></a></p><br>
+				
+				<p><a href="<?php echo base_url()."profile/company/".$s["company_id"];?>"><?php 
+					echo $s["company_name"];
+				?></a></p>
 			</div>
 			
 		</div>
 	<?php }}else{?>
 	<p>No Services</p>	
 
+<?php } ?>
 
-
-
-<p><?php if(isset($udata)) echo $udata['email'] ?></p>
