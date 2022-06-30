@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2022 at 09:45 PM
+-- Generation Time: Jun 30, 2022 at 01:04 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -100,7 +100,7 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `bio_id`, `link_id`, `schedule_id`, `review_id`, `services_id`) VALUES
 (1, 'Kyle\'s Salon', 'kylesalon@mail.me', '111', '09199991111', 'Pasay City?', '2', 'KyleRaiden', '1943-06-24', NULL, NULL, NULL, NULL, 'company1_service'),
-(5, 'Ian Sisante BusinessGe', 'ian.sisante@tup.edu.ph', '111', '09001110000', 'Naic, Cavite', '8', 'Ian Sisante', '2022-06-22', NULL, NULL, NULL, NULL, 'company5_service'),
+(5, 'Ian Sisante BusinessGe                            ', 'ian.sisante@tup.edu.ph', '111', '09001110000', '443 Sitio Acacia, Malainen Bago., Naic, Cavite, 4110, Philippines, Asia, Earth, MilkyWay Galaxy, Universe', '8', 'Ian Sisante', '2022-06-01', NULL, NULL, NULL, NULL, 'company5_service'),
 (6, 'Piri tuts', 'pirituts@mail.me', '111', '87000', 'Bacoor, Cavite', '5', 'Piri Bustarde', '2022-07-22', NULL, NULL, NULL, NULL, 'company6_service'),
 (10, 'Kim Salon', 'kim@ber.ley', '123', '09198883333', 'Pasay', '1', 'Kim Delgado', '2022-06-22', NULL, NULL, NULL, NULL, 'company10_service'),
 (11, 'AlexYoga', 'alex@min.on', '321', '091234561234', 'Somewhere', '9', 'Alex Minon', '2022-06-23', NULL, NULL, NULL, NULL, 'company11_service');
@@ -114,7 +114,9 @@ INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `conta
 CREATE TABLE `company1_service` (
   `name` varchar(50) NOT NULL,
   `price` int(11) DEFAULT NULL,
-  `id` int(9) NOT NULL
+  `id` int(9) NOT NULL,
+  `duration` int(4) NOT NULL,
+  `slot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -126,17 +128,19 @@ CREATE TABLE `company1_service` (
 CREATE TABLE `company5_service` (
   `name` varchar(50) NOT NULL,
   `price` int(11) DEFAULT NULL,
-  `id` int(9) NOT NULL
+  `id` int(9) NOT NULL,
+  `duration` int(4) NOT NULL,
+  `slot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `company5_service`
 --
 
-INSERT INTO `company5_service` (`name`, `price`, `id`) VALUES
-('Training', 100, 9),
-('Sparring', 200, 11),
-('Advisor', 50, 12);
+INSERT INTO `company5_service` (`name`, `price`, `id`, `duration`, `slot`) VALUES
+('Training', 100, 9, 60, 3),
+('Sparring', 200, 11, 30, 4),
+('Advisor', 50, 12, 15, 5);
 
 -- --------------------------------------------------------
 
@@ -147,17 +151,19 @@ INSERT INTO `company5_service` (`name`, `price`, `id`) VALUES
 CREATE TABLE `company6_service` (
   `name` varchar(50) NOT NULL,
   `price` int(11) DEFAULT NULL,
-  `id` int(9) NOT NULL
+  `id` int(9) NOT NULL,
+  `duration` int(4) NOT NULL,
+  `slot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `company6_service`
 --
 
-INSERT INTO `company6_service` (`name`, `price`, `id`) VALUES
-('Guitar Tutorial', 234, 1),
-('Headshot Tutorials', 99999, 2),
-('How to get A+ on Japanese Proficiency Test', 500, 3);
+INSERT INTO `company6_service` (`name`, `price`, `id`, `duration`, `slot`) VALUES
+('Guitar Tutorial', 234, 1, 10, 3),
+('Headshot Tutorials', 99999, 2, 120, 1),
+('How to get A+ on Japanese Proficiency Test', 500, 3, 30, 2);
 
 -- --------------------------------------------------------
 
@@ -168,15 +174,17 @@ INSERT INTO `company6_service` (`name`, `price`, `id`) VALUES
 CREATE TABLE `company10_service` (
   `id` int(9) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `price` int(11) DEFAULT NULL
+  `price` int(11) DEFAULT NULL,
+  `duration` int(4) NOT NULL,
+  `slot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `company10_service`
 --
 
-INSERT INTO `company10_service` (`id`, `name`, `price`) VALUES
-(1, 'Serbisyong Totoo', 777);
+INSERT INTO `company10_service` (`id`, `name`, `price`, `duration`, `slot`) VALUES
+(1, 'Serbisyong Totoo', 777, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -187,16 +195,18 @@ INSERT INTO `company10_service` (`id`, `name`, `price`) VALUES
 CREATE TABLE `company11_service` (
   `id` int(9) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `price` int(11) DEFAULT NULL
+  `price` int(11) DEFAULT NULL,
+  `duration` int(4) NOT NULL,
+  `slot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `company11_service`
 --
 
-INSERT INTO `company11_service` (`id`, `name`, `price`) VALUES
-(1, 'Home Service', 100),
-(2, 'Coach', 800);
+INSERT INTO `company11_service` (`id`, `name`, `price`, `duration`, `slot`) VALUES
+(1, 'Home Service', 100, 0, 0),
+(2, 'Coach', 800, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -265,29 +275,23 @@ CREATE TABLE `reviews` (
 CREATE TABLE `schedule` (
   `schedule_id` int(12) NOT NULL,
   `company_id` int(12) NOT NULL,
-  `client_id` int(12) NOT NULL,
-  `date_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service`
---
-
-CREATE TABLE `service` (
-  `id` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `owner_id` int(11) NOT NULL
+  `booker_id` int(12) NOT NULL,
+  `service_id` int(9) NOT NULL,
+  `month` int(2) NOT NULL,
+  `day` int(2) NOT NULL,
+  `year` int(4) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `service`
+-- Dumping data for table `schedule`
 --
 
-INSERT INTO `service` (`id`, `name`, `owner_id`) VALUES
-(1, 'Guitar Tutorial', 1),
-(2, 'Elementary Tutorial', 1);
+INSERT INTO `schedule` (`schedule_id`, `company_id`, `booker_id`, `service_id`, `month`, `day`, `year`, `status`) VALUES
+(1, 5, 3, 9, 7, 22, 2022, 1),
+(16, 6, 5, 2, 6, 17, 2022, 1),
+(17, 6, 5, 2, 6, 16, 2022, 1),
+(18, 5, 5, 9, 6, 21, 2022, 1);
 
 --
 -- Indexes for dumped tables
@@ -375,14 +379,7 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`schedule_id`),
-  ADD KEY `schedule_client` (`client_id`),
   ADD KEY `schedule_company` (`company_id`);
-
---
--- Indexes for table `service`
---
-ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -458,7 +455,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `schedule_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -489,7 +486,6 @@ ALTER TABLE `reviews`
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_client` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
   ADD CONSTRAINT `schedule_company` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`);
 COMMIT;
 
