@@ -43,7 +43,7 @@ class Calendar extends CI_Controller {
             $year = $_POST['year'];
 
             $data = array(
-                "client_id" => $client_id,
+                "booker_id" => $client_id,
                 "company_id" => $company_id,
                 "service_id" => $service_id,
                 "day" => $day,

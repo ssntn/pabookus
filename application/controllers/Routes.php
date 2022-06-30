@@ -216,10 +216,8 @@ class Routes extends CI_Controller {
             {cal_cell_start_other}<td class="other-month">{/cal_cell_start_other}
 
             {cal_cell_content}<a href="{content}">{day}</a>{/cal_cell_content}
-            {cal_cell_content_today}<div class="highlight"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
 
             {cal_cell_no_content}{day}{/cal_cell_no_content}
-            {cal_cell_no_content_today}<div class="highlight">{day}</div>{/cal_cell_no_content_today}
 
             {cal_cell_blank}&nbsp;{/cal_cell_blank}
 
@@ -231,7 +229,7 @@ class Routes extends CI_Controller {
             {cal_row_end}</tr>{/cal_row_end}
 
             {table_close}</table>{/table_close}
-    ';
+        ';
         
         $this->load->model('User_model');
         $this->load->model('Service_model');
@@ -252,8 +250,6 @@ class Routes extends CI_Controller {
         foreach($schedule as $s){
             $booked_list[$s['day']] ="";
         }
-
-        print_r($service);
 
         $data['key_service'] = $service;
         $data['key_company'] = $company; 

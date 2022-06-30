@@ -2,7 +2,6 @@
 <?php 
     if($this->session->userdata('UserLoginSession'))
         $udata = $this->session->userdata('UserLoginSession');
-    print_r($udata);
 ?>
 
 <p>
@@ -43,39 +42,34 @@
         <?php } ?>
     </div>
 </center>
-</div>
-    <!-- Trigger the modal with a button -->
-    <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+<!-- Book Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><?php
-                    echo isset($key_service['name'])
-                        ?$key_service['name']
-                        :"error";
-                ?>: Current Bookings</h4>
-            </div>
-            <div class="modal-body">
-                <p id="slot_count">0</p><br>
-                <button id="book_btn">Book now!</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><?php
+                echo isset($key_service['name'])
+                    ?$key_service['name']
+                    :"error";
+            ?>: Current Bookings</h4>
+        </div>
+        <div class="modal-body">
+            <p id="book_date">Error loading Date</p><br>
+            <p id="slot_count">Error loading slots data</p><br>
+            <button id="book_btn">Book now!</button>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
     </div>
 </div>
 
 <script>
     $(document).ready(function(){
-        // $('#calendar').css("width", "25%");
-        // $('#calendar').css("margin", "auto");
 
         function calendar_update(data){
             $("#calendar").remove();
@@ -90,7 +84,6 @@
             }
             
             $("#sched").append(calendar);
-
         }
 
         $(".calendar_table td").each(function(){
@@ -102,7 +95,31 @@
         });
     });
 
-    
+    function set_book_date(str){
+        $("#book_date").html(str);
+    }
+
+    function count_days(month, day, year){
+        return (month+((month-1)*((month%2)?30:31)))+day+year*365;
+    }
+
+    function month_name(month_in_digit){
+        const month_list = {
+            1: "January",
+            2: "February",
+            3: "March",
+            4: "April",
+            5: "May",
+            6: "June",
+            7: "July",
+            8: "August",
+            9: "September",
+            10: "October",
+            11: "November",
+            12: "December"
+        }
+        return month_list[month_in_digit];
+    }
 
     //===================== AJAX ===========================
     function get_service_info(day){
@@ -124,12 +141,6 @@
     }
 
     function book_service(day){
-        console.log("<?php echo $key_company['company_id']; ?>");
-        console.log("<?php echo $udata['id']; ?>");
-        console.log("<?php echo $key_service["id"]; ?>");
-        console.log(day);
-        console.log("<?php echo $month; ?>");
-        console.log("<?php echo $year; ?>");
         $.post("<?=base_url('Calendar/add_booking')?>",{
             client_id:  "<?php echo $udata['id']; ?>",
             company_id: "<?php echo $key_company['company_id']; ?>",
@@ -139,7 +150,7 @@
             year:"<?php echo $year; ?>"
         }, function(data){
             if(data){ 
-                
+                alert("Mission failed successfully");
             }
         });
     }
@@ -147,11 +158,29 @@
     //================== on change =========================
     var theDay = 0;
     $(".calendar_table td").click(function(){
-        theDay = $(this).attr("id");
+
+        // RETURNS CLICKED DATA
+        theDay = parseInt($(this).attr("id"));
+        var month = parseInt("<?php echo $month; ?>");
+        var year = parseInt("<?php echo $year; ?>");
+
+        // RETURN CURRENT DATE
+        var d = new Date();
+        var dt = d.getDate();
+        var mo = d.getMonth() + 1;
+        var yr = d.getFullYear();
+
+        if(count_days(month, theDay, year) < count_days(mo, dt, yr)){
+            set_book_date("You can't just get back from the past!");
+            $("#book_btn").prop("disabled", true);
+        }else {
+            set_book_date(month_name(month)+" "+theDay+", "+year);
+        }
+        
         get_service_info(theDay);
     });
     
     $("#book_btn").click(function(){
-        book_service(theDay);2
+        book_service(theDay);
     });
 </script>
