@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2022 at 04:52 PM
+-- Generation Time: Jun 30, 2022 at 08:47 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -100,7 +100,7 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`company_id`, `company_name`, `email`, `password`, `contact`, `address`, `industry`, `owner`, `founding_date`, `bio_id`, `link_id`, `schedule_id`, `review_id`, `services_id`) VALUES
 (1, 'Kyle\'s Salon', 'kylesalon@mail.me', '111', '09199991111', 'Pasay City?', '2', 'KyleRaiden', '1943-06-24', NULL, NULL, NULL, NULL, 'company1_service'),
-(5, 'Ian Sisante BusinessGe                            ', 'ian.sisante@tup.edu.ph', '111', '09001110000', '443 Sitio Acacia, Malainen Bago., Naic, Cavite, 4110, Philippines, Asia, Earth, MilkyWay Galaxy, Universe', '8', 'Ian Sisante', '2022-06-01', NULL, NULL, NULL, NULL, 'company5_service'),
+(5, 'Ian Sisante BusinessGe', 'ian.sisante@tup.edu.ph', '111', '09001110000', '443 Sitio Acacia, Malainen Bago., Naic, Cavite, 4110, Philippines, Asia, Earth, MilkyWay Galaxy, Universe', '8', 'Ian Sisante', '2022-06-01', NULL, NULL, NULL, NULL, 'company5_service'),
 (6, 'Piri tuts', 'pirituts@mail.me', '111', '87000', 'Bacoor, Cavite', '5', 'Piri Bustarde', '2022-07-22', NULL, NULL, NULL, NULL, 'company6_service'),
 (10, 'Kim Salon', 'kim@ber.ley', '123', '09198883333', 'Pasay', '1', 'Kim Delgado', '2022-06-22', NULL, NULL, NULL, NULL, 'company10_service'),
 (11, 'AlexYoga', 'alex@min.on', '321', '091234561234', 'Somewhere', '9', 'Alex Minon', '2022-06-23', NULL, NULL, NULL, NULL, 'company11_service');
@@ -288,10 +288,9 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`schedule_id`, `company_id`, `booker_id`, `service_id`, `month`, `day`, `year`, `status`) VALUES
-(1, 5, 3, 9, 7, 22, 2022, 1),
-(16, 6, 5, 2, 6, 17, 2022, 1),
-(17, 6, 5, 2, 6, 16, 2022, 1),
-(18, 5, 5, 9, 6, 21, 2022, 1);
+(19, 5, 2, 9, 7, 4, 2022, 1),
+(20, 6, 2, 2, 7, 22, 2022, 1),
+(21, 6, 3, 3, 8, 25, 2022, 1);
 
 --
 -- Indexes for dumped tables
@@ -455,7 +454,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `schedule_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
