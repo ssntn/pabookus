@@ -8,7 +8,7 @@
 
     <div class="flexbox-container">
         <div class="flexbox-item flexbox-item-1" id="dp">
-            <img src="<?php echo base_url(); ?>public/img/profile/ayaka_heh.jpg" alt="Profile Picture" style="border: 3px solid black; height: 200px; width: 200px; border-radius: 10000px;">
+            <img src="<?php echo base_url(); ?>public/img/profile/default_profile.jpg" alt="Profile Picture" style="border: 3px solid black; height: 200px; width: 200px; border-radius: 10000px;">
             <?php if(isset($udata) && $udata["user_type"]=="company"){ ?>
                 <button>Change profile picture</button>
             <?php } ?>
